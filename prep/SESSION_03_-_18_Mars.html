@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .experience-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .exp-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .exp-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .exp-title { font-weight: bold; color: #1a3a5c; font-size: 14px; }
+  .comp-list { margin-top: 8px; }
+  .comp-item {
+    display: flex;
+    gap: 10px;
+    margin: 6px 0;
+    font-size: 13px;
+  }
+  .comp-dot {
+    color: #1a3a5c;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+  .comp-label { font-weight: bold; min-width: 140px; color: #333; }
+  .comp-exemple { color: #555; font-style: italic; }
+
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; margin-top: 1px; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .experience-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 3 · MERCREDI 18 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : L'Union Européenne &nbsp;·&nbsp; Raconter ses expériences comme compétences</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — L'Union Européenne</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>.</p>
+
+  <h3>C'est quoi l'Union Européenne ?</h3>
+  <p style="margin-bottom:10px;">L'Union Européenne est une organisation politique et économique qui regroupe aujourd'hui <strong>27 pays membres</strong>. Elle est née progressivement après la Seconde Guerre mondiale avec un objectif fondateur simple : éviter une nouvelle guerre en liant les économies européennes entre elles. L'idée : des pays qui commercent ensemble ne se font pas la guerre.</p>
+
+  <h3>Les institutions clés — à connaître absolument</h3>
+
+  <div class="concept">
+    <strong>La Commission Européenne</strong>
+    C'est le gouvernement de l'UE. Elle propose les lois européennes et veille à leur application. Basée à Bruxelles. Présidée depuis 2019 par Ursula von der Leyen (Allemande, réélue en 2024).
+  </div>
+  <div class="concept">
+    <strong>Le Parlement Européen</strong>
+    Les 705 députés européens sont élus directement par les citoyens tous les 5 ans. Il vote les lois et le budget de l'UE. Siège à Strasbourg et Bruxelles.
+  </div>
+  <div class="concept">
+    <strong>Le Conseil de l'UE</strong>
+    Réunit les ministres des États membres selon les sujets traités. C'est là que les pays négocient et décident ensemble des grandes orientations.
+  </div>
+  <div class="concept">
+    <strong>La Banque Centrale Européenne (BCE)</strong>
+    Gère la monnaie unique — l'euro — et la politique monétaire de la zone euro. Basée à Francfort. Elle fixe les taux d'intérêt pour contrôler l'inflation.
+  </div>
+
+  <h3>Les grandes étapes à retenir</h3>
+
+  <div class="concept">
+    <strong>1957 — Traité de Rome</strong>
+    Création de la Communauté Économique Européenne (CEE) par 6 pays fondateurs : France, Allemagne, Italie, Belgique, Pays-Bas, Luxembourg.
+  </div>
+  <div class="concept">
+    <strong>1992 — Traité de Maastricht</strong>
+    Création officielle de l'Union Européenne. Pose les bases de la monnaie unique et de la citoyenneté européenne.
+  </div>
+  <div class="concept">
+    <strong>2002 — L'euro entre en circulation</strong>
+    12 pays adoptent l'euro comme monnaie physique. Aujourd'hui 20 pays utilisent l'euro.
+  </div>
+  <div class="concept">
+    <strong>2016-2020 — Le Brexit</strong>
+    Le Royaume-Uni vote pour quitter l'UE en 2016 et sort définitivement en 2020. Premier pays à quitter l'UE. Un choc politique et économique majeur.
+  </div>
+
+  <h3>Les grandes crises qui ont ébranlé l'UE</h3>
+
+  <div class="actu">
+    <strong>⚡ La crise de la dette (2010-2015)</strong>
+    La Grèce, puis l'Espagne, le Portugal et l'Irlande sont au bord de la faillite. L'UE et le FMI interviennent avec des plans d'aide massifs en échange de réformes douloureuses. Crise de la solidarité européenne.
+  </div>
+  <div class="actu">
+    <strong>⚡ La crise migratoire (2015-2016)</strong>
+    Plus d'un million de migrants arrivent en Europe, fuyant la guerre en Syrie. Les pays européens se divisent profondément sur la question de l'accueil et du partage des réfugiés.
+  </div>
+  <div class="actu">
+    <strong>⚡ Le Brexit (2016-2020)</strong>
+    Le départ du Royaume-Uni remet en question le projet européen et pose la question : l'UE est-elle irréversible ?
+  </div>
+  <div class="actu">
+    <strong>⚡ La guerre en Ukraine (depuis 2022)</strong>
+    L'invasion russe de l'Ukraine en février 2022 a forcé l'UE à s'unir comme rarement — sanctions contre la Russie, aide militaire à l'Ukraine, accélération de la transition énergétique pour réduire la dépendance au gaz russe.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Pourquoi c'est utile pour toi ?</strong><br>
+    L'UE apparaît régulièrement dans les QCM SESAME et ACCES. En entretien, un jury peut demander : <em>« Que pensez-vous du projet européen ? »</em> ou <em>« Quel est selon vous le plus grand défi de l'Europe aujourd'hui ? »</em> Avoir une opinion construite — pas forcément parfaite, mais réfléchie — fait toujours forte impression.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite trois institutions de l'UE et explique en une phrase le rôle de chacune.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Qu'est-ce que le Brexit ? Pourquoi est-ce un événement important pour comprendre l'UE aujourd'hui ?</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Selon toi, quel est le plus grand défi de l'Union Européenne en 2026 ? Justifie en deux phrases.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Raconter ses expériences comme compétences</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Un jury ne veut pas entendre ce que tu as fait. Il veut savoir ce que tu en as appris et ce que ça dit de toi. La différence entre lister une expérience et la valoriser, c'est tout ce qui sépare un dossier ordinaire d'un candidat mémorable.</p>
+
+  <p style="margin-bottom:12px;"><strong>La règle d'or :</strong> chaque expérience = une compétence nommée + un exemple concret + ce que ça t'apporte pour demain.</p>
+
+  <h3>Tes 3 expériences clés — décryptées</h3>
+
+  <!-- EXPÉRIENCE 1 -->
+  <div class="experience-card">
+    <div class="exp-header">
+      <span class="exp-tag">EXP 1</span>
+      <span class="exp-title">Coordinatrice événementielle — Lycée Louis Massignon</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:10px; color:#555;">3 événements, 15 000 AED levés, plus de 200 participants au total.</p>
+    <div class="comp-list">
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Gestion de projet</span>
+        <span class="comp-exemple">planifier de A à Z, respecter des délais, gérer l'imprévu le jour J.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Gestion budgétaire</span>
+        <span class="comp-exemple">négocier avec des prestataires, suivre les recettes et les dépenses, rendre des comptes.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Communication</span>
+        <span class="comp-exemple">promouvoir les événements sur les réseaux, convaincre des participants de cultures très diverses.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Leadership</span>
+        <span class="comp-exemple">coordonner une équipe de bénévoles, prendre des décisions sous pression, motiver le groupe.</span>
+      </div>
+    </div>
+    <div class="pitch-exemple">
+      « Ce que cette expérience m'a appris, c'est que le management, ce n'est pas donner des ordres — c'est créer les conditions pour que les gens s'investissent. Quand tu vois 120 élèves de 20 nationalités différentes partager un moment que tu as organisé, tu comprends vraiment ce que ça veut dire. »
+    </div>
+  </div>
+
+  <!-- EXPÉRIENCE 2 -->
+  <div class="experience-card">
+    <div class="exp-header">
+      <span class="exp-tag">EXP 2</span>
+      <span class="exp-title">Stage — Marine Nationale française, Abu Dhabi</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:10px; color:#555;">2 semaines d'immersion dans un environnement militaire exigeant et très structuré.</p>
+    <div class="comp-list">
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Rigueur et discipline</span>
+        <span class="comp-exemple">respecter des protocoles stricts, être ponctuelle, agir avec précision dans des situations à enjeux.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Adaptabilité</span>
+        <span class="comp-exemple">intégrer rapidement un environnement inconnu, travailler avec des adultes professionnels dès 17 ans.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Gestion du stress</span>
+        <span class="comp-exemple">maintenir sa concentration dans des situations inhabituelles et sous pression.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Vision du leadership</span>
+        <span class="comp-exemple">observer comment des chefs d'équipe gèrent des situations critiques avec calme et autorité naturelle.</span>
+      </div>
+    </div>
+    <div class="pitch-exemple">
+      « Ce stage m'a montré qu'un environnement très structuré peut être libérateur — quand chacun sait exactement ce qu'on attend de lui, l'équipe performe. C'est une leçon que je veux appliquer dans un contexte business. »
+    </div>
+  </div>
+
+  <!-- EXPÉRIENCE 3 -->
+  <div class="experience-card">
+    <div class="exp-header">
+      <span class="exp-tag">EXP 3</span>
+      <span class="exp-title">Parcours international — 4 pays, 3 continents, 3 langues</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:10px; color:#555;">Gabon, Australie, France, Émirats arabes unis. Français natif, anglais C1, espagnol B1.</p>
+    <div class="comp-list">
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Intelligence interculturelle</span>
+        <span class="comp-exemple">comprendre et s'adapter à des codes culturels très différents — un atout majeur dans le business international.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Résilience</span>
+        <span class="comp-exemple">recommencer à zéro dans un nouveau pays, se faire de nouveaux amis, changer de langue d'enseignement.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Ouverture d'esprit</span>
+        <span class="comp-exemple">avoir été minorité culturelle dans plusieurs pays forge une capacité naturelle à ne pas juger, à écouter vraiment.</span>
+      </div>
+      <div class="comp-item">
+        <span class="comp-dot">→</span>
+        <span class="comp-label">Communication multilingue</span>
+        <span class="comp-exemple">penser et travailler dans deux langues au quotidien, passer naturellement de l'une à l'autre selon le contexte.</span>
+      </div>
+    </div>
+    <div class="pitch-exemple">
+      « Avoir changé de pays quatre fois avant 18 ans, ce n'est pas juste une ligne sur un CV. C'est avoir appris très tôt que les gens qui réussissent dans un monde globalisé sont ceux qui savent s'adapter sans perdre leur identité. »
+    </div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Choisis <strong>une seule expérience</strong>. Raconte-la en 60 secondes en citant une compétence précise et un exemple concret. Pas de liste — une histoire.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Le jury demande : <em>« Parmi toutes vos expériences, laquelle vous a le plus appris ? Pourquoi ? »</em> Réponds spontanément — tu dois choisir une seule et la défendre.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury insiste : <em>« Vous avez beaucoup voyagé — mais concrètement, qu'est-ce que ça change dans votre façon de travailler avec les autres ? »</em> Réponse en 45 secondes maximum.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La capacité de recul</strong> — Est-ce que tu analyses tes expériences ou tu les listes juste ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Est-ce que tes expériences racontent une histoire logique vers ton projet ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La maturité</strong> — Est-ce que tu parles comme quelqu'un qui a vraiment vécu ces choses ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La différenciation</strong> — Tes expériences sont rares pour une terminale. Est-ce que tu en prends conscience ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le piège le plus fréquent :</strong> réciter son CV à voix haute. <em>« J'ai organisé trois événements, j'ai fait un stage à la Marine, j'ai vécu dans quatre pays. »</em> Ce n'est pas valoriser ses expériences — c'est les énumérer. Le jury a lu ton dossier. Il veut savoir ce que tu en penses, ce que tu en retiens, ce que ça dit de qui tu es.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Pose-toi cette question à voix haute, sans préparation :<br><br>
+  <em>« Si je devais choisir une seule de mes expériences pour convaincre un jury en 30 secondes — laquelle je choisirais, et pourquoi celle-là plutôt que les autres ? »</em><br><br>
+  L'objectif : identifier quelle expérience résonne le plus profondément avec ton projet. C'est souvent celle-là qui devient le cœur de ton discours en entretien.
+</div>
+
+</body>
+</html>

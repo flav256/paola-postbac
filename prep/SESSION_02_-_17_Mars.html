@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .avantage {
+    background: #f0faf0;
+    border-left: 4px solid #2e7d32;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .avantage strong { color: #2e7d32; display: block; margin-bottom: 3px; }
+
+  .critique {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .critique strong { color: #cc3333; display: block; margin-bottom: 3px; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+  }
+
+  .mauvaise {
+    background: #fff0f0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #cc3333;
+  }
+  .mauvaise::before { content: "✗ "; color: #cc3333; font-style: normal; font-weight: bold; }
+
+  .pitch-step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .pitch-step:last-child { border-bottom: none; }
+  .pitch-num {
+    background: #e8f0fb;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .pitch-content { flex: 1; }
+  .pitch-label { font-weight: bold; color: #1a3a5c; font-size: 13px; }
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; margin-top: 1px; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 2 · MARDI 17 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : La mondialisation &nbsp;·&nbsp; Pourquoi le commerce/management ?</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — La mondialisation</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>.</p>
+
+  <h3>Définition</h3>
+  <p style="margin-bottom:10px;">La mondialisation, c'est le processus par lequel les pays du monde s'interconnectent de plus en plus — économiquement, culturellement, technologiquement. Les frontières s'effacent pour les échanges de biens, de services, de capitaux et d'informations.</p>
+  <p style="margin-bottom:10px;">Elle s'accélère depuis les années 1990 grâce à trois moteurs : la libéralisation du commerce international via l'OMC, la révolution numérique et internet, et la baisse des coûts de transport.</p>
+
+  <h3>Les acteurs clés</h3>
+  <div class="concept">
+    <strong>L'OMC — Organisation Mondiale du Commerce</strong>
+    Fixe les règles du commerce international et arbitre les conflits entre pays. 164 membres.
+  </div>
+  <div class="concept">
+    <strong>Les multinationales</strong>
+    Entreprises qui opèrent dans plusieurs pays. Moteur de la mondialisation économique.<br>
+    <em>Exemples : Apple, Toyota, LVMH, Nestlé.</em>
+  </div>
+  <div class="concept">
+    <strong>Les chaînes de valeur mondiales</strong>
+    Un iPhone est conçu aux États-Unis, ses composants viennent de 40 pays, il est assemblé en Chine. C'est ça une chaîne de valeur mondialisée.
+  </div>
+
+  <h3>Les avantages</h3>
+  <div class="avantage">
+    <strong>Pour les consommateurs</strong>
+    Baisse des prix grâce à la concurrence internationale. Accès à des produits du monde entier.
+  </div>
+  <div class="avantage">
+    <strong>Pour les entreprises</strong>
+    Accès à de nouveaux marchés, main d'œuvre et ressources à l'international.
+  </div>
+  <div class="avantage">
+    <strong>Pour les pays émergents</strong>
+    Développement économique accéléré — Chine, Inde, Vietnam. Circulation des idées et des innovations.
+  </div>
+
+  <h3>Les critiques</h3>
+  <div class="critique">
+    <strong>Les délocalisations</strong>
+    Des entreprises déplacent leur production vers des pays à bas salaires, créant du chômage dans les pays développés.
+  </div>
+  <div class="critique">
+    <strong>Les inégalités</strong>
+    La mondialisation enrichit certains, mais pas tout le monde également. Les écarts se creusent.
+  </div>
+  <div class="critique">
+    <strong>Les fragilités révélées par le Covid-19</strong>
+    Dépendance dangereuse : masques fabriqués uniquement en Asie, médicaments produits à l'étranger. Un choc mondial a paralysé les chaînes d'approvisionnement.
+  </div>
+  <div class="critique">
+    <strong>L'impact environnemental</strong>
+    Transporter des marchandises aux quatre coins du monde a un coût carbone énorme.
+  </div>
+
+  <h3>Le tournant actuel — la démondialisation</h3>
+  <div class="actu">
+    <strong>⚡ Sujet d'actualité 2025-2026</strong>
+    Depuis 2020, on observe un mouvement de relocalisation et de souveraineté économique. Les pays veulent rapatrier certaines productions stratégiques : semi-conducteurs, médicaments, énergie. Les États-Unis, l'Europe et la Chine s'affrontent dans une guerre commerciale et technologique. C'est le sujet que les jurys adorent poser en entretien.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Le lien avec toi</strong><br>
+    Tu as vécu dans 4 pays sur 3 continents. Tu parles 3 langues. Tu as étudié dans des environnements multiculturels. Tu ES un produit de la mondialisation — et ça, c'est une force immense que tu peux mentionner naturellement si ce sujet vient en entretien.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite deux avantages et deux inconvénients concrets de la mondialisation. Pas de cours — des exemples réels.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Qu'est-ce que le Covid-19 a révélé sur les fragilités de la mondialisation ? Donne un exemple précis.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Toi qui as vécu dans plusieurs pays — comment la mondialisation a-t-elle concrètement influencé ta vie quotidienne ? Deux exemples.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Pourquoi le commerce/management ?</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Après le pitch, c'est la deuxième question systématique de tout jury : <em>« Pourquoi une école de commerce ? »</em> ou <em>« Pourquoi le management ? »</em> ou <em>« Pourquoi pas une université ? »</em> C'est la question qui fait la différence entre un candidat banal et un candidat mémorable.</p>
+
+  <h3>Les réponses qui tuent une candidature</h3>
+  <div class="mauvaise">« J'aime le commerce parce que j'aime le contact humain. »</div>
+  <div class="mauvaise">« Je veux travailler dans une grande entreprise internationale. »</div>
+  <div class="mauvaise">« C'est une école réputée qui offre de belles opportunités. »</div>
+  <div class="mauvaise">« Mon père/ma mère travaille dans les affaires. »</div>
+  <p style="font-size:13px; color:#888; font-style:italic; margin-top:6px;">Ces réponses sont génériques. Le jury les entend 50 fois par jour. Elles ne disent rien sur toi.</p>
+
+  <h3>La bonne structure — ancrée dans ton histoire réelle</h3>
+
+  <div style="border: 1px solid #ddd; border-radius:4px; padding: 16px 18px; margin: 12px 0;">
+
+    <div class="pitch-step">
+      <div class="pitch-num">1</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Une expérience déclenchante</span>
+        <p style="font-size:13px; margin-top:4px;">Un moment précis où tu as compris que c'est ça qui te motive. Pas une théorie — un fait vécu.</p>
+        <div class="pitch-exemple">« Cette année, j'ai organisé trois événements pour ma promotion. J'ai géré un budget, négocié avec des prestataires, coordonné une équipe, communiqué pour vendre des billets — et j'ai vu le résultat : 15 000 AED levés, une promo rassemblée. C'est là que j'ai compris que c'est ça qui me fait vibrer. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">2</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Ce que ça t'a appris sur toi</span>
+        <p style="font-size:13px; margin-top:4px;">Qu'est-ce que cette expérience a révélé de tes forces et de tes envies ?</p>
+        <div class="pitch-exemple">« J'ai découvert que j'aime créer des projets qui ont un impact concret sur les gens. Que la dimension multiculturelle me stimule. Que le mélange créativité, organisation et communication, c'est mon terrain naturel. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">3</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Pourquoi une école de commerce est la suite logique</span>
+        <p style="font-size:13px; margin-top:4px;">Le lien direct entre ce que tu as découvert et ce qu'une école de commerce t'apportera.</p>
+        <div class="pitch-exemple">« Une école de commerce va me donner les outils analytiques, le réseau international et les cas pratiques pour transformer cette intuition en compétences solides — dans le marketing, l'événementiel ou l'hôtellerie de luxe. »</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Construis ta réponse librement en t'appuyant sur la structure. Pas de script — tes propres mots.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Recommence. Cette fois, commence <strong>directement par l'expérience déclenchante</strong> — sans introduction. Plus percutant.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury interrompt après 30 secondes : <em>« Mais concrètement, c'est quoi le management pour vous ? »</em> Réponds en 2-3 phrases. Improvise.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La sincérité</strong> — Est-ce que ça sonne vrai ou récité ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Est-ce que ton parcours justifie ce choix naturellement ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La maturité</strong> — Est-ce que tu sais ce que tu veux et pourquoi ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'ancrage concret</strong> — Est-ce que tu utilises tes vraies expériences ou des généralités ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le piège du miroir</strong><br>
+    Beaucoup de candidats essaient de dire ce qu'ils pensent que le jury veut entendre. Le jury le détecte immédiatement. La meilleure réponse est toujours la plus honnête et la plus personnelle — même si elle est imparfaite. Un jury préfère une réponse authentique et un peu hésitante à une réponse parfaite qui sonne faux.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Pose-toi cette question à voix haute, sans préparation :<br><br>
+  <em>« Si je n'avais pas organisé ces événements au lycée — est-ce que j'aurais quand même voulu faire une école de commerce ? Et si oui, pourquoi d'autre ? »</em><br><br>
+  Cette question force à identifier d'autres motivations profondes : le goût pour l'économie en cours de SES, la curiosité pour les entreprises, l'envie de travailler à l'international. Autant d'éléments qui enrichissent la réponse en entretien.
+</div>
+
+</body>
+</html>

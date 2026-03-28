@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .date-card {
+    display: flex;
+    gap: 14px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+    align-items: flex-start;
+  }
+  .date-badge {
+    background: #1a3a5c;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    white-space: nowrap;
+    min-width: 50px;
+    text-align: center;
+    margin-top: 2px;
+  }
+  .date-content { flex: 1; }
+  .date-title { font-weight: bold; color: #1a3a5a; font-size: 13px; margin-bottom: 3px; }
+  .date-impact { font-size: 12px; color: #666; font-style: italic; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .force-card {
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .force-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+  }
+  .force-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+  }
+  .force-title { font-weight: bold; color: #1a3a5c; font-size: 14px; }
+
+  .mauvaise {
+    background: #fff0f0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #cc3333;
+  }
+  .mauvaise::before { content: "✗ "; color: #cc3333; font-style: normal; font-weight: bold; }
+
+  .bonne {
+    background: #f0faf0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #2e7d32;
+  }
+  .bonne::before { content: "✓ "; color: #2e7d32; font-style: normal; font-weight: bold; }
+
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; margin-top: 1px; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .force-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 4 · JEUDI 19 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : Grandes dates du XXe siècle &nbsp;·&nbsp; Ton parcours international comme vraie force</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — Grandes dates du XXe siècle</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. L'objectif n'est pas de tout mémoriser — c'est de comprendre <em>pourquoi</em> chaque date a changé le monde des affaires et de la société.</p>
+
+  <h3>Les dates incontournables</h3>
+
+  <div class="date-card">
+    <div class="date-badge">1914</div>
+    <div class="date-content">
+      <div class="date-title">Première Guerre Mondiale — le monde bascule</div>
+      <div class="date-impact">Fin des empires (austro-hongrois, ottoman, russe). Montée des nationalismes. Redécoupage de la carte du monde. Impact éco : destruction massive, endettement des États, début de la domination économique américaine.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">1929</div>
+    <div class="date-content">
+      <div class="date-title">Krach boursier de Wall Street — la Grande Dépression</div>
+      <div class="date-impact">Effondrement des marchés financiers américains. Chômage massif mondial (25% aux USA). Les États apprennent qu'ils doivent réguler l'économie — naissance de l'État-Providence. Leçon toujours valable en 2026.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">1945</div>
+    <div class="date-content">
+      <div class="date-title">Fin de la Seconde Guerre Mondiale — nouveau ordre mondial</div>
+      <div class="date-impact">Création de l'ONU. Plan Marshall : les USA reconstruisent l'Europe. Début de la Guerre Froide USA/URSS. Décolonisation en marche. Naissance du système économique mondial actuel (FMI, Banque Mondiale, GATT devenu OMC).</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">1968</div>
+    <div class="date-content">
+      <div class="date-title">Mai 68 — révolution culturelle et sociale</div>
+      <div class="date-impact">France et monde entier. Remise en cause de l'autorité, des hiérarchies, du travail taylorien. Naissance des droits des femmes, des libertés individuelles modernes. Impact durable sur le management et les relations de travail.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">1989</div>
+    <div class="date-content">
+      <div class="date-title">Chute du Mur de Berlin — fin de la Guerre Froide</div>
+      <div class="date-impact">Effondrement du bloc soviétique. Réunification allemande. Ouverture économique de l'Europe de l'Est. Début de la mondialisation accélérée. Le capitalisme libéral s'impose comme modèle dominant mondial.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">2001</div>
+    <div class="date-content">
+      <div class="date-title">Attentats du 11 septembre — le monde de l'après</div>
+      <div class="date-impact">Attaques contre les Tours Jumelles à New York. Bouleversement géopolitique mondial. Guerre en Afghanistan, puis Irak. Explosion des dépenses de sécurité. Remise en question de la mondialisation "naïve" des années 90.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">2008</div>
+    <div class="date-content">
+      <div class="date-title">Crise financière mondiale — la faillite de Lehman Brothers</div>
+      <div class="date-impact">Effondrement du système bancaire mondial. Récession globale. Les États injectent des milliers de milliards pour sauver les banques. Remise en cause du capitalisme financier. Naissance du mouvement Occupy Wall Street. Régulation bancaire renforcée.</div>
+    </div>
+  </div>
+
+  <div class="date-card">
+    <div class="date-badge">2020</div>
+    <div class="date-content">
+      <div class="date-title">Covid-19 — la pandémie qui a tout changé</div>
+      <div class="date-impact">Première pandémie mondiale depuis 1918. Confinements généralisés. Explosion du télétravail et du e-commerce. Fragilité des chaînes d'approvisionnement mondiales révélée. Accélération massive de la transformation numérique. Dettes publiques records.</div>
+    </div>
+  </div>
+
+  <div class="actu">
+    <strong>⚡ Le fil conducteur à retenir pour les entretiens</strong>
+    Chaque grande crise du XXe siècle a accéléré une transformation économique. 1929 → l'État régulateur. 1945 → la coopération internationale. 1989 → la mondialisation. 2008 → la régulation financière. 2020 → la souveraineté économique et le numérique. Les jurys adorent demander : <em>« Quelle crise passée vous semble la plus pertinente pour comprendre le monde d'aujourd'hui ? »</em>
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Pourquoi c'est utile pour toi ?</strong><br>
+    Ces dates tombent régulièrement dans les QCM SESAME et ACCES. Mais surtout, les connaître te permet de répondre intelligemment si un jury te demande : <em>« Qu'est-ce qui vous a le plus frappée dans l'actualité récente ? »</em> — tu peux toujours relier l'actualité à un événement historique pour montrer ta profondeur de réflexion.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite trois dates du XXe siècle et explique en une phrase l'impact économique de chacune.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Qu'est-ce que la crise de 2008 et celle du Covid-19 ont en commun ? Quelle leçon les entreprises en ont-elles tirée ?</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Si un jury te demande quelle crise passée est la plus utile pour comprendre le monde en 2026, laquelle tu choisirais et pourquoi ?</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Ton parcours international comme vraie force</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Ton parcours international est exceptionnel pour une candidate post-bac. Mais beaucoup de candidats internationaux ne savent pas le valoriser. Ils le mentionnent, mais ne l'exploitent pas. Aujourd'hui on travaille à transformer ce parcours en arguments concrets et mémorables.</p>
+
+  <h3>Le problème — comment la plupart des candidats le ratent</h3>
+
+  <div class="mauvaise">« J'ai vécu dans plusieurs pays donc je suis ouverte d'esprit. »</div>
+  <div class="mauvaise">« Mon parcours international m'a appris à m'adapter. »</div>
+  <div class="mauvaise">« J'ai habité au Gabon, en Australie, aux Émirats et en France. »</div>
+
+  <p style="font-size:13px; color:#888; font-style:italic; margin: 8px 0 14px;">Ces réponses sont vraies mais vides. Tout le monde dit qu'il est ouvert d'esprit. Le jury veut des preuves concrètes, des moments précis, des apprentissages réels.</p>
+
+  <h3>La bonne approche — trois angles à maîtriser</h3>
+
+  <div class="force-card">
+    <div class="force-header">
+      <span class="force-tag">ANGLE 1</span>
+      <span class="force-title">L'intelligence interculturelle — avec une preuve</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:8px;">Ne dis pas que tu es adaptable. Montre un moment précis où cette adaptabilité a produit un résultat concret.</p>
+    <div class="pitch-exemple">
+      « Au lycée Louis Massignon, notre promotion compte plus de 20 nationalités. Quand j'organisais les événements, je devais tenir compte de contraintes culturelles très différentes — horaires, habitudes alimentaires, façons de communiquer. J'ai appris à lire les gens avant de leur parler, à adapter mon message selon l'interlocuteur. C'est quelque chose que je ne pourrais pas avoir appris dans un lycée français classique. »
+    </div>
+  </div>
+
+  <div class="force-card">
+    <div class="force-header">
+      <span class="force-tag">ANGLE 2</span>
+      <span class="force-title">La résilience — recommencer à zéro plusieurs fois</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:8px;">Changer de pays, c'est perdre ses repères, ses amis, sa langue — et reconstruire. C'est une forme de résilience rare à 17 ans.</p>
+    <div class="pitch-exemple">
+      « J'ai changé d'école et de pays quatre fois. À chaque fois, j'arrivais dans un environnement inconnu où je ne connaissais personne. J'ai appris très tôt que la confiance ne se demande pas — elle se construit, par les actes, par la constance. C'est une leçon que j'applique naturellement quand je travaille en équipe. »
+    </div>
+  </div>
+
+  <div class="force-card">
+    <div class="force-header">
+      <span class="force-tag">ANGLE 3</span>
+      <span class="force-title">La vision globale — comprendre le monde autrement</span>
+    </div>
+    <p style="font-size:13px; margin-bottom:8px;">Avoir vécu sur 3 continents donne une perspective sur le monde que la plupart des candidats n'ont pas. C'est un atout stratégique pour une carrière internationale.</p>
+    <div class="pitch-exemple">
+      « Quand on parle de mondialisation en cours de SES, je ne l'apprends pas dans un livre — je l'ai vécue. J'ai vu comment les gens consomment différemment en Australie et aux Émirats, comment les rapports au travail et à l'autorité changent d'une culture à l'autre. Cette vision concrète du monde, c'est exactement ce que je veux approfondir dans une formation en management international. »
+    </div>
+  </div>
+
+  <h3>Le lien avec l'histoire — angle bonus très fort</h3>
+
+  <div class="actu">
+    <strong>💡 Connexion culture G / entretien</strong>
+    Tu peux relier ton parcours aux grandes dates vues en Étape 1. Exemple : <em>« J'ai grandi dans un monde post-1989 — un monde où les frontières économiques s'effacent, où les entreprises sont mondiales par nature. Mon parcours m'a préparée à naviguer dans ce monde-là. »</em> Ce type de connexion entre expérience personnelle et contexte historique impressionne un jury.
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Choisis un des trois angles. Raconte en 60 secondes, avec un exemple précis et concret. Pas de généralités.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Le jury demande : <em>« Vous avez vécu dans beaucoup de pays — mais lequel vous a le plus marquée, et pourquoi ? »</em> Réponds en 45 secondes. Tu dois choisir un seul pays et l'assumer.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury insiste : <em>« En quoi votre parcours vous rend-il différente des autres candidats que nous allons voir aujourd'hui ? »</em> Réponse directe, sans fausse modestie, en 30 secondes.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La conscience de ses atouts</strong> — Est-ce que tu sais vraiment ce qui te rend unique ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La capacité à illustrer</strong> — Est-ce que tu donnes des exemples précis ou tu restes dans le vague ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'humilité juste</strong> — Tu valorises ton parcours sans arrogance ni fausse modestie.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>Le lien avec le projet</strong> — Est-ce que ton parcours justifie naturellement ton choix de management international ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le piège de la liste géographique :</strong> dire <em>« J'ai vécu au Gabon, en Australie, en France et aux Émirats »</em> sans expliquer ce que ça t'a apporté, c'est une occasion manquée. Le jury n'est pas impressionné par les pays — il est impressionné par ce que tu en as fait.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Pose-toi cette question à voix haute, sans préparation :<br><br>
+  <em>« Si je n'avais pas eu ce parcours international — est-ce que je serais la même personne ? Qu'est-ce que j'aurais manqué, concrètement ? »</em><br><br>
+  Cette réflexion aide à prendre conscience de la valeur réelle de ce parcours — et donc à en parler avec une conviction authentique plutôt qu'une récitation apprise.
+</div>
+
+</body>
+</html>

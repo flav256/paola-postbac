@@ -1,0 +1,487 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .org-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    background: white;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .org-badge {
+    background: #1a3a5c;
+    color: white;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    min-width: 60px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .org-content { flex: 1; }
+  .org-name { font-weight: bold; color: #1a3a5c; font-size: 14px; margin-bottom: 4px; }
+  .org-full { font-size: 12px; color: #aaa; margin-bottom: 6px; font-style: italic; }
+  .org-desc { font-size: 13px; color: #444; line-height: 1.6; }
+  .org-exemple { font-size: 12px; color: #888; margin-top: 4px; font-style: italic; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .projet-step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .projet-step:last-child { border-bottom: none; }
+  .projet-num {
+    background: #e8f0fb;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .projet-content { flex: 1; }
+  .projet-label { font-weight: bold; color: #1a3a5c; font-size: 13px; }
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .mauvaise {
+    background: #fff0f0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #cc3333;
+  }
+  .mauvaise::before { content: "✗ "; color: #cc3333; font-style: normal; font-weight: bold; }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .org-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 8 · MARDI 24 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : Organisations internationales &nbsp;·&nbsp; Le projet professionnel</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — ONU, FMI, OMC, G20</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. Ces organisations reviennent régulièrement dans les QCM SESAME et ACCES — et en entretien quand le jury pose des questions d'actualité internationale.</p>
+
+  <h3>Les 4 grandes organisations à maîtriser</h3>
+
+  <div class="org-card">
+    <div class="org-badge">ONU</div>
+    <div class="org-content">
+      <div class="org-name">Organisation des Nations Unies</div>
+      <div class="org-full">Fondée en 1945 · 193 membres · Siège à New York</div>
+      <div class="org-desc">Créée après la Seconde Guerre Mondiale pour maintenir la paix internationale et favoriser la coopération entre pays. Ses organes principaux : le Conseil de Sécurité (15 membres dont 5 permanents avec droit de veto : USA, Russie, Chine, France, Royaume-Uni), l'Assemblée Générale (tous les pays), et le Secrétariat dirigé par le Secrétaire Général.</div>
+      <div class="org-exemple">Limites : le droit de veto bloque souvent les décisions. La Russie a utilisé son veto pour bloquer les résolutions sur l'Ukraine. L'ONU n'a pas d'armée propre — elle dépend des États membres.</div>
+    </div>
+  </div>
+
+  <div class="org-card">
+    <div class="org-badge">FMI</div>
+    <div class="org-content">
+      <div class="org-name">Fonds Monétaire International</div>
+      <div class="org-full">Fondé en 1944 · 190 membres · Siège à Washington D.C.</div>
+      <div class="org-desc">Le FMI surveille la stabilité du système financier mondial et aide les pays en difficulté financière avec des prêts d'urgence — en échange de réformes économiques (réduction des dépenses publiques, privatisations, réformes fiscales). C'est souvent douloureux pour les populations.</div>
+      <div class="org-exemple">Exemple : la Grèce a reçu l'aide du FMI pendant la crise de la dette (2010-2015) en échange de coupes budgétaires sévères. Le FMI publie aussi des prévisions économiques mondiales très suivies.</div>
+    </div>
+  </div>
+
+  <div class="org-card">
+    <div class="org-badge">OMC</div>
+    <div class="org-content">
+      <div class="org-name">Organisation Mondiale du Commerce</div>
+      <div class="org-full">Fondée en 1995 · 164 membres · Siège à Genève</div>
+      <div class="org-desc">L'OMC fixe les règles du commerce international et arbitre les conflits commerciaux entre pays. Son objectif : promouvoir le libre-échange en réduisant les barrières douanières. Elle organise des négociations entre pays pour libéraliser les échanges.</div>
+      <div class="org-exemple">Exemple de conflit : les USA et la Chine se sont affrontés devant l'OMC sur les droits de douane imposés sur les produits technologiques. Limite : l'OMC ne peut pas forcer un pays à respecter ses décisions.</div>
+    </div>
+  </div>
+
+  <div class="org-card">
+    <div class="org-badge">G20</div>
+    <div class="org-content">
+      <div class="org-name">Groupe des Vingt</div>
+      <div class="org-full">Créé en 1999 · 20 membres (19 pays + UE) · Présidence tournante</div>
+      <div class="org-desc">Le G20 réunit les 20 principales économies mondiales — elles représentent 85% du PIB mondial et 75% du commerce international. Ce n'est pas une organisation formelle avec un siège permanent : c'est un forum de coordination économique. Les chefs d'État se réunissent une fois par an pour coordonner les réponses aux crises mondiales.</div>
+      <div class="org-exemple">Rôle clé : en 2008-2009, le G20 a coordonné la réponse à la crise financière mondiale. En 2020, il a coordonné les mesures économiques face au Covid-19. Membres : USA, Chine, UE, Inde, Brésil, Russie, Japon, Allemagne, France...</div>
+    </div>
+  </div>
+
+  <h3>Ce qui les relie — et ce qui les distingue</h3>
+
+  <div class="concept">
+    <strong>Le point commun</strong>
+    Toutes ces organisations sont nées de la conviction que les problèmes mondiaux (guerres, crises financières, inégalités commerciales) ne peuvent pas être résolus seul par chaque pays — ils nécessitent une coopération internationale structurée.
+  </div>
+
+  <div class="concept">
+    <strong>La grande différence</strong>
+    ONU = paix et droits humains. FMI = stabilité financière. OMC = règles du commerce. G20 = coordination économique informelle entre grandes puissances. Chacune a un mandat précis — elles se complètent sans se remplacer.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ Les limites et critiques — indispensables pour un entretien</strong>
+    Ces organisations sont régulièrement critiquées. L'ONU est paralysée par le droit de veto. Le FMI impose des politiques d'austérité douloureuses aux pays pauvres. L'OMC favorise les pays riches dans les négociations commerciales. Le G20 n'a aucun pouvoir contraignant — ses décisions ne s'imposent à personne. Connaître ces limites montre que tu penses de façon critique, pas seulement que tu récites un cours.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Comment utiliser ce thème en entretien</strong><br>
+    Si un jury te demande « que pensez-vous du rôle des organisations internationales aujourd'hui ? », ne dis pas juste « elles sont très importantes pour la paix mondiale ». Montre que tu connais leurs limites et les tensions actuelles — USA-Chine à l'OMC, paralysie de l'ONU sur l'Ukraine, débat sur la réforme du FMI. Une réponse nuancée avec des exemples concrets fait toujours forte impression.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite les 4 organisations vues aujourd'hui, leur rôle principal et leur siège. En 2 minutes maximum.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Quelle est la principale limite de l'ONU ? Donne un exemple récent qui illustre cette limite.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Quelle différence entre le FMI et la Banque Mondiale ? (Indice : la Banque Mondiale finance des projets de développement à long terme dans les pays pauvres — le FMI gère les crises financières à court terme.)</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Le projet professionnel</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">« Où vous voyez-vous dans 5 ans ? » ou « Quel est votre projet professionnel ? » — c'est l'une des questions les plus importantes et les plus mal traitées des entretiens post-bac. Pas parce que les candidats ne savent pas ce qu'ils veulent — mais parce qu'ils ne savent pas comment le dire de façon convaincante.</p>
+
+  <h3>Les réponses qui ne fonctionnent pas</h3>
+
+  <div class="mauvaise">« Je ne sais pas encore exactement ce que je veux faire. »</div>
+  <div class="mauvaise">« Je voudrais travailler dans une grande entreprise internationale. »</div>
+  <div class="mauvaise">« Je veux avoir un métier bien payé et intéressant. »</div>
+  <div class="mauvaise">« Je veux être manager. »</div>
+
+  <p style="font-size:13px; color:#888; font-style:italic; margin: 8px 0 16px;">Ces réponses ne sont pas stupides — elles sont juste vides. Elles ne disent rien sur toi, sur ce qui te motive vraiment, sur la cohérence de ton parcours. Le jury ne cherche pas une certitude absolue sur ton avenir — il cherche une direction claire et des raisons personnelles solides.</p>
+
+  <h3>La bonne structure — en 4 temps</h3>
+
+  <div style="border: 1px solid #ddd; border-radius: 4px; padding: 16px 18px; margin: 12px 0;">
+
+    <div class="projet-step">
+      <div class="projet-num">1</div>
+      <div class="projet-content">
+        <span class="projet-label">Le domaine qui t'attire — et pourquoi</span>
+        <p style="font-size:13px; margin-top:4px;">Nommer une direction précise, pas un secteur vague. Et l'ancrer dans une motivation réelle, pas un cliché.</p>
+        <div class="pitch-exemple">« Ce qui m'attire profondément, c'est la façon dont les marques créent des expériences qui touchent les gens — dans le luxe, l'hôtellerie, l'événementiel. Ce n'est pas juste vendre un produit : c'est raconter une histoire, créer une émotion. C'est quelque chose que j'ai commencé à expérimenter en organisant les événements de ma promotion. »</div>
+      </div>
+    </div>
+
+    <div class="projet-step">
+      <div class="projet-num">2</div>
+      <div class="projet-content">
+        <span class="projet-label">La vision à 5 ans — concrète et crédible</span>
+        <p style="font-size:13px; margin-top:4px;">Pas un poste précis — une direction. Quelque chose de suffisamment précis pour montrer que tu as réfléchi, suffisamment ouvert pour montrer que tu es réaliste.</p>
+        <div class="pitch-exemple">« Dans 5 ans, je me vois dans un rôle de marketing ou de développement commercial dans une entreprise internationale — idéalement dans le secteur du luxe, de l'hôtellerie haut de gamme ou de l'événementiel premium. Je voudrais travailler sur des projets qui ont une dimension multiculturelle forte — c'est là où mon parcours a le plus de sens. »</div>
+      </div>
+    </div>
+
+    <div class="projet-step">
+      <div class="projet-num">3</div>
+      <div class="projet-content">
+        <span class="projet-label">Le lien avec ton parcours</span>
+        <p style="font-size:13px; margin-top:4px;">Montrer que ce projet ne sort pas de nulle part — qu'il est le prolongement naturel de qui tu es et de ce que tu as vécu.</p>
+        <div class="pitch-exemple">« Ce projet est cohérent avec tout ce que j'ai vécu : grandir sur 3 continents m'a donné une sensibilité interculturelle naturelle. L'organisation d'événements au lycée m'a montré que je sais créer des expériences collectives. Et mon intérêt pour le design et l'esthétique se connecte directement au monde du luxe et de l'hospitalité. »</div>
+      </div>
+    </div>
+
+    <div class="projet-step">
+      <div class="projet-num">4</div>
+      <div class="projet-content">
+        <span class="projet-label">Pourquoi une formation en management est la prochaine étape logique</span>
+        <p style="font-size:13px; margin-top:4px;">Boucler la boucle — montrer que l'école de commerce n'est pas une fin en soi, mais un moyen précis d'atteindre ton objectif.</p>
+        <div class="pitch-exemple">« Pour réaliser ce projet, j'ai besoin de construire des bases solides en gestion, en stratégie marketing et en finance — des compétences que j'ai envie d'acquérir par la pratique et les cas réels, pas seulement par la théorie. C'est exactement ce que cette formation m'apportera. »</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>La question difficile — « Mais vous n'avez que 17 ans, comment pouvez-vous savoir ? »</h3>
+
+  <div class="actu">
+    <strong>💬 C'est une vraie question — pas un piège</strong><br><br>
+    Le jury sait très bien que tu ne peux pas avoir de certitude absolue à 17 ans. Il ne cherche pas une réponse définitive. Il cherche à voir si tu es capable de te projeter avec honnêteté et humilité tout en montrant une vraie direction.<br><br>
+    <div class="pitch-exemple" style="margin-top:8px;">« Vous avez raison — je ne peux pas être certaine à 100% à 17 ans. Mais je ne construis pas ce projet sur un coup de tête : il est le résultat de mes expériences concrètes, de mes centres d'intérêt depuis plusieurs années, et d'une réflexion active sur ce qui me motive vraiment. Ce que je sais avec certitude, c'est la direction — le reste se précisera avec les stages, les rencontres et les cours. »</div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Réponds à « Quel est votre projet professionnel ? » en suivant la structure en 4 temps. Tes propres mots. 1 minute 30 maximum.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Le jury demande : <em>« Pourquoi le luxe plutôt que le conseil ou la finance ? »</em> Réponds en 45 secondes — montre que c'est un choix personnel, pas par défaut.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury insiste : <em>« Où vous voyez-vous dans 10 ans — pas 5 ? »</em> Improvise une réponse ambitieuse mais crédible en 30 secondes.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Ton projet s'inscrit-il naturellement dans ton parcours ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La conviction</strong> — Est-ce que tu sembles vraiment motivée ou tu récites une réponse préparée ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La précision</strong> — Tu as une direction claire, pas juste « travailler dans le business » ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La maturité</strong> — Tu reconnais l'incertitude sans t'y cacher derrière ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le piège principal :</strong> donner une réponse trop précise et trop rigide (« dans 5 ans je veux être directrice marketing chez LVMH ») ou trop vague (« je veux travailler dans le business international »). La bonne zone : une direction claire avec une vraie raison personnelle, et l'humilité de reconnaître que les détails se construiront en chemin.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Une question combinée à traiter à voix haute :<br><br>
+  <em>« Si une organisation internationale comme l'ONU ou le G20 vous recrutait pour travailler sur un projet lié à votre domaine d'intérêt — le luxe, l'événementiel, la communication — quel projet proposeriez-vous et pourquoi ? »</em><br><br>
+  Question créative qui combine culture G et projet professionnel. Pas de bonne réponse — mais une réponse imaginative et ancrée dans tes vraies passions impressionne toujours un jury.
+</div>
+
+</body>
+</html>

@@ -225,6 +225,17 @@ section { margin-bottom: 32px; }
 }
 .podcast-link:hover { background: #ffe0b2; transform: scale(1.03); }
 .modal .podcast-link { font-size: 0.85rem; padding: 8px 16px; margin-top: 16px; }
+.prep-links { display: flex; gap: 6px; margin-top: 6px; flex-wrap: wrap; }
+.prep-file-link {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: 16px; font-size: 0.72rem; font-weight: 600;
+  text-decoration: none; transition: all 0.2s;
+}
+.prep-file-link:hover { transform: scale(1.03); }
+.prep-file-html { background: #e3f2fd; color: #1565c0; }
+.prep-file-pdf { background: #fce4ec; color: #c62828; }
+.prep-file-html:hover { background: #bbdefb; }
+.prep-file-pdf:hover { background: #f8bbd0; }
 
 /* PREP MODAL */
 .modal-overlay {
@@ -321,7 +332,7 @@ section[id] { scroll-margin-top: 60px; }
 <main>
 <div class="hero">
   <h1>Orientation Post-Bac 2026</h1>
-  <p>Tableau de bord pour suivre les candidatures, les deadlines et la preparation</p>
+  <p>10/10 voeux Parcoursup CONFIRMES &#10003; &mdash; Prochaine etape : les concours</p>
   <div class="countdown" id="countdown"></div>
 </div>
 
@@ -444,23 +455,14 @@ section[id] { scroll-margin-top: 60px; }
   <div class="card" style="margin-bottom: 16px; background: linear-gradient(135deg, #f8f9fd, #eef1fa);">
     <h3 style="color:var(--navy); margin-bottom: 8px;">Programme de preparation — 12 sessions (16-27 mars 2026)</h3>
     <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 4px;">Chaque session : ~30-35 min — Culture generale + Technique d'entretien</p>
-    <p style="font-size: 0.88rem; color: var(--muted);">Cliquer sur une session pour voir le detail</p>
+    <p style="font-size: 0.88rem; color: var(--muted);">Cliquer sur une session pour voir le resume. Fiches completes en HTML et PDF ci-dessous.</p>
+    <div style="margin-top: 10px; display: flex; gap: 8px; flex-wrap: wrap;">
+      <a class="prep-file-link prep-file-pdf" href="prep/Programme.pdf" target="_blank">Programme complet (PDF)</a>
+      <a class="prep-file-link prep-file-pdf" href="prep/SUMMARY.pdf" target="_blank">Resume global (PDF)</a>
+    </div>
   </div>
 
-  <div class="prep-grid">
-    <div class="prep-card" onclick="showSession(1)"><h4>Session 01</h4><div class="prep-date">16 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Business & Marches</span><span class="prep-tag prep-tag-entretien">Pitch personnel (2 min)</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=79638fb3-0f19-4f43-80ce-685970f8544e" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(2)"><h4>Session 02</h4><div class="prep-date">17 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Mondialisation</span><span class="prep-tag prep-tag-entretien">Pourquoi ecole de commerce ?</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=dd125b0b-b931-44b4-a5e3-5ed12f31157f" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(3)"><h4>Session 03</h4><div class="prep-date">18 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Union Europeenne</span><span class="prep-tag prep-tag-entretien">Experiences = competences</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=14c7807f-5caf-4aa7-92d2-c8d2e4842e07" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(4)"><h4>Session 04</h4><div class="prep-date">19 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Histoire & dates cles</span><span class="prep-tag prep-tag-entretien">Questions destabilisantes</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=ea8cdbd5-3a66-4f3e-bf37-6f6b381c384d" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(5)"><h4>Session 05</h4><div class="prep-date">20 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Dates & economie</span><span class="prep-tag prep-tag-entretien">Presentation des forces</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=9f2acb7e-8e20-432a-b282-29f49b35ca87" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(6)"><h4>Session 06</h4><div class="prep-date">21 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Marche du luxe</span><span class="prep-tag prep-tag-entretien">Parler du secteur luxe</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=53ddd9d6-45e1-4ad0-a055-cc09de9d4943" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(7)"><h4>Session 07</h4><div class="prep-date">22 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Organisations internationales</span><span class="prep-tag prep-tag-entretien">Sujets geopolitiques</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=8c0c78d7-bf0f-4912-8142-19c860879b6d" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(8)"><h4>Session 08</h4><div class="prep-date">23 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Hotellerie / tourisme</span><span class="prep-tag prep-tag-entretien">Connaissance sectorielle</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=a324bbbb-4295-4280-b8bc-0b745738af59" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(9)"><h4>Session 09</h4><div class="prep-date">24 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Events & logistique projet</span><span class="prep-tag prep-tag-entretien">Expertise evenementiel</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=71816220-3426-49ff-9db4-c3aa5acd8ac0" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(10)"><h4>Session 10</h4><div class="prep-date">25 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Zones geographiques</span><span class="prep-tag prep-tag-entretien">Stratification marches</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=ac89884e-d136-43e6-a2eb-c690ddfd6c17" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(11)"><h4>Session 11</h4><div class="prep-date">26 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Marques de luxe</span><span class="prep-tag prep-tag-entretien">Strategie luxe</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=302ad07d-0c90-4fb4-be68-852b33a890bb" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-    <div class="prep-card" onclick="showSession(12)"><h4>Session 12</h4><div class="prep-date">27 Mars 2026</div><div class="prep-topics"><span class="prep-tag prep-tag-culture">Simulation finale</span><span class="prep-tag prep-tag-entretien">Evaluation complete</span></div><a class="podcast-link" href="https://notebooklm.google.com/notebook/d3ae6c95-4b2a-4913-b275-2e50da2c6405?artifactId=df580312-5583-44fb-9fe2-db85ffcf5506" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a></div>
-  </div>
+  <div class="prep-grid" id="prepGrid"></div>
 
   <div class="card" style="margin-top: 16px;">
     <h3 style="color:var(--navy); margin-bottom: 12px;">Experiences cles a valoriser en entretien</h3>
@@ -888,17 +890,22 @@ const SCHOOLS = [
 
 // =================== COUNTDOWN ===================
 function updateCountdown() {
-  const parcoursup = new Date('2026-04-01T23:59:00');
   const now = new Date();
-  const diff = parcoursup - now;
   const el = document.getElementById('countdown');
-  if (diff <= 0) {
-    el.textContent = 'Date de confirmation Parcoursup passee';
-    return;
-  }
+  const deadlines = [
+    { date: new Date('2026-04-02T13:45:00'), label: 'Concours blanc ACCES n\u00b02 (WISEflow)' },
+    { date: new Date('2026-04-08T08:00:00'), label: 'Epreuves ecrites SESAME' },
+    { date: new Date('2026-04-09T08:30:00'), label: 'Epreuves ecrites ACCES' },
+    { date: new Date('2026-04-15T09:00:00'), label: 'Resultats EDHEC + RSM Rotterdam' },
+    { date: new Date('2026-04-18T08:00:00'), label: 'Epreuves ecrites Institut Lyfe' },
+    { date: new Date('2026-05-18T09:00:00'), label: 'Selection Day Hotelschool The Hague' },
+  ];
+  const next = deadlines.find(d => d.date > now);
+  if (!next) { el.textContent = 'Tous les concours sont passes'; return; }
+  const diff = next.date - now;
   const days = Math.floor(diff / 86400000);
   const hours = Math.floor((diff % 86400000) / 3600000);
-  el.textContent = `${days}j ${hours}h avant la confirmation Parcoursup (1er avril 23h59)`;
+  el.innerHTML = `<strong>${days}j ${hours}h</strong> avant : ${next.label}`;
 }
 updateCountdown();
 setInterval(updateCountdown, 60000);
@@ -1110,9 +1117,47 @@ function filterSchools(filter, btn) {
   renderSchools();
 }
 
+// =================== PREP CARDS ===================
+const prepData = [
+  { n: 1, date: '16 Mars 2026', culture: 'Business & Marches', entretien: 'Pitch personnel (2 min)', html: 'prep/SESSION_01_-_16_Mars.html', pdf: 'prep/SESSION_01_-_16_Mars.html.pdf' },
+  { n: 2, date: '17 Mars 2026', culture: 'Mondialisation', entretien: 'Pourquoi ecole de commerce ?', html: 'prep/SESSION_02_-_17_Mars.html', pdf: 'prep/SESSION_02_-_17_Mars.html.pdf' },
+  { n: 3, date: '18 Mars 2026', culture: 'Union Europeenne', entretien: 'Experiences = competences', html: 'prep/SESSION_03_-_18_Mars.html', pdf: 'prep/SESSION_03_-_18_Mars.html.pdf' },
+  { n: 4, date: '19 Mars 2026', culture: 'Histoire & dates cles', entretien: 'Questions destabilisantes', html: 'prep/SESSION_04-_19_Mars.html', pdf: 'prep/SESSION_04-_19_Mars.html.pdf' },
+  { n: 5, date: '20 Mars 2026', culture: 'Dates & economie', entretien: 'Presentation des forces', html: 'prep/SESSION_05-_20_Mars.html', pdf: 'prep/SESSION_05-_20_Mars.html.pdf' },
+  { n: 6, date: '21 Mars 2026', culture: 'Marche du luxe', entretien: 'Parler du secteur luxe', html: 'prep/SESSION_06-_21_Mars.html', pdf: 'prep/SESSION_06-_21_Mars.html.pdf' },
+  { n: 7, date: '22 Mars 2026', culture: 'Organisations internationales', entretien: 'Sujets geopolitiques', html: 'prep/SESSION_07-_22_Mars.html', pdf: 'prep/SESSION_07-_22_Mars.html.pdf' },
+  { n: 8, date: '23 Mars 2026', culture: 'Hotellerie / tourisme', entretien: 'Connaissance sectorielle', html: 'prep/SESSION_08-_23_Mars.html', pdf: 'prep/SESSION_08-_23_Mars.html.pdf' },
+  { n: 9, date: '24 Mars 2026', culture: 'Events & logistique projet', entretien: 'Expertise evenementiel', html: 'prep/SESSION_09-_24_Mars.html', pdf: 'prep/SESSION_09-_24_Mars.html.pdf' },
+  { n: 10, date: '25 Mars 2026', culture: 'Zones geographiques', entretien: 'Stratification marches', html: 'prep/SESSION_10-_25_Mars.html', pdf: 'prep/SESSION_10-_25_Mars.html.pdf' },
+  { n: 11, date: '26 Mars 2026', culture: 'Marques de luxe', entretien: 'Strategie luxe', html: 'prep/SESSION_11-_26_Mars.html', pdf: 'prep/SESSION_11-_26_Mars.html.pdf' },
+  { n: 12, date: '27 Mars 2026', culture: 'Simulation finale', entretien: 'Evaluation complete', html: 'prep/SESSION_12-_27_Mars.html', pdf: 'prep/SESSION_12-_27_Mars.html.pdf' },
+];
+
+function renderPrepCards() {
+  const grid = document.getElementById('prepGrid');
+  grid.innerHTML = prepData.map(p => {
+    const pod = podcastLinks[p.n] || '';
+    const podHtml = pod ? `<a class="podcast-link" href="${pod}" target="_blank" onclick="event.stopPropagation()">&#127911; Podcast</a>` : '';
+    return `<div class="prep-card" onclick="showSession(${p.n})">
+      <h4>Session ${String(p.n).padStart(2,'0')}</h4>
+      <div class="prep-date">${p.date}</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">${p.culture}</span>
+        <span class="prep-tag prep-tag-entretien">${p.entretien}</span>
+      </div>
+      <div class="prep-links">
+        <a class="prep-file-link prep-file-html" href="${p.html}" target="_blank" onclick="event.stopPropagation()">Fiche HTML</a>
+        <a class="prep-file-link prep-file-pdf" href="${p.pdf}" target="_blank" onclick="event.stopPropagation()">PDF</a>
+        ${podHtml}
+      </div>
+    </div>`;
+  }).join('');
+}
+
 // =================== INIT ===================
 renderTodos();
 renderSchools();
+renderPrepCards();
 
 // =================== SESSION MODAL ===================
 const podcastLinks = {

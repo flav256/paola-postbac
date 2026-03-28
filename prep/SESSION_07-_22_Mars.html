@@ -1,0 +1,461 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .green {
+    background: #f0faf0;
+    border-left: 4px solid #2e7d32;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .green strong { color: #2e7d32; display: block; margin-bottom: 3px; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .mauvaise {
+    background: #fff0f0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #cc3333;
+  }
+  .mauvaise::before { content: "✗ "; color: #cc3333; font-style: normal; font-weight: bold; }
+
+  .pitch-step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .pitch-step:last-child { border-bottom: none; }
+  .pitch-num {
+    background: #e8f0fb;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .pitch-content { flex: 1; }
+  .pitch-label { font-weight: bold; color: #1a3a5c; font-size: 13px; }
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 7 · LUNDI 23 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : RSE et développement durable &nbsp;·&nbsp; Pourquoi une école de commerce plutôt qu'une université ?</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — RSE et développement durable</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. La RSE et le développement durable sont parmi les thèmes les plus fréquents dans les entretiens d'écoles de commerce en 2026.</p>
+
+  <h3>Le développement durable — la base</h3>
+
+  <div class="concept">
+    <strong>Définition fondatrice — Brundtland, 1987</strong>
+    Le développement durable est « un développement qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs. » C'est la définition officielle, à connaître par cœur.
+  </div>
+
+  <div class="concept">
+    <strong>Les 3 piliers</strong>
+    Économique — créer de la richesse. Social — assurer le bien-être et l'équité. Environnemental — préserver les ressources naturelles. Le développement durable, c'est trouver l'équilibre entre ces trois dimensions. Une entreprise qui fait du profit en détruisant l'environnement n'est pas durable.
+  </div>
+
+  <div class="concept">
+    <strong>Les ODD — Objectifs de Développement Durable</strong>
+    En 2015, l'ONU fixe 17 objectifs à atteindre d'ici 2030 : fin de la pauvreté, éducation pour tous, énergie propre, lutte contre le changement climatique, etc. Ces ODD sont devenus le cadre de référence mondial pour mesurer les progrès des États et des entreprises.
+  </div>
+
+  <h3>La RSE — Responsabilité Sociale des Entreprises</h3>
+
+  <div class="concept">
+    <strong>Qu'est-ce que c'est ?</strong>
+    La RSE, c'est l'engagement volontaire d'une entreprise à avoir un impact positif sur la société et l'environnement — au-delà de ses obligations légales. Une entreprise RSE ne se contente pas de ne pas polluer : elle cherche activement à améliorer les choses.
+  </div>
+
+  <div class="concept">
+    <strong>Les 3 dimensions de la RSE</strong>
+    Environnementale — réduire son empreinte carbone, limiter les déchets, utiliser des énergies renouvelables. Sociale — traiter ses employés équitablement, assurer la diversité, respecter les droits humains dans sa chaîne d'approvisionnement. Gouvernance — être transparente, lutter contre la corruption, avoir un conseil d'administration équilibré.
+  </div>
+
+  <div class="green">
+    <strong>Exemples concrets d'entreprises RSE — à citer en entretien</strong>
+    Patagonia (vêtements outdoor) : répare les vêtements usés, reverse 1% de ses ventes à des causes environnementales, a donné l'entreprise entière à une fondation en 2022. Veja (chaussures) : coton bio, production éthique au Brésil, chaîne d'approvisionnement transparente. LVMH : programme LIFE 360 pour réduire l'empreinte environnementale de toutes ses maisons de luxe.
+  </div>
+
+  <h3>Ce que les entreprises font vraiment vs ce qu'elles disent</h3>
+
+  <div class="actu">
+    <strong>⚡ Le greenwashing — le piège à éviter en entretien</strong>
+    Le greenwashing, c'est quand une entreprise communique sur ses engagements environnementaux de façon trompeuse ou exagérée — sans que ses pratiques réelles aient vraiment changé. Exemple : une compagnie pétrolière qui se présente comme « entreprise d'énergie verte » tout en continuant à forer massivement. Les jurys adorent poser des questions sur le greenwashing pour tester ton esprit critique.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ La COP — qu'est-ce que c'est ?</strong>
+    La COP (Conférence des Parties) est le sommet annuel des Nations Unies sur le climat. Les pays y négocient des engagements pour réduire leurs émissions de gaz à effet de serre. La COP21 de Paris (2015) a produit l'Accord de Paris : limiter le réchauffement à +1,5°C par rapport à l'ère préindustrielle. Les résultats sont souvent insuffisants par rapport aux objectifs — un sujet de débat permanent.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ L'économie circulaire — une réponse concrète</strong>
+    L'économie circulaire cherche à éliminer le modèle linéaire (fabriquer → utiliser → jeter) pour le remplacer par un modèle en boucle : réparer, réutiliser, recycler. Des entreprises comme Renault (reconditionnement de pièces) ou Ikea (reprise de meubles usagés) s'y engagent activement.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Comment utiliser ce thème en entretien</strong><br>
+    Si un jury te demande ce que tu penses de la RSE, ne dis pas juste « c'est important pour l'environnement ». Montre que tu comprends les tensions : RSE sincère vs greenwashing, coût de la transition pour les entreprises, pression des consommateurs et des investisseurs. Une réponse nuancée qui reconnaît ces tensions impressionne beaucoup plus qu'un discours convenu.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Donne la définition du développement durable et ses 3 piliers. En 4 phrases maximum.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Qu'est-ce que le greenwashing ? Cite un exemple concret d'entreprise ou de secteur qui en est accusé.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Un jury te demande : « Pensez-vous que les entreprises font vraiment de la RSE ou c'est du marketing ? » Donne une réponse nuancée en 5 phrases.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Pourquoi une école de commerce plutôt qu'une université ?</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">C'est l'une des questions les plus fréquentes et les plus redoutées des entretiens post-bac. Elle est piégeuse parce qu'elle demande de défendre un choix sans dénigrer une alternative respectable. Et beaucoup de candidats la ratent — parce qu'ils n'ont pas vraiment réfléchi à pourquoi une école de commerce et pas autre chose.</p>
+
+  <h3>Les réponses qui font rater l'entretien</h3>
+
+  <div class="mauvaise">« Une école de commerce c'est mieux que l'université pour trouver un travail. »</div>
+  <div class="mauvaise">« L'université c'est trop théorique, moi je veux quelque chose de concret. »</div>
+  <div class="mauvaise">« Mes parents m'ont conseillé une école de commerce. »</div>
+  <div class="mauvaise">« Une école de commerce c'est plus valorisé sur le marché du travail. »</div>
+
+  <p style="font-size:13px; color:#888; font-style:italic; margin: 8px 0 16px;">Ces réponses sont soit condescendantes envers l'université, soit vagues, soit ne parlent pas de toi. Le jury veut entendre ton raisonnement personnel — ancré dans ton projet et ton profil.</p>
+
+  <h3>La bonne structure — en 4 temps</h3>
+
+  <div style="border: 1px solid #ddd; border-radius: 4px; padding: 16px 18px; margin: 12px 0;">
+
+    <div class="pitch-step">
+      <div class="pitch-num">1</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Reconnaître la valeur de l'université</span>
+        <p style="font-size:13px; margin-top:4px;">Montrer que tu as réfléchi aux deux options — pas que tu as choisi par défaut ou par snobisme.</p>
+        <div class="pitch-exemple">« L'université offre une formation intellectuelle solide, une liberté académique réelle, et pour beaucoup de parcours — droit, médecine, sciences — c'est clairement la meilleure voie. Je ne la dénigre pas du tout. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">2</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Expliquer ce que ton projet demande spécifiquement</span>
+        <p style="font-size:13px; margin-top:4px;">Pas ce qu'une école de commerce offre en général — ce dont TOI tu as besoin pour TON projet précis.</p>
+        <div class="pitch-exemple">« Mon projet, c'est le marketing international et l'événementiel. Ces domaines demandent une exposition rapide aux cas réels d'entreprises, un réseau professionnel dès la formation, et une mobilité internationale structurée. Ce sont des éléments que j'ai du mal à trouver aussi densément dans un cursus universitaire classique. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">3</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Le lien avec ton profil</span>
+        <p style="font-size:13px; margin-top:4px;">Pourquoi toi, avec ton parcours, tu es faite pour ce type de formation ?</p>
+        <div class="pitch-exemple">« J'ai déjà expérimenté la gestion de projet concrète avec les événements au lycée — budget, équipe, résultats chiffrés. J'ai une expérience internationale réelle. Je suis quelqu'un qui apprend en faisant, pas seulement en lisant. La pédagogie par les cas et les projets d'une école de commerce correspond à ma façon de fonctionner. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">4</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Conclure avec conviction — sans arrogance</span>
+        <p style="font-size:13px; margin-top:4px;">Assumer son choix clairement, sans excuses et sans supériorité.</p>
+        <div class="pitch-exemple">« C'est un choix réfléchi, cohérent avec ce que je suis et ce que je veux construire. Je ne pense pas qu'une école de commerce soit meilleure en absolu — je pense que c'est le meilleur chemin pour moi, avec mon projet et mon profil. »</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>La variante difficile — si le jury insiste</h3>
+
+  <div class="actu">
+    <strong>💬 « Mais concrètement, qu'est-ce qu'une école de commerce vous apporte qu'une université ne peut pas vous donner ? »</strong><br><br>
+    Trois arguments solides à avoir en tête :<br><br>
+    La densité du réseau professionnel — les entreprises recrutent activement dans les écoles de commerce, les forums, les associations étudiantes. C'est structurel, pas anecdotique.<br><br>
+    La mobilité internationale organisée — semestres à l'étranger, campus multiples, partenariats avec des universités du monde entier. Pour quelqu'un qui veut travailler à l'international, c'est concret.<br><br>
+    La pédagogie par les projets et les cas — études de cas réels, projets en entreprise, junior entreprises. On apprend à décider, pas seulement à analyser.
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Réponds à la question principale en suivant la structure en 4 temps. Pas de script — tes propres mots. 1 minute 30 maximum.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Le jury insiste : <em>« Mais pourquoi pas Sciences Po ou une licence de gestion à Dauphine ? »</em> Réponds en 45 secondes. Reste calme et précise.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury change d'angle : <em>« Est-ce que vous pensez que le diplôme d'une grande école vaut vraiment plus qu'une licence universitaire ? »</em> Question piège — réponse nuancée obligatoire. 1 minute.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La maturité du choix</strong> — Est-ce que tu as vraiment réfléchi ou tu suis la mode ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Est-ce que ton choix s'inscrit logiquement dans ton parcours et ton projet ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'ouverture d'esprit</strong> — Est-ce que tu es capable de reconnaître la valeur d'autres voies ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La conviction</strong> — Est-ce que tu assumes ton choix avec confiance, sans t'excuser ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le grand piège de cette question :</strong> essayer de flatter l'école en disant qu'elle est « la meilleure » ou « très réputée ». Le jury sait que tu peux dire ça à n'importe quelle école. Ce qui compte, c'est pourquoi ce type de formation correspond à <em>toi</em> — pas pourquoi cette école est bien en général.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Une question combinée — culture G + entretien — à traiter à voix haute :<br><br>
+  <em>« La RSE est-elle compatible avec la rentabilité d'une entreprise ? Et personnellement, est-ce que l'engagement environnemental d'une entreprise influencerait votre choix d'y travailler ? »</em><br><br>
+  Cette question teste à la fois ta connaissance du sujet et tes valeurs personnelles. Il n'y a pas de bonne réponse — mais une réponse honnête et réfléchie fait forte impression.
+</div>
+
+</body>
+</html>

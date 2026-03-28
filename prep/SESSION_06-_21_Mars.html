@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .intro-box {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #444;
+  }
+  .intro-box strong { color: #1a3a5c; }
+
+  /* QCM */
+  .qcm-item {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .qcm-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .qcm-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .qcm-theme {
+    font-size: 11px;
+    background: #e8f0fb;
+    color: #1a3a5c;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-weight: 500;
+  }
+  .qcm-q { font-size: 14px; font-weight: bold; color: #1a1a1a; margin-bottom: 10px; }
+  .qcm-opts { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+  .qcm-opt { font-size: 13px; color: #444; padding: 3px 0; }
+  .qcm-opt .letter { font-weight: bold; color: #1a3a5c; margin-right: 6px; }
+  .qcm-answer {
+    background: #eaf3de;
+    border: 1px solid #5a9e2f;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #2d6a0a;
+    margin-top: 8px;
+  }
+  .qcm-answer strong { color: #2d6a0a; }
+  .reponse-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  /* Score tracker */
+  .score-box {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .score-label { font-size: 13px; opacity: 0.8; }
+  .score-track { display: flex; gap: 6px; align-items: center; }
+  .score-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.15);
+    border: 1.5px solid rgba(255,255,255,0.4);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  /* SIMULATION */
+  .sim-intro {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #555;
+  }
+  .sim-intro strong { color: #b8860b; }
+
+  .sim-phase {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .sim-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .sim-phase-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sim-phase-title { font-weight: bold; color: #1a3a5c; font-size: 14px; }
+  .sim-phase-time { font-size: 11px; color: #aaa; font-style: italic; margin-left: auto; white-space: nowrap; }
+
+  .sim-question {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-size: 14px;
+    font-style: italic;
+  }
+  .sim-tip {
+    background: #f9f9f9;
+    border-left: 3px solid #ddd;
+    padding: 8px 12px;
+    margin: 6px 0;
+    font-size: 12px;
+    color: #777;
+    border-radius: 0 3px 3px 0;
+  }
+  .sim-tip strong { color: #555; }
+
+  /* FEEDBACK GRID */
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .feedback-cell {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .feedback-cell-label {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .feedback-cell-content {
+    font-size: 13px;
+    color: #333;
+    line-height: 1.5;
+  }
+  .feedback-write {
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    min-height: 50px;
+    font-size: 13px;
+    color: #bbb;
+    font-style: italic;
+  }
+
+  .bilan-box {
+    background: #f4f7fa;
+    border: 1px solid #c5d8ee;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .bilan-box h4 { color: #1a3a5c; font-size: 14px; margin-bottom: 10px; }
+  .bilan-row {
+    display: flex;
+    gap: 10px;
+    margin: 7px 0;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .bilan-check { color: #1a3a5c; font-weight: bold; flex-shrink: 0; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .qcm-item { page-break-inside: avoid; }
+    .sim-phase { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 6 · SAMEDI 21 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Bilan Semaine 1 &nbsp;·&nbsp; 10 QCM de révision + Simulation entretien 20 min</div>
+  <span class="duree">⏱ 35 à 40 minutes</span>
+</div>
+
+<div class="intro-box">
+  <strong>Objectif de cette session</strong><br>
+  Pas de nouveau contenu aujourd'hui. On consolide ce qui a été vu cette semaine — entreprise, mondialisation, UE, histoire, actualité — avec 10 QCM de révision. Puis on enchaîne sur une simulation d'entretien complète de 20 minutes. C'est la première simulation — l'objectif est de voir où tu en es, pas d'être parfaite.
+</div>
+
+
+<!-- ÉTAPE 1 : QCM -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">10 QCM — Révision Semaine 1</span>
+    <span class="etape-time">12 à 15 min</span>
+  </div>
+
+  <p style="margin-bottom:14px;">Réponds mentalement ou par écrit avant de regarder la réponse. Coche ta réponse dans ta tête, puis vérifie. Note ton score au fur et à mesure.</p>
+
+  <!-- Q1 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q1</span>
+      <span class="qcm-theme">Économie</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que la valeur ajoutée d'une entreprise ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Le bénéfice net après impôts</div>
+      <div class="qcm-opt"><span class="letter">B</span>La différence entre le prix de vente et le coût des matières premières utilisées</div>
+      <div class="qcm-opt"><span class="letter">C</span>Le total des salaires versés aux employés</div>
+      <div class="qcm-opt"><span class="letter">D</span>Le chiffre d'affaires divisé par le nombre d'employés</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> La valeur ajoutée = prix de vente − coût des consommations intermédiaires. C'est la richesse réellement créée par l'entreprise. La somme de toutes les valeurs ajoutées d'un pays = le PIB.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q2</span>
+      <span class="qcm-theme">Économie</span>
+    </div>
+    <div class="qcm-q">Dans une situation de monopole, qu'est-ce qui caractérise le marché ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>De nombreuses entreprises se font concurrence</div>
+      <div class="qcm-opt"><span class="letter">B</span>Quelques grandes entreprises dominent le secteur</div>
+      <div class="qcm-opt"><span class="letter">C</span>Une seule entreprise est présente et fixe les prix librement</div>
+      <div class="qcm-opt"><span class="letter">D</span>L'État contrôle tous les prix du marché</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> Le monopole = un seul vendeur. Il fixe ses prix sans pression concurrentielle. À distinguer de l'oligopole (quelques entreprises dominantes) et de la concurrence pure (nombreux acteurs).</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q3</span>
+      <span class="qcm-theme">Mondialisation</span>
+    </div>
+    <div class="qcm-q">Quelle organisation internationale régule les échanges commerciaux entre pays ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Le FMI</div>
+      <div class="qcm-opt"><span class="letter">B</span>L'OMC</div>
+      <div class="qcm-opt"><span class="letter">C</span>L'ONU</div>
+      <div class="qcm-opt"><span class="letter">D</span>La Banque Mondiale</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> L'OMC (Organisation Mondiale du Commerce) fixe les règles du commerce international et arbitre les conflits entre ses 164 membres. Le FMI gère la stabilité financière mondiale.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q4</span>
+      <span class="qcm-theme">Mondialisation</span>
+    </div>
+    <div class="qcm-q">Qu'appelle-t-on une délocalisation ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Le déplacement du siège social d'une entreprise dans un autre pays pour des raisons fiscales</div>
+      <div class="qcm-opt"><span class="letter">B</span>Le transfert d'une activité productive vers un pays à moindre coût de main-d'œuvre</div>
+      <div class="qcm-opt"><span class="letter">C</span>La fusion entre deux entreprises de pays différents</div>
+      <div class="qcm-opt"><span class="letter">D</span>L'exportation de produits vers de nouveaux marchés</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Une délocalisation, c'est quand une entreprise déplace sa production vers un pays où les coûts (salaires, charges) sont plus faibles. C'est l'une des critiques majeures de la mondialisation car elle supprime des emplois dans les pays développés.</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q5</span>
+      <span class="qcm-theme">Union Européenne</span>
+    </div>
+    <div class="qcm-q">Quel traité a officiellement créé l'Union Européenne ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Le Traité de Rome (1957)</div>
+      <div class="qcm-opt"><span class="letter">B</span>Le Traité de Maastricht (1992)</div>
+      <div class="qcm-opt"><span class="letter">C</span>Le Traité de Lisbonne (2007)</div>
+      <div class="qcm-opt"><span class="letter">D</span>Le Traité de Paris (1951)</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Le Traité de Maastricht (1992) crée officiellement l'Union Européenne. Le Traité de Rome (1957) crée la Communauté Économique Européenne (CEE), ancêtre de l'UE avec 6 pays fondateurs.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q6</span>
+      <span class="qcm-theme">Union Européenne</span>
+    </div>
+    <div class="qcm-q">Combien de pays utilisent l'euro en 2026 ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>27 pays</div>
+      <div class="qcm-opt"><span class="letter">B</span>25 pays</div>
+      <div class="qcm-opt"><span class="letter">C</span>20 pays</div>
+      <div class="qcm-opt"><span class="letter">D</span>15 pays</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> 20 pays de l'UE utilisent l'euro — c'est la zone euro. Les 7 autres membres de l'UE (dont la Pologne, la Hongrie, la Suède) ont conservé leur monnaie nationale.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q7</span>
+      <span class="qcm-theme">Histoire</span>
+    </div>
+    <div class="qcm-q">Quelle est la conséquence économique principale de la crise de 1929 ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>La création du FMI et de la Banque Mondiale</div>
+      <div class="qcm-opt"><span class="letter">B</span>Une Grande Dépression mondiale avec chômage massif et faillites en cascade</div>
+      <div class="qcm-opt"><span class="letter">C</span>La fin du capitalisme libéral en Europe</div>
+      <div class="qcm-opt"><span class="letter">D</span>Le déclenchement de la Seconde Guerre Mondiale</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Le krach de 1929 provoque la Grande Dépression : chômage massif (jusqu'à 25% aux USA), faillites bancaires, misère sociale. Cette crise pousse les États à réguler davantage les marchés financiers.</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q8</span>
+      <span class="qcm-theme">Histoire</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que la chute du Mur de Berlin en 1989 a symbolisé ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>La fin de la Première Guerre Mondiale</div>
+      <div class="qcm-opt"><span class="letter">B</span>La réunification de l'Allemagne de l'Est et de l'Ouest uniquement</div>
+      <div class="qcm-opt"><span class="letter">C</span>La fin de la Guerre Froide et l'effondrement du bloc soviétique</div>
+      <div class="qcm-opt"><span class="letter">D</span>La création de l'Union Européenne</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> La chute du Mur de Berlin symbolise la fin de la Guerre Froide et l'effondrement du bloc soviétique. Elle entraîne la réunification allemande (1990) et l'adhésion des pays d'Europe de l'Est à l'économie de marché.</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q9</span>
+      <span class="qcm-theme">Actualité</span>
+    </div>
+    <div class="qcm-q">Quel mécanisme une banque centrale utilise-t-elle pour lutter contre l'inflation ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Elle baisse les impôts sur les entreprises</div>
+      <div class="qcm-opt"><span class="letter">B</span>Elle augmente les taux d'intérêt pour rendre le crédit plus cher et ralentir la consommation</div>
+      <div class="qcm-opt"><span class="letter">C</span>Elle augmente le salaire minimum</div>
+      <div class="qcm-opt"><span class="letter">D</span>Elle bloque les prix des produits de première nécessité</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Quand l'inflation est trop forte, la BCE monte ses taux directeurs → le crédit devient plus cher → les ménages et entreprises empruntent moins → la consommation ralentit → les prix arrêtent de monter.</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q10</span>
+      <span class="qcm-theme">Actualité</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que la souveraineté économique, concept très discuté depuis 2020 ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>La capacité d'un pays à fixer ses propres impôts sans accord international</div>
+      <div class="qcm-opt"><span class="letter">B</span>La capacité d'un pays à maîtriser ses secteurs stratégiques sans dépendre de l'étranger</div>
+      <div class="qcm-opt"><span class="letter">C</span>Le droit d'un État à refuser les importations étrangères</div>
+      <div class="qcm-opt"><span class="letter">D</span>L'indépendance totale d'une banque centrale vis-à-vis du gouvernement</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> La souveraineté économique = maîtriser ses secteurs vitaux (énergie, médicaments, semi-conducteurs, alimentation) sans dépendance excessive à l'étranger. Le Covid-19 et la guerre en Ukraine ont relancé ce débat en Europe.</div>
+  </div>
+
+  <!-- SCORE BOX -->
+  <div class="score-box">
+    <div>
+      <div class="score-label">Mon score Semaine 1</div>
+      <div style="font-size:13px; opacity:0.6; margin-top:2px;">Complète après avoir fait les 10 questions</div>
+    </div>
+    <div class="score-track">
+      <div class="score-dot">__</div>
+      <div style="font-size:18px; opacity:0.5;">/</div>
+      <div style="font-size:18px; font-weight:600;">10</div>
+    </div>
+  </div>
+
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : SIMULATION -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Simulation entretien — 20 minutes</span>
+    <span class="etape-time">20 min chrono</span>
+  </div>
+
+  <div class="sim-intro">
+    <strong>Comment utiliser cette simulation</strong><br>
+    Idéalement, demande à un parent (Flavien ou Virginie) de jouer le rôle du jury et de lire les questions à voix haute. Sinon, lis chaque question toi-même, ferme les yeux 3 secondes, et réponds à voix haute. Debout si possible. Chronomètre enclenché. L'objectif n'est pas d'être parfaite — c'est de voir où tu en es après une semaine de travail.
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 1</span>
+      <span class="sim-phase-title">Ouverture — Présentation personnelle</span>
+      <span class="sim-phase-time">5 minutes</span>
+    </div>
+    <div class="sim-question">« Bonjour. Commencez par vous présenter. »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> 2 minutes de pitch fluide et naturel — qui tu es, d'où tu viens, ce que tu fais, où tu vas. Pas de récitation. Une histoire.</div>
+    <div class="sim-question" style="margin-top:10px;">« Vous avez vécu dans plusieurs pays — qu'est-ce que ça vous a appris concrètement ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un exemple précis, pas une généralité sur l'ouverture d'esprit. 45 secondes maximum.</div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 2</span>
+      <span class="sim-phase-title">Motivation et projet</span>
+      <span class="sim-phase-time">6 minutes</span>
+    </div>
+    <div class="sim-question">« Pourquoi une école de commerce plutôt qu'une université ou Sciences Po ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un choix assumé et cohérent avec ton profil. Sans dénigrer les alternatives. 1 minute.</div>
+    <div class="sim-question" style="margin-top:10px;">« Vous avez organisé des événements au lycée. Qu'est-ce que ça vous a appris sur le management ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> aller au-delà du récit. Nommer une compétence précise et en donner la preuve concrète. 1 minute.</div>
+    <div class="sim-question" style="margin-top:10px;">« Où vous voyez-vous dans 5 ans ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> une vision crédible et cohérente avec ton projet — marketing international, luxe, événementiel. Pas besoin d'être précise au poste près. 45 secondes.</div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 3</span>
+      <span class="sim-phase-title">Culture générale et actualité</span>
+      <span class="sim-phase-time">5 minutes</span>
+    </div>
+    <div class="sim-question">« Citez une actualité récente qui vous a marquée et expliquez pourquoi. »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un sujet sérieux (IA, énergie, géopolitique, économie) avec une opinion construite — pas juste un résumé de l'événement. 1 minute.</div>
+    <div class="sim-question" style="margin-top:10px;">« Qu'est-ce que la mondialisation a changé concrètement dans votre vie ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> relier ta réponse à ton expérience personnelle — tu l'as vécu sur 3 continents. 45 secondes.</div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 4</span>
+      <span class="sim-phase-title">Questions déstabilisantes</span>
+      <span class="sim-phase-time">4 minutes</span>
+    </div>
+    <div class="sim-question">« Quels sont vos défauts ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un vrai défaut, une prise de conscience, un effort en cours. Pas de faux défaut. 45 secondes.</div>
+    <div class="sim-question" style="margin-top:10px;">« Qu'est-ce que vous apporteriez à notre promotion que les autres candidats n'apportent pas ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> une réponse précise et assumée — ton profil international, tes compétences concrètes. Pas de fausse modestie. 1 minute.</div>
+  </div>
+
+  <!-- GRILLE DE FEEDBACK -->
+  <h3>Grille d'auto-évaluation — à remplir après la simulation</h3>
+  <p style="font-size:13px; color:#666; margin-bottom:12px;">Sois honnête avec toi-même. C'est pour progresser, pas pour te juger.</p>
+
+  <div class="feedback-grid">
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">Le pitch (S1)</div>
+      <div class="feedback-cell-content">Fluide et naturel ? Bien chronométré ? Histoire ou liste ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">La motivation (S2)</div>
+      <div class="feedback-cell-content">Convaincante ? Ancrée dans des exemples concrets ? Cohérente ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">La culture G (S3)</div>
+      <div class="feedback-cell-content">Actualité bien choisie ? Opinion construite ? Lien avec ton projet ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">Questions destab (S4)</div>
+      <div class="feedback-cell-content">Réactive ? Honnête ? Calme sous pression ?</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px; color:#1a3a5c; font-weight:bold; margin: 14px 0 6px;">Ce qui a bien marché :</div>
+  <div class="feedback-write">Écris ici...</div>
+  <div style="font-size:13px; color:#cc3333; font-weight:bold; margin: 14px 0 6px;">Ce qui doit progresser la semaine prochaine :</div>
+  <div class="feedback-write">Écris ici...</div>
+
+</div>
+
+<!-- BILAN SEMAINE 1 -->
+<div class="bilan-box">
+  <h4>Bilan Semaine 1 — Ce que tu dois maîtriser maintenant</h4>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Ton pitch personnel de 2 minutes — fluide, naturel, sans récitation</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Vocabulaire économique de base : marché, offre/demande, monopole, oligopole, valeur ajoutée</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>La mondialisation : définition, avantages, critiques, démondialisation</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>L'UE : 27 membres, institutions clés, euro dans 20 pays, Brexit</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Grandes dates : 1929, 1945, 1989, 2008, 2020 — et leur impact économique</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Actualité 2025-2026 : inflation, IA, transition énergétique, géopolitique</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>5 questions déstabilisantes — avec une réponse honnête et construite pour chacune</span></div>
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste</strong><br><br>
+  Une seule question — la plus importante de toute la semaine :<br><br>
+  <em>« Si je devais résumer en 3 phrases pourquoi je mérite une place dans une école de commerce — qu'est-ce que je dirais ? »</em><br><br>
+  Réponds à voix haute, sans notes, sans préparation. C'est exactement ce que le vrai jury te demandera — sous une forme ou une autre.
+</div>
+
+</body>
+</html>

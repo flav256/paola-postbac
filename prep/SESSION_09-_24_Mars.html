@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .green {
+    background: #f0faf0;
+    border-left: 4px solid #2e7d32;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .green strong { color: #2e7d32; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .methode-step {
+    display: flex;
+    gap: 14px;
+    padding: 14px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .methode-step:last-child { border-bottom: none; }
+  .methode-num {
+    background: #e8f0fb;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+    flex-shrink: 0;
+  }
+  .methode-content { flex: 1; }
+  .methode-label { font-weight: bold; color: #1a3a5c; font-size: 13px; }
+  .methode-time { font-size: 11px; color: #aaa; font-style: italic; margin-left: 6px; }
+
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .imprev-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .imprev-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 10px;
+  }
+  .imprev-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .imprev-q {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+    font-style: italic;
+  }
+  .imprev-tip {
+    background: #f9f9f9;
+    border-left: 3px solid #ddd;
+    padding: 8px 12px;
+    margin: 6px 0;
+    font-size: 12px;
+    color: #666;
+    border-radius: 0 3px 3px 0;
+  }
+  .imprev-tip strong { color: #444; }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .chrono-box {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 16px 0;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+  .chrono-icon { font-size: 28px; flex-shrink: 0; }
+  .chrono-content { flex: 1; }
+  .chrono-title { font-weight: bold; font-size: 14px; margin-bottom: 4px; }
+  .chrono-desc { font-size: 12px; opacity: 0.75; line-height: 1.5; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .imprev-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 9 · MERCREDI 25 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : IA et travail &nbsp;·&nbsp; Répondre à une question imprévue sans paniquer</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — L'IA et le travail</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. L'IA est le sujet d'actualité numéro un dans les entretiens d'écoles de commerce en 2026 — chaque jury en parle.</p>
+
+  <h3>Qu'est-ce que l'IA — les bases à maîtriser</h3>
+
+  <div class="concept">
+    <strong>L'intelligence artificielle — définition simple</strong>
+    L'IA, c'est la capacité d'une machine à accomplir des tâches qui nécessitaient jusqu'ici l'intelligence humaine : comprendre un texte, reconnaître une image, traduire une langue, prendre une décision. Elle ne « pense » pas comme un humain — elle reconnaît des patterns dans des données massives et génère des réponses statistiquement probables.
+  </div>
+
+  <div class="concept">
+    <strong>L'IA générative — la révolution de 2022-2026</strong>
+    Depuis fin 2022 (lancement de ChatGPT), une nouvelle génération d'IA peut créer du contenu original : textes, images, code, musique, vidéos. Ces outils sont désormais utilisés par des millions de professionnels. Claude (Anthropic), ChatGPT (OpenAI), Gemini (Google), Midjourney (images) — ce sont les acteurs clés à connaître.
+  </div>
+
+  <h3>L'impact sur le travail — les 3 grandes tendances</h3>
+
+  <div class="concept">
+    <strong>1 — L'automatisation des tâches répétitives</strong>
+    L'IA remplace les tâches routinières et codifiables : saisie de données, rédaction de rapports standards, traduction basique, service client automatisé. Des emplois peu qualifiés dans la comptabilité, le juridique bas de gamme, le marketing de masse sont directement menacés.
+  </div>
+
+  <div class="concept">
+    <strong>2 — L'augmentation des compétences humaines</strong>
+    Pour beaucoup de métiers, l'IA n'est pas un remplaçant — c'est un outil qui démultiplie la productivité. Un marketeur qui maîtrise l'IA peut produire en une heure ce qui prenait une semaine. Un avocat qui utilise l'IA peut analyser des milliers de documents en minutes. La clé : savoir diriger l'IA, pas juste l'utiliser.
+  </div>
+
+  <div class="concept">
+    <strong>3 — La création de nouveaux métiers</strong>
+    L'IA crée aussi des emplois : prompt engineer (spécialiste de la communication avec les IA), data analyst, expert en éthique de l'IA, spécialiste en cybersécurité IA, chef de projet transformation digitale. Les métiers de demain n'existent pas encore tous aujourd'hui.
+  </div>
+
+  <h3>L'IA dans les secteurs qui intéressent Paola</h3>
+
+  <div class="green">
+    <strong>Marketing et communication</strong>
+    L'IA génère des campagnes publicitaires, personnalise les messages pour chaque client, analyse les données de comportement en temps réel. Les marketeurs qui résistent à l'IA seront remplacés — par des marketeurs qui l'utilisent bien.
+  </div>
+
+  <div class="green">
+    <strong>Luxe et hôtellerie</strong>
+    Les grands hôtels utilisent l'IA pour personnaliser l'expérience client (anticiper les préférences, optimiser les prix), mais le luxe repose fondamentalement sur l'humain et l'artisanat. L'IA y est un outil discret — jamais au premier plan. Le contact humain reste la valeur fondamentale du luxe.
+  </div>
+
+  <div class="green">
+    <strong>Événementiel</strong>
+    L'IA aide à la logistique (optimisation des plannings, gestion des prestataires), à la communication (création de contenus visuels), et à l'analyse post-événement. Mais la créativité, la relation client et l'expérience émotionnelle restent profondément humaines.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ La question éthique — indispensable en entretien</strong>
+    L'IA soulève des questions que les futurs managers devront gérer : les biais algorithmiques (une IA entraînée sur des données biaisées reproduit les discriminations), la propriété intellectuelle (qui possède le contenu créé par l'IA ?), l'impact sur l'emploi (qui protège les travailleurs déplacés ?), la désinformation (deepfakes, fausses nouvelles générées par IA). Un jury qui pose une question sur l'IA veut voir que tu penses au-delà de l'enthousiasme technologique.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Ta position personnelle — à construire</strong><br>
+    Quand un jury te demande ce que tu penses de l'IA, la bonne réponse montre trois choses : tu connais le sujet (les bases ci-dessus), tu l'as utilisée toi-même (très probable), et tu as réfléchi à ses implications pour ton futur métier. Exemple : « J'utilise des outils d'IA pour mes recherches et mes projets scolaires — ça m'a montré que la vraie compétence de demain, c'est de savoir poser les bonnes questions à une IA, pas juste d'avoir les réponses. »
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Explique en 3 phrases ce qu'est l'IA générative et cite deux outils concrets. Pourquoi est-elle différente de l'IA « classique » ?</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Un jury te demande : « L'IA va-t-elle remplacer les managers dans 10 ans ? » Donne une réponse nuancée en 5 phrases — ni catastrophiste ni naïvement optimiste.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Comment l'IA va-t-elle concrètement changer le métier de marketeur ou de responsable événementiel dans les 5 prochaines années ? Cite deux exemples précis.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Répondre à une question imprévue sans paniquer</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Tous les entretiens contiennent au moins une question que tu n'as pas préparée. C'est voulu. Le jury veut voir comment tu te comportes face à l'imprévu — est-ce que tu bloques, est-ce que tu improvises de façon cohérente, est-ce que tu gardes ton calme ? C'est souvent là que se joue la différence entre un bon candidat et un candidat mémorable.</p>
+
+  <h3>La méthode en 4 secondes — AREA</h3>
+
+  <div style="border: 1px solid #ddd; border-radius: 4px; padding: 16px 18px; margin: 12px 0;">
+
+    <div class="methode-step">
+      <div class="methode-num">A</div>
+      <div class="methode-content">
+        <span class="methode-label">Accuser réception</span>
+        <span class="methode-time">1 seconde</span>
+        <p style="font-size:13px; margin-top:4px;">Montrer que tu as entendu la question. Un court silence est acceptable — un silence pesant ne l'est pas. Une petite phrase de transition te donne 2-3 secondes pour penser.</p>
+        <div class="pitch-exemple">« C'est une question intéressante... » / « Laissez-moi réfléchir un instant... » / « Je n'y avais pas pensé sous cet angle... »</div>
+      </div>
+    </div>
+
+    <div class="methode-step">
+      <div class="methode-num">R</div>
+      <div class="methode-content">
+        <span class="methode-label">Reformuler la question</span>
+        <span class="methode-time">3-4 secondes de plus</span>
+        <p style="font-size:13px; margin-top:4px;">Reformuler te donne du temps ET montre que tu as bien compris. Si tu n'es pas sûre d'avoir compris, c'est le moment de le dire.</p>
+        <div class="pitch-exemple">« Si je comprends bien, vous me demandez si... » / « Vous voulez savoir ce que je pense de... »</div>
+      </div>
+    </div>
+
+    <div class="methode-step">
+      <div class="methode-num">E</div>
+      <div class="methode-content">
+        <span class="methode-label">Exemple ou ancrage concret</span>
+        <span class="methode-time">Le cœur de la réponse</span>
+        <p style="font-size:13px; margin-top:4px;">Même pour une question abstraite, parte toujours d'un exemple concret — une expérience personnelle, une actualité, quelque chose que tu as observé. C'est infiniment plus convaincant qu'une réponse théorique.</p>
+        <div class="pitch-exemple">« Ce que j'ai observé dans mon expérience, c'est... » / « Un exemple qui illustre bien ça, c'est... »</div>
+      </div>
+    </div>
+
+    <div class="methode-step">
+      <div class="methode-num">A</div>
+      <div class="methode-content">
+        <span class="methode-label">Assumer sa réponse</span>
+        <span class="methode-time">La conclusion</span>
+        <p style="font-size:13px; margin-top:4px;">Ne pas finir en s'excusant ou en disant « je ne suis pas sûre ». Conclure avec une position claire — même si elle est partielle. La conviction compte autant que le contenu.</p>
+        <div class="pitch-exemple">« Donc pour moi... » / « Ce que je retiens de ça, c'est... » / « Ma position là-dessus, c'est... »</div>
+      </div>
+    </div>
+
+  </div>
+
+  <h3>10 questions imprévues — entraînement intensif</h3>
+
+  <p style="font-size:13px; color:#666; margin-bottom:12px;">Pour chaque question, utilise la méthode AREA. Chronomètre : 45 secondes maximum par réponse. L'objectif n'est pas de donner la réponse parfaite — c'est de ne jamais rester muette.</p>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q1</span>
+      <span class="imprev-q">« Si vous étiez un objet, lequel seriez-vous et pourquoi ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta capacité à improviser avec humour et personnalité. Il n'y a pas de bonne réponse — il y a des réponses qui révèlent quelque chose d'authentique sur toi.</div>
+    <div class="imprev-tip"><strong>Piège :</strong> choisir un objet générique et banal (« un livre parce que j'aime apprendre »). Sois originale et explique le lien avec ta vraie personnalité.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q2</span>
+      <span class="imprev-q">« Quelle est la dernière chose que vous avez apprise qui vous a vraiment surprise ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta curiosité intellectuelle et ta capacité à t'enthousiasmer pour des sujets variés. Montre que tu t'intéresses au monde au-delà de ton programme scolaire.</div>
+    <div class="imprev-tip"><strong>Astuce :</strong> relier si possible à un sujet vu dans ce programme — l'IA, la mondialisation, le luxe — pour montrer que tu fais des connexions.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q3</span>
+      <span class="imprev-q">« Qu'est-ce qui vous énerve vraiment dans le monde des affaires ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ton sens critique et tes valeurs. Une réponse qui cite le greenwashing, les inégalités salariales, ou le court-termisme financier montre une vraie réflexion.</div>
+    <div class="imprev-tip"><strong>Piège :</strong> dire « rien ne m'énerve » ou donner une réponse trop lisse. Le jury veut voir que tu penses par toi-même.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q4</span>
+      <span class="imprev-q">« Racontez-moi un échec. »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta maturité et ta capacité à tirer des leçons. Un candidat qui dit « je n'ai jamais vraiment échoué » est perçu comme immature ou malhonnête.</div>
+    <div class="imprev-tip"><strong>Structure :</strong> l'échec (court) → ce que tu as ressenti → ce que tu en as appris → comment tu as changé. Le ratio doit être 20% échec / 80% apprentissage.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q5</span>
+      <span class="imprev-q">« Quelle personne vous a le plus influencée dans votre vie ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> tes valeurs et tes modèles. Peut être un parent, un professeur, une personnalité publique — ce qui compte, c'est l'explication du pourquoi, pas le nom.</div>
+    <div class="imprev-tip"><strong>Piège :</strong> choisir une célébrité business évidente (Elon Musk, Steve Jobs) sans explication personnelle. Le jury entend ça 20 fois par jour.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q6</span>
+      <span class="imprev-q">« Qu'est-ce que vous faites quand vous êtes stressée ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta gestion émotionnelle et ta conscience de toi-même. Une réponse honnête sur tes stratégies concrètes (sport, organisation, respiration) est bien plus convaincante qu'un « je ne suis jamais stressée ».</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q7</span>
+      <span class="imprev-q">« Qu'est-ce que vous lisez en ce moment ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta curiosité intellectuelle. Si tu ne lis pas de livre en ce moment, cite un article, un podcast, une série documentaire qui t'a marquée récemment.</div>
+    <div class="imprev-tip"><strong>Piège :</strong> dire « je n'ai pas le temps de lire ». Ça envoie un très mauvais signal sur ta curiosité intellectuelle.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q8</span>
+      <span class="imprev-q">« Si vous pouviez changer une chose dans votre lycée, ce serait quoi ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ton sens de l'initiative et ta capacité à identifier des problèmes et proposer des solutions — pas juste te plaindre.</div>
+    <div class="imprev-tip"><strong>Structure :</strong> identifier le problème → expliquer pourquoi ça compte → proposer une solution concrète. Montre que tu penses comme quelqu'un qui veut améliorer les choses.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q9</span>
+      <span class="imprev-q">« Vous avez 30 secondes pour me convaincre de vous accepter. Allez-y. »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta capacité à aller à l'essentiel sous pression. Pas ton pitch complet — la phrase la plus percutante de tout ton dossier.</div>
+    <div class="imprev-tip"><strong>Astuce :</strong> c'est ta différenciation clé en une phrase. Pour Paola : parcours international + expérience concrète de management + projet cohérent = profil rare pour une terminale.</div>
+  </div>
+
+  <div class="imprev-card">
+    <div class="imprev-header">
+      <span class="imprev-tag">Q10</span>
+      <span class="imprev-q">« Avez-vous des questions pour nous ? »</span>
+    </div>
+    <div class="imprev-tip"><strong>Ce que le jury cherche :</strong> ta curiosité et ton intérêt réel pour la formation. Cette question clôt presque tous les entretiens — et beaucoup de candidats la ratent en disant « non, tout est clair ».</div>
+    <div class="imprev-tip"><strong>Exemples de bonnes questions :</strong> « Quelles sont les qualités que vous observez chez les étudiants qui réussissent le mieux dans votre programme ? » ou « Quelle est la chose que vos anciens étudiants apprécient le plus rétrospectivement dans leur formation ici ? »</div>
+  </div>
+
+  <div class="chrono-box">
+    <div class="chrono-content">
+      <div class="chrono-title">Exercice chronomètré — 10 questions, 45 sec chacune</div>
+      <div class="chrono-desc">Demande à quelqu'un de te poser les 10 questions dans un ordre aléatoire. Tu réponds immédiatement — méthode AREA — sans regarder tes notes. L'objectif : ne jamais rester silencieuse plus de 3 secondes. Une réponse imparfaite vaut toujours mieux qu'un blanc.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue dans ces moments</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La réactivité</strong> — Tu réponds sans bloquer ni réciter.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'authenticité</strong> — La réponse semble vraiment venir de toi, pas d'un script.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'humour et la légèreté</strong> — Tu peux sourire face à une question surprenante.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La conviction</strong> — Tu assumes ta réponse même si elle est imparfaite.</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le grand piège des questions imprévues :</strong> chercher la réponse parfaite. Il n'y en a pas. Le jury teste ta personnalité et ta réactivité — pas tes connaissances. Une réponse hésitante mais honnête et personnelle impressionne toujours plus qu'une réponse lisse et impersonnelle.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Une question qui combine IA et imprévu — à traiter à voix haute, sans préparation, en 45 secondes :<br><br>
+  <em>« Si une IA pouvait faire votre entretien à votre place aujourd'hui — qu'est-ce qu'elle ne pourrait pas faire que vous, vous pouvez faire ? »</em><br><br>
+  Cette question force à articuler ce qui est fondamentalement humain dans ta candidature — exactement ce que le jury veut entendre dans un monde où l'IA existe. C'est aussi une façon de conclure la session en beauté.
+</div>
+
+</body>
+</html>

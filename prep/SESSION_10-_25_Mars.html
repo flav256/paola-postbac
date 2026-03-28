@@ -1,0 +1,544 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .zone-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    background: white;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .zone-badge {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    min-width: 56px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .zone-content { flex: 1; }
+  .zone-name { font-weight: bold; color: #1a3a5c; font-size: 14px; margin-bottom: 4px; }
+  .zone-chiffre { font-size: 11px; color: #aaa; margin-bottom: 6px; font-style: italic; }
+  .zone-desc { font-size: 13px; color: #444; line-height: 1.6; }
+  .zone-tension { font-size: 12px; color: #cc5500; margin-top: 5px; font-style: italic; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .passion-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .passion-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .passion-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 12px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .passion-title { font-weight: bold; color: #1a3a5c; font-size: 14px; }
+
+  .mauvaise {
+    background: #fff0f0;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 6px 0;
+    font-size: 13px;
+    font-style: italic;
+    color: #888;
+    border-left: 3px solid #cc3333;
+  }
+  .mauvaise::before { content: "✗ "; color: #cc3333; font-style: normal; font-weight: bold; }
+
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .comp-item {
+    display: flex;
+    gap: 10px;
+    margin: 7px 0;
+    font-size: 13px;
+  }
+  .comp-dot { color: #1a3a5c; font-weight: bold; flex-shrink: 0; margin-top: 1px; }
+  .comp-label { font-weight: bold; min-width: 120px; color: #333; }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .zone-card { page-break-inside: avoid; }
+    .passion-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 10 · JEUDI 26 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : Géographie économique mondiale &nbsp;·&nbsp; Parler de ses passions comme atouts</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — Géographie économique mondiale</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. Comprendre les grandes zones économiques mondiales est indispensable pour parler d'internationalisation, de marchés, et de géopolitique en entretien.</p>
+
+  <h3>Les 4 grandes puissances économiques</h3>
+
+  <div class="zone-card">
+    <div class="zone-badge">USA</div>
+    <div class="zone-content">
+      <div class="zone-name">États-Unis — 1ère économie mondiale</div>
+      <div class="zone-chiffre">PIB : ~27 000 milliards $ · 335 millions d'habitants</div>
+      <div class="zone-desc">Puissance dominante depuis 1945. Force : innovation technologique (Silicon Valley), marchés financiers (Wall Street), dollar comme monnaie de réserve mondiale, soft power culturel (Hollywood, Harvard). Grandes entreprises : Apple, Google, Amazon, Microsoft, Tesla.</div>
+      <div class="zone-tension">Tension actuelle : guerre commerciale et technologique avec la Chine. Droits de douane, interdiction de vente de semi-conducteurs avancés à la Chine, rivalité sur l'IA.</div>
+    </div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-badge">CHINE</div>
+    <div class="zone-content">
+      <div class="zone-name">Chine — 2ème économie mondiale</div>
+      <div class="zone-chiffre">PIB : ~18 000 milliards $ · 1,4 milliard d'habitants</div>
+      <div class="zone-desc">Ascension fulgurante depuis les réformes de 1978. Devenue l'usine du monde, puis un acteur d'innovation. Première puissance manufacturière, premier exportateur mondial. Ambition : devenir numéro 1 mondial d'ici 2049. Grandes entreprises : Huawei, Alibaba, TikTok (ByteDance), BYD (voitures électriques).</div>
+      <div class="zone-tension">Tension actuelle : relation conflictuelle avec les USA et l'UE. Menace sur Taïwan (île que la Chine revendique). Surendettement interne. Crise immobilière (Evergrande). Vieillissement de la population.</div>
+    </div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-badge">UE</div>
+    <div class="zone-content">
+      <div class="zone-name">Union Européenne — 3ème bloc économique</div>
+      <div class="zone-chiffre">PIB combiné : ~18 000 milliards $ · 450 millions d'habitants</div>
+      <div class="zone-desc">Premier marché intérieur du monde en termes de consommateurs. Force : industrie de qualité (automobile allemande, luxe français, pharmacie suisse), réglementation mondiale de référence (RGPD, normes environnementales). L'UE est le premier partenaire commercial de nombreux pays.</div>
+      <div class="zone-tension">Tension actuelle : dépendance énergétique post-Ukraine, compétitivité face aux USA et à la Chine, fragmentation politique entre États membres, défi de la transition numérique.</div>
+    </div>
+  </div>
+
+  <div class="zone-card">
+    <div class="zone-badge">INDE</div>
+    <div class="zone-content">
+      <div class="zone-name">Inde — économie à la plus forte croissance</div>
+      <div class="zone-chiffre">PIB : ~3 500 milliards $ · 1,45 milliard d'habitants (1er rang mondial)</div>
+      <div class="zone-desc">Désormais la 5ème économie mondiale, en route pour la 3ème. Population la plus jeune des grandes économies — atout considérable. Force : services informatiques et technologiques (Infosys, TCS, Wipro), secteur pharmaceutique, classes moyennes en forte croissance.</div>
+      <div class="zone-tension">Enjeu actuel : l'Inde devient le grand bénéficiaire de la démondialisation — les entreprises qui quittent la Chine s'y installent massivement (Apple fabrique maintenant des iPhone en Inde).</div>
+    </div>
+  </div>
+
+  <h3>Les marchés émergents — à connaître</h3>
+
+  <div class="concept">
+    <strong>Les BRICS — un bloc en recomposition</strong>
+    Brésil, Russie, Inde, Chine, Afrique du Sud — et depuis 2024 : Émirats arabes unis, Arabie Saoudite, Iran, Éthiopie, Égypte. Ces pays représentent 40% de la population mondiale et cherchent à construire un ordre économique alternatif au modèle occidental. Abu Dhabi est donc au cœur d'un de ces nouveaux membres — un lien direct avec le quotidien de Paola.
+  </div>
+
+  <div class="concept">
+    <strong>L'Afrique — le continent de demain</strong>
+    2 milliards d'habitants en 2050. La plus jeune population du monde. Des ressources naturelles considérables. Un marché intérieur encore sous-développé mais en forte croissance. Les grandes entreprises mondiales s'y positionnent massivement — c'est le dernier grand marché à conquérir.
+  </div>
+
+  <h3>Les grandes tensions commerciales actuelles</h3>
+
+  <div class="actu">
+    <strong>⚡ USA vs Chine — la guerre technologique</strong>
+    Les USA ont interdit l'exportation de semi-conducteurs avancés vers la Chine pour freiner son développement technologique et militaire. La Chine riposte en limitant l'exportation de métaux rares (indispensables pour les batteries et l'électronique). Cette guerre technologique redessine les chaînes d'approvisionnement mondiales.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ La relocalisation — une tendance lourde</strong>
+    Après le Covid-19 et la guerre en Ukraine, les entreprises et les États cherchent à relocaliser leurs productions stratégiques. Les USA ont adopté l'Inflation Reduction Act (IRA) — des milliards de subventions pour ramener l'industrie sur le sol américain. L'UE réplique avec son Green Deal industriel. Un bouleversement majeur de la géographie économique mondiale.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Le lien avec ton parcours</strong><br>
+    Tu as grandi aux Émirats arabes unis — un pays au carrefour de toutes ces tensions géopolitiques et économiques. Abu Dhabi est à la fois un hub financier mondial, un acteur des BRICS, et un pont entre Orient et Occident. Si un jury te demande « qu'est-ce que vivre aux Émirats vous a appris sur l'économie mondiale ? », tu as une réponse unique et puissante à portée de main.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite les 4 grandes puissances économiques dans l'ordre et donne une caractéristique clé de chacune. 2 minutes maximum.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Qu'est-ce que la guerre commerciale USA-Chine ? Cite un exemple concret de mesure prise par chaque camp.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Pourquoi dit-on que l'Inde est « la grande gagnante » de la démondialisation actuelle ? Explique en 3 phrases.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Parler de ses passions comme atouts</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">« Quels sont vos centres d'intérêt en dehors du lycée ? » — cette question paraît simple mais elle est en réalité l'une des plus importantes de l'entretien. Elle permet au jury de voir qui tu es vraiment, au-delà du dossier. Et la plupart des candidats la ratent — parce qu'ils listent leurs activités au lieu de les valoriser.</p>
+
+  <h3>Ce que la plupart des candidats font — et qui ne fonctionne pas</h3>
+
+  <div class="mauvaise">« J'aime la natation, l'équitation et le ski. »</div>
+  <div class="mauvaise">« Je fais du sport et je lis des livres. »</div>
+  <div class="mauvaise">« J'aime les voyages et découvrir de nouvelles cultures. »</div>
+
+  <p style="font-size:13px; color:#888; font-style:italic; margin: 8px 0 16px;">Ces réponses ne sont pas fausses — elles sont vides. Tout le monde voyage, tout le monde fait du sport. Le jury veut savoir ce que ces passions disent de toi et comment elles enrichissent ton projet.</p>
+
+  <h3>Tes 4 passions — décryptées et valorisées</h3>
+
+  <!-- ÉQUITATION -->
+  <div class="passion-card">
+    <div class="passion-header">
+      <span class="passion-tag">ÉQUITATION</span>
+      <span class="passion-title">Pratique en compétition depuis plusieurs années</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Discipline</span>
+      <span>L'équitation de compétition exige des années de travail régulier avant les premiers résultats. C'est une école de patience et de persévérance rare à 17 ans.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Leadership non-verbal</span>
+      <span>Communiquer avec un cheval, c'est apprendre à transmettre ses intentions sans les mots — par la posture, l'équilibre, la confiance. Un apprentissage direct du leadership non-verbal.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Gestion de la pression</span>
+      <span>Performer en compétition sous le regard des autres, gérer le stress sans le transmettre à sa monture — c'est exactement la gestion émotionnelle qu'on attend d'un manager.</span>
+    </div>
+    <div class="pitch-exemple">« L'équitation m'a appris quelque chose que peu de sports enseignent : quand tu paniques, ton cheval panique. Tu apprends très vite à garder ton calme même sous pression — parce que les conséquences sont immédiates et concrètes. C'est une leçon que j'applique naturellement en situation de stress. »</div>
+  </div>
+
+  <!-- DESIGN D'INTÉRIEUR -->
+  <div class="passion-card">
+    <div class="passion-header">
+      <span class="passion-tag">DESIGN</span>
+      <span class="passion-title">Design d'intérieur et créativité visuelle</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Pensée visuelle</span>
+      <span>Le design, c'est comprendre comment les espaces, les couleurs et les objets influencent les émotions. Une compétence directement utile en marketing, branding et événementiel.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Sensibilité esthétique</span>
+      <span>Dans le luxe et l'hôtellerie premium, l'esthétique n'est pas décorative — elle est stratégique. Une sensibilité visuelle développée est un vrai avantage professionnel.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Créativité structurée</span>
+      <span>Concevoir un espace, c'est résoudre un problème avec des contraintes (budget, surface, usage). La créativité sans structure ne produit rien — la structure sans créativité non plus.</span>
+    </div>
+    <div class="pitch-exemple">« Mon intérêt pour le design d'intérieur m'a appris à voir comment l'environnement physique change l'expérience d'une personne. Dans l'hôtellerie de luxe ou l'événementiel, c'est exactement ce qu'on cherche à créer : une expérience totale où chaque détail compte. Ce n'est pas un hobby déconnecté de mon projet — c'est ce qui l'a nourri. »</div>
+  </div>
+
+  <!-- SPORTS -->
+  <div class="passion-card">
+    <div class="passion-header">
+      <span class="passion-tag">NATATION & SKI</span>
+      <span class="passion-title">Pratique régulière — sports individuels de performance</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Régularité</span>
+      <span>S'entraîner régulièrement sur le long terme — en natation surtout — demande une discipline personnelle que beaucoup d'adultes n'ont pas. C'est un signal fort de fiabilité et d'organisation.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Résilience physique</span>
+      <span>Les sports de performance apprennent à dépasser l'inconfort, à ne pas abandonner quand c'est difficile. Une compétence directement transférable à la vie professionnelle.</span>
+    </div>
+    <div class="pitch-exemple">« La natation m'a appris que le progrès est invisible au jour le jour — c'est seulement en regardant en arrière qu'on voit le chemin parcouru. C'est une façon de voir les choses que j'essaie d'appliquer à mes études et à mes projets. »</div>
+  </div>
+
+  <!-- VOYAGES & CULTURES -->
+  <div class="passion-card">
+    <div class="passion-header">
+      <span class="passion-tag">CULTURES</span>
+      <span class="passion-title">Curiosité interculturelle — 4 pays, 3 continents</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Empathie culturelle</span>
+      <span>Avoir vécu comme minorité culturelle dans plusieurs pays développe une empathie naturelle — la capacité réelle à se mettre à la place de quelqu'un de très différent de soi.</span>
+    </div>
+    <div class="comp-item">
+      <span class="comp-dot">→</span>
+      <span class="comp-label">Adaptabilité prouvée</span>
+      <span>Pas une théorie — une réalité vécue. Recommencer à zéro dans un nouveau pays plusieurs fois avant 18 ans, c'est une preuve concrète de résilience et d'adaptabilité.</span>
+    </div>
+    <div class="pitch-exemple">« Je ne dis pas que je suis ouverte d'esprit — c'est quelque chose que tout le monde dit. Je dis que j'ai vécu comme étrangère dans plusieurs pays, que j'ai dû comprendre des codes culturels très différents pour m'intégrer. C'est une forme d'intelligence interculturelle que tu ne développes pas dans un livre. »</div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Choisis <strong>une seule passion</strong> et présente-la en 60 secondes — avec une compétence nommée et un exemple concret. Pas une liste — une histoire.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Le jury demande : <em>« Comment votre passion pour le design se relie-t-elle concrètement à un métier dans le commerce ? »</em> Réponds en 45 secondes — sois précise et directe.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Le jury demande : <em>« Si vous deviez ne garder qu'une seule de vos activités extra-scolaires, laquelle garderiez-vous et pourquoi ? »</em> Réponds en 30 secondes — choisis et assume.</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Tes passions renforcent-elles ton projet ou en sont-elles déconnectées ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La profondeur</strong> — Est-ce que tu pratiques vraiment ou tu coches des cases ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La capacité de recul</strong> — Est-ce que tu analyses ce que tes passions t'apportent vraiment ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La personnalité</strong> — Est-ce qu'on voit qui tu es à travers ce que tu fais ?</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le piège principal :</strong> lister ses activités comme sur un CV. « Je fais de l'équitation, de la natation, du ski et j'aime le design. » Le jury a lu ton dossier — il sait déjà tout ça. Ce qu'il veut entendre, c'est ce que ces activités disent de toi que ton dossier ne dit pas.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Une question combinée géo éco + passions — à voix haute, sans préparation :<br><br>
+  <em>« Si vous deviez lancer un projet dans le secteur du luxe ou de l'événementiel dans l'un des marchés émergents vus aujourd'hui — lequel choisiriez-vous et pourquoi ? »</em><br><br>
+  Cette question créative combine ta connaissance des marchés mondiaux et ta passion pour le luxe et l'événementiel. Il n'y a pas de bonne réponse — mais une réponse informée et enthousiaste montre que tu sais connecter le monde et tes ambitions.
+</div>
+
+</body>
+</html>

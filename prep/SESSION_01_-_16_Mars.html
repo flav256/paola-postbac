@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  /* HEADER */
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+  }
+  .header h1 {
+    font-size: 20px;
+    color: #1a3a5c;
+    letter-spacing: 0.5px;
+  }
+  .header .date {
+    font-size: 12px;
+    color: #888;
+    font-style: italic;
+  }
+  .header .sous-titre {
+    font-size: 13px;
+    color: #555;
+    margin-top: 4px;
+  }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  /* ETAPES */
+  .etape {
+    margin-top: 28px;
+  }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title {
+    font-size: 15px;
+    font-weight: bold;
+    color: #1a3a5c;
+  }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  /* BLOCS DE CONTENU */
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 2px;
+  }
+  .concept strong {
+    color: #1a3a5c;
+    display: block;
+    margin-bottom: 3px;
+  }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  /* QUESTIONS */
+  .questions-block {
+    margin: 14px 0;
+  }
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+  }
+  .q-text { flex: 1; }
+
+  /* STRUCTURE PITCH */
+  .pitch-step {
+    display: flex;
+    gap: 14px;
+    padding: 12px 0;
+    border-bottom: 1px solid #eee;
+  }
+  .pitch-step:last-child { border-bottom: none; }
+  .pitch-num {
+    background: #e8f0fb;
+    color: #1a3a5c;
+    font-weight: bold;
+    font-size: 13px;
+    min-width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 2px;
+  }
+  .pitch-content { flex: 1; }
+  .pitch-content .pitch-label {
+    font-weight: bold;
+    color: #1a3a5c;
+    font-size: 13px;
+  }
+  .pitch-content .pitch-time {
+    font-size: 11px;
+    color: #aaa;
+    font-style: italic;
+    margin-left: 6px;
+  }
+  .pitch-content .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 6px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  /* EXERCICE */
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 { font-size: 13px; letter-spacing: 0.5px; margin-bottom: 10px; opacity: 0.8; text-transform: uppercase; }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .exercice-step .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+  }
+
+  /* JURY BOX */
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot {
+    color: #1a3a5c;
+    font-weight: bold;
+    margin-top: 1px;
+  }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 2px;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator {
+    border: none;
+    border-top: 1px solid #eee;
+    margin: 24px 0;
+  }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 1 · LUNDI 16 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : L'entreprise et le marché &nbsp;·&nbsp; Le pitch personnel</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — L'entreprise et le marché</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement ce qui suit, puis réponds aux questions <strong>sans relire</strong>.</p>
+
+  <p style="font-weight:bold; color:#1a3a5c; margin-bottom:8px;">C'est quoi une entreprise ?</p>
+  <p style="margin-bottom:10px;">Une entreprise est une organisation qui produit des biens ou des services pour les vendre sur un marché, dans le but de créer de la valeur — pour ses clients, ses employés, et ses actionnaires.</p>
+
+  <div class="concept">
+    <strong>Entreprise privée</strong>
+    Appartient à des actionnaires privés. Objectif principal : la rentabilité.<br>
+    <em>Exemples : LVMH, Apple, Air France.</em>
+  </div>
+  <div class="concept">
+    <strong>Entreprise publique</strong>
+    Appartient en tout ou partie à l'État. Objectif : service public autant que profit.<br>
+    <em>Exemples : SNCF, EDF, La Poste.</em>
+  </div>
+  <div class="concept">
+    <strong>Entreprise sociale et solidaire (ESS)</strong>
+    Privilégie l'impact social sur le profit.<br>
+    <em>Exemples : associations, coopératives, mutuelles.</em>
+  </div>
+
+  <p style="font-weight:bold; color:#1a3a5c; margin: 16px 0 8px;">C'est quoi un marché ?</p>
+  <p style="margin-bottom:10px;">Un marché, c'est l'endroit — réel ou virtuel — où se rencontrent une <strong>offre</strong> (ce que les entreprises proposent) et une <strong>demande</strong> (ce que les consommateurs veulent). Le prix se fixe à l'intersection des deux.</p>
+
+  <div class="concept">
+    <strong>Concurrence</strong>
+    Plusieurs entreprises se disputent les mêmes clients. Elles innovent et baissent leurs prix.<br>
+    <em>Exemple : les supermarchés, les opérateurs téléphoniques.</em>
+  </div>
+  <div class="concept">
+    <strong>Monopole</strong>
+    Une seule entreprise domine. Elle fixe les prix librement.<br>
+    <em>Exemple historique : les télécoms avant la libéralisation.</em>
+  </div>
+  <div class="concept">
+    <strong>Oligopole</strong>
+    Quelques grandes entreprises dominent un secteur.<br>
+    <em>Exemple : les constructeurs automobiles, les grandes banques.</em>
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Pourquoi c'est utile pour toi ?</strong><br>
+    Ces notions apparaissent dans les QCM SESAME et ACCES, mais aussi en entretien. Un jury peut demander : <em>« Citez une entreprise qui vous inspire et dites pourquoi. »</em> Il faut pouvoir répondre avec du vocabulaire précis : marché, concurrence, valeur ajoutée, positionnement.
+  </div>
+
+  <p style="font-weight:bold; color:#1a3a5c; margin: 16px 0 8px;">3 questions rapides — à voix haute, sans relire</p>
+  <div class="questions-block">
+    <div class="question">
+      <div class="q-num">1</div>
+      <div class="q-text">Quelle est la différence entre une entreprise privée et une entreprise publique ? Donne un exemple de chacune.</div>
+    </div>
+    <div class="question">
+      <div class="q-num">2</div>
+      <div class="q-text">Si tu crées demain une agence d'événementiel à Abu Dhabi, qui sont tes concurrents ? Quel type de marché est-ce ?</div>
+    </div>
+    <div class="question">
+      <div class="q-num">3</div>
+      <div class="q-text">Cite une entreprise du secteur luxe ou hôtellerie que tu admires. Pourquoi crée-t-elle de la valeur selon toi ?</div>
+    </div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Le pitch personnel</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:14px;">Dans 95% des entretiens post-bac, ça commence par : <em>« Présentez-vous. »</em> Tu as <strong>2 minutes</strong>. Ni plus, ni moins. Voici la structure.</p>
+
+  <!-- STRUCTURE PITCH -->
+  <div style="border: 1px solid #ddd; border-radius:4px; padding: 16px 18px; margin-bottom:16px;">
+
+    <div class="pitch-step">
+      <div class="pitch-num">1</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Qui tu es</span>
+        <span class="pitch-time">~20 secondes</span>
+        <p style="font-size:13px; margin-top:4px;">Ton nom, ton lycée, ta terminale. Bref et factuel.</p>
+        <div class="pitch-exemple">« Je m'appelle Paola Maire, je suis en terminale au Lycée Louis Massignon d'Abu Dhabi, avec les spécialités Mathématiques et Sciences économiques et sociales. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">2</div>
+      <div class="pitch-content">
+        <span class="pitch-label">D'où tu viens</span>
+        <span class="pitch-time">~30 secondes</span>
+        <p style="font-size:13px; margin-top:4px;">Ton parcours international — pas une liste de pays, mais ce que ça t'a appris.</p>
+        <div class="pitch-exemple">« J'ai grandi entre le Gabon, l'Australie et les Émirats — ce qui m'a donné très tôt une capacité naturelle à m'adapter à des environnements très différents et à travailler avec des gens de cultures variées. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">3</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Ce que tu fais</span>
+        <span class="pitch-time">~30 secondes</span>
+        <p style="font-size:13px; margin-top:4px;">Tes expériences concrètes — les plus fortes. Chiffres à l'appui.</p>
+        <div class="pitch-exemple">« Cette année, j'ai coordonné trois événements pour ma promotion — avec 15 000 AED de budget à gérer. J'ai aussi fait un stage de deux semaines à la base navale française d'Abu Dhabi. »</div>
+      </div>
+    </div>
+
+    <div class="pitch-step">
+      <div class="pitch-num">4</div>
+      <div class="pitch-content">
+        <span class="pitch-label">Où tu vas</span>
+        <span class="pitch-time">~30 secondes</span>
+        <p style="font-size:13px; margin-top:4px;">Ton projet, pourquoi une école de commerce, pourquoi maintenant.</p>
+        <div class="pitch-exemple">« Ces expériences m'ont confirmé que ce qui me motive, c'est créer des projets qui rassemblent les gens — dans l'événementiel, le marketing ou l'hôtellerie internationale. C'est ce que je veux approfondir dans une école de commerce. »</div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- EXERCICE -->
+  <div class="exercice">
+    <h4>Exercice — 3 passages à voix haute</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Lis la structure ci-dessus et essaie une première version. Peu importe si c'est imparfait.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Recommence sans lire. Si tu bloques, improvise — ne t'arrête pas.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Fais-le comme si tu étais vraiment devant le jury. <strong>Debout si possible.</strong> Regarde un point fixe. Chronomètre : 2 minutes pile.</div>
+    </div>
+  </div>
+
+  <!-- CE QUE LE JURY ÉVALUE -->
+  <div class="jury-box">
+    <h4>Ce que le jury évalue dans ces 2 minutes</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>Clarté</strong> — Est-ce qu'on comprend qui tu es en 2 minutes ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>Confiance</strong> — Est-ce que tu sembles à l'aise ou en train de réciter ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>Cohérence</strong> — Est-ce que ton parcours et ton projet s'enchaînent logiquement ?</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>Différenciation</strong> — Est-ce qu'il y a quelque chose de mémorable dans ce que tu dis ?</span></div>
+  </div>
+
+  <!-- PIEGE -->
+  <div class="piege">
+    <strong>⚠ Le piège le plus fréquent :</strong> lister des faits sans les relier. <em>« Je suis née en France, j'ai vécu en Australie, j'ai fait un stage... »</em> — c'est un CV lu à voix haute. Ce n'est pas un pitch. Il faut <strong>tisser une histoire.</strong>
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Pose-toi cette question à voix haute, sans préparation :<br><br>
+  <em>« Si je devais résumer mon parcours en une seule phrase — celle qui me différencie vraiment de tous les autres candidats — ce serait laquelle ? »</em><br><br>
+  Pas de bonne réponse. L'objectif est de trouver ton propre fil rouge.
+</div>
+
+</body>
+</html>

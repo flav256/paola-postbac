@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .concept {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .concept strong { color: #1a3a5c; display: block; margin-bottom: 3px; }
+
+  .luxe-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 14px 18px;
+    margin: 10px 0;
+    background: white;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+  }
+  .luxe-badge {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 6px 10px;
+    border-radius: 4px;
+    min-width: 64px;
+    text-align: center;
+    flex-shrink: 0;
+    margin-top: 2px;
+    line-height: 1.4;
+  }
+  .luxe-content { flex: 1; }
+  .luxe-name { font-weight: bold; color: #1a3a5c; font-size: 14px; margin-bottom: 3px; }
+  .luxe-chiffre { font-size: 11px; color: #aaa; margin-bottom: 6px; font-style: italic; }
+  .luxe-desc { font-size: 13px; color: #444; line-height: 1.6; }
+  .luxe-marques { font-size: 12px; color: #888; margin-top: 4px; font-style: italic; }
+
+  .actu {
+    background: #fffbf0;
+    border-left: 4px solid #e6a817;
+    padding: 12px 16px;
+    margin: 10px 0;
+    border-radius: 0 3px 3px 0;
+  }
+  .actu strong { color: #b8860b; display: block; margin-bottom: 3px; }
+
+  .note-paola {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 14px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .note-paola strong { color: #b8860b; }
+
+  .question {
+    display: flex;
+    gap: 12px;
+    padding: 10px 14px;
+    border: 1px solid #ddd;
+    border-radius: 3px;
+    margin: 8px 0;
+    background: white;
+  }
+  .q-num {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    margin-top: 1px;
+    flex-shrink: 0;
+  }
+
+  .destab-card {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .destab-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .destab-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .destab-q {
+    font-size: 14px;
+    font-weight: bold;
+    color: #1a1a1a;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .destab-piege {
+    background: #fff5f5;
+    border-left: 3px solid #cc3333;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #7a1a1a;
+    border-radius: 0 3px 3px 0;
+  }
+  .destab-piege strong { color: #cc3333; }
+  .destab-good {
+    background: #f0faf0;
+    border-left: 3px solid #2e7d32;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 13px;
+    color: #1a4a1a;
+    border-radius: 0 3px 3px 0;
+  }
+  .destab-good strong { color: #2e7d32; }
+  .pitch-exemple {
+    background: #f4f7fa;
+    border-radius: 3px;
+    padding: 8px 12px;
+    margin-top: 8px;
+    font-size: 13px;
+    font-style: italic;
+    color: #444;
+    border-left: 3px solid #1a3a5c;
+  }
+
+  .exercice {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 16px 0;
+  }
+  .exercice h4 {
+    font-size: 13px;
+    letter-spacing: 0.5px;
+    margin-bottom: 10px;
+    opacity: 0.8;
+    text-transform: uppercase;
+  }
+  .exercice-step {
+    display: flex;
+    gap: 12px;
+    margin: 8px 0;
+    font-size: 13px;
+  }
+  .ex-num {
+    background: rgba(255,255,255,0.2);
+    border-radius: 50%;
+    min-width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: bold;
+    flex-shrink: 0;
+  }
+
+  .jury-box {
+    background: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin: 14px 0;
+  }
+  .jury-box h4 {
+    font-size: 12px;
+    color: #999;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 8px;
+  }
+  .jury-item {
+    display: flex;
+    gap: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+  }
+  .jury-dot { color: #1a3a5c; font-weight: bold; }
+
+  .piege {
+    background: #fff5f5;
+    border-left: 4px solid #cc3333;
+    padding: 10px 14px;
+    border-radius: 0 3px 3px 0;
+    margin: 12px 0;
+    font-size: 13px;
+    color: #555;
+  }
+  .piege strong { color: #cc3333; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .destab-card { page-break-inside: avoid; }
+    .luxe-card { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 11 · VENDREDI 27 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Thème : Le luxe et l'événementiel &nbsp;·&nbsp; Questions déstabilisantes S2</div>
+  <span class="duree">⏱ 30 à 35 minutes</span>
+</div>
+
+
+<!-- ÉTAPE 1 : CULTURE G -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">Culture Générale — Le luxe et l'événementiel</span>
+    <span class="etape-time">10 à 12 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Lis attentivement, puis réponds aux questions <strong>sans relire</strong>. C'est le domaine que tu cibles — tu dois en parler mieux que n'importe quel autre candidat.</p>
+
+  <h3>Le marché mondial du luxe — les chiffres clés</h3>
+
+  <div class="concept">
+    <strong>Un marché en croissance structurelle</strong>
+    Le marché mondial du luxe représente environ 350 à 400 milliards d'euros en 2025. Il a connu une croissance quasi continue depuis 20 ans, avec seulement deux interruptions majeures : la crise financière de 2008 et le Covid-19 en 2020. Il a rebondi très fortement après chaque crise — signe d'une résilience structurelle exceptionnelle.
+  </div>
+
+  <div class="concept">
+    <strong>Les clients du luxe — qui sont-ils ?</strong>
+    Trois profils distincts. Les très riches (ultra high net worth individuals) — moins de 1% des clients mais 30% du chiffre d'affaires. Les aspirationnels — classes moyennes supérieures qui s'offrent occasionnellement du luxe. Les nouveaux riches des pays émergents — Chine (1er marché mondial), Inde, Moyen-Orient, Asie du Sud-Est. La Chine représente à elle seule 25 à 30% du marché mondial du luxe.
+  </div>
+
+  <h3>Les grands groupes à connaître absolument</h3>
+
+  <div class="luxe-card">
+    <div class="luxe-badge">LVMH</div>
+    <div class="luxe-content">
+      <div class="luxe-name">Louis Vuitton Moët Hennessy — 1er groupe mondial du luxe</div>
+      <div class="luxe-chiffre">CA 2023 : ~86 milliards € · 75 maisons · PDG : Bernard Arnault</div>
+      <div class="luxe-desc">Le géant absolu. Organisé en 6 pôles : Mode & Maroquinerie (Louis Vuitton, Dior, Givenchy, Loewe), Vins & Spiritueux (Moët & Chandon, Dom Pérignon, Hennessy), Parfums & Cosmétiques (Guerlain, Benefit), Montres & Joaillerie (Bulgari, TAG Heuer, Tiffany), Distribution sélective (Sephora, DFS), Médias (Les Échos, Le Parisien).</div>
+      <div class="luxe-marques">Stratégie clé : rachat de marques existantes avec fort potentiel, préservation de leur ADN, distribution ultra-sélective pour maintenir le prestige.</div>
+    </div>
+  </div>
+
+  <div class="luxe-card">
+    <div class="luxe-badge">KERING</div>
+    <div class="luxe-content">
+      <div class="luxe-name">Kering — 2ème groupe français du luxe</div>
+      <div class="luxe-chiffre">CA 2023 : ~17 milliards € · PDG : François-Henri Pinault</div>
+      <div class="luxe-desc">Concurrent direct de LVMH sur le luxe mode. Portefeuille : Gucci (la locomotive), Yves Saint Laurent, Balenciaga, Bottega Veneta, Alexander McQueen, Brioni. Kering se distingue par son engagement fort sur la durabilité — premier grand groupe du luxe à calculer et publier son impact environnemental total.</div>
+      <div class="luxe-marques">Enjeu actuel : Gucci traverse une période difficile (-20% de CA en 2024) — Kering cherche à relancer la marque avec un nouveau directeur artistique.</div>
+    </div>
+  </div>
+
+  <div class="luxe-card">
+    <div class="luxe-badge">RICHEMONT</div>
+    <div class="luxe-content">
+      <div class="luxe-name">Richemont — leader de la joaillerie et de l'horlogerie</div>
+      <div class="luxe-chiffre">CA 2023 : ~20 milliards € · Groupe suisse · PDG : Johann Rupert</div>
+      <div class="luxe-desc">Spécialiste des « hard luxury » — joaillerie et montres. Cartier représente 30% du CA total du groupe à lui seul. Autres marques : Van Cleef & Arpels, IWC, Jaeger-LeCoultre, Montblanc, Piaget. Richemont possède aussi Net-A-Porter, la principale plateforme de luxe en ligne.</div>
+      <div class="luxe-marques">Positionnement : le luxe le plus intemporel — une montre Cartier ou un collier Van Cleef est un investissement qui se transmet de génération en génération.</div>
+    </div>
+  </div>
+
+  <h3>Les grandes tendances du luxe en 2026</h3>
+
+  <div class="actu">
+    <strong>⚡ Le luxe digital — une tension permanente</strong>
+    Le luxe est fondé sur la rareté, l'exclusivité et l'expérience physique. Le digital est fondé sur l'accessibilité, la scalabilité et la dématérialisation. Ces deux logiques s'affrontent. Les grandes maisons investissent massivement dans les expériences digitales (applications, NFT, métavers) tout en préservant l'expérience boutique irremplaçable. Le client du luxe veut les deux — une relation digitale fluide ET une expérience physique exceptionnelle.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ Le luxe durable — un impératif, pas un choix</strong>
+    Les nouvelles générations de clients du luxe (millennials et Gen Z représenteront 70% du marché d'ici 2030) exigent de la cohérence entre les valeurs affichées et les pratiques réelles. Une maison de luxe qui promeut l'artisanat mais emploie des sous-traitants dans des conditions indignes est vulnérable. La traçabilité des matières premières, les certifications environnementales et la durabilité des produits deviennent des arguments de vente à part entière.
+  </div>
+
+  <div class="actu">
+    <strong>⚡ L'événementiel — un secteur en pleine mutation</strong>
+    L'événementiel mondial (conférences, concerts, événements d'entreprise, lancements de produits) représente un marché de plus de 1 000 milliards de dollars. Post-Covid, le secteur a rebondi de façon spectaculaire — la privation d'événements physiques a renforcé leur valeur. Les grandes tendances : expériences immersives (réalité augmentée, scénographies spectaculaires), événements hybrides (en présentiel + digital), durabilité (événements à faible empreinte carbone), personnalisation extrême.
+  </div>
+
+  <div class="note-paola">
+    <strong>💡 Pourquoi ce sujet est ton terrain de jeu</strong><br>
+    Tu t'intéresses au luxe et à l'événementiel, tu as organisé des événements, tu as une sensibilité au design et à l'esthétique, tu as grandi aux Émirats — un des marchés du luxe les plus dynamiques au monde. Tu n'es pas une candidate qui dit « j'aime le luxe parce que c'est beau ». Tu es une candidate qui comprend ce secteur de l'intérieur, qui en connaît les enjeux et les tensions. C'est une différence fondamentale.
+  </div>
+
+  <h3>3 questions rapides — à voix haute, sans relire</h3>
+  <div class="question">
+    <div class="q-num">1</div>
+    <div>Cite les 3 grands groupes du luxe, leur PDG et deux marques phares de chacun. 2 minutes maximum.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">2</div>
+    <div>Pourquoi dit-on que le luxe et la durabilité sont en tension ? Donne un exemple concret d'une maison qui essaie de concilier les deux.</div>
+  </div>
+  <div class="question">
+    <div class="q-num">3</div>
+    <div>Un jury te demande : « Pourquoi le marché du luxe résiste-t-il mieux aux crises économiques que d'autres secteurs ? » Réponds en 4 phrases.</div>
+  </div>
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : ENTRETIEN -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Entretien — Questions déstabilisantes S2</span>
+    <span class="etape-time">15 à 18 min</span>
+  </div>
+
+  <p style="margin-bottom:12px;">Deuxième série de questions déstabilisantes — cette fois plus créatives et plus piégeuses que la session 5. Même règle d'or : ne jamais paniquer, ne jamais rester silencieuse plus de 3 secondes. La méthode AREA (Accuser réception → Reformuler → Exemple → Assumer) reste ton outil principal.</p>
+
+  <!-- Q1 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q1</span>
+      <span class="destab-q">« Vendez-moi ce stylo. »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> décrire les caractéristiques du stylo (« il écrit bien, il est ergonomique... »). C'est l'erreur classique. Le jury teste ta capacité à identifier un besoin avant de proposer une solution.</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> d'abord qualifier le besoin, puis vendre. Poser une question avant de répondre. Montrer que tu penses comme quelqu'un qui comprend que vendre, c'est résoudre un problème.</div>
+    <div class="pitch-exemple">« Avant de vous présenter ce stylo, j'aurais une question — quand avez-vous écrit quelque chose à la main pour la dernière fois, et qu'est-ce que vous ressentez quand vous le faites ? ... [réponse du jury] ... Justement. Dans un monde où tout est digital, poser sa signature sur un document important ou écrire une note à la main, c'est un acte qui dit quelque chose de vous. Ce stylo ne sert pas à écrire — il sert à exprimer une intention. C'est pour ça qu'il vaut quelque chose. »</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q2</span>
+      <span class="destab-q">« Si vous étiez un animal, lequel seriez-vous et pourquoi ? »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> choisir un animal puissant et évident (lion, aigle) pour paraître forte. Ou hésiter longtemps parce que la question semble absurde. Le jury s'en rend compte immédiatement.</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> choisir un animal inattendu qui révèle quelque chose de vrai et de personnel sur toi. L'explication compte infiniment plus que l'animal choisi.</div>
+    <div class="pitch-exemple">« Un cheval. Pas parce que j'en fais, mais parce que le cheval est un animal qui ne donne son meilleur que dans une relation de confiance — il sent immédiatement si la personne en face de lui est sincère ou non. Et je pense que c'est aussi comme ça que je fonctionne : je donne tout quand il y a une vraie confiance, et je résiste si je sens que ce n'est pas authentique. »</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q3</span>
+      <span class="destab-q">« Si vous n'êtes pas acceptée ici, qu'est-ce que vous faites demain matin ? »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> soit s'effondrer (« je serais très déçue... »), soit sembler indifférente (« ça n'a pas d'importance, j'ai d'autres options »). Les deux envoient un mauvais signal.</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> montrer de la résilience, un plan B sérieux, et une conviction sincère pour cette formation — sans dramatiser ni minimiser.</div>
+    <div class="pitch-exemple">« Demain matin, je me lèverais, je regarderais mes autres candidatures, et je continuerais à avancer. La déception ferait partie du chemin — mais elle ne m'arrêterait pas. Ce que je sais avec certitude, c'est que mon projet professionnel ne change pas selon les résultats d'un entretien. Ce qui change, c'est le chemin pour y arriver. Cela dit, je ne vous cache pas que c'est vraiment cette formation qui me correspond — et c'est pour ça que je suis là aujourd'hui. »</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q4</span>
+      <span class="destab-q">« Qu'est-ce que vous feriez avec 1 million d'euros ? »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> répondre de façon trop sage et prévisible (« j'investirais, je donnerais à des associations... ») ou trop personnelle et superficielle (« je voyagerais, j'achèterais une maison »).</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> montrer à la fois ton côté humain, ton sens des priorités ET ta curiosité entrepreneuriale. Une réponse en 3 temps : toi, les autres, un projet.</div>
+    <div class="pitch-exemple">« Une partie pour sécuriser ma famille et ma liberté. Une partie pour financer un projet qui me tient à cœur — quelque chose dans l'événementiel ou le luxe durable, parce que c'est là où je veux construire quelque chose. Et une partie pour prendre des risques intelligents — investir dans des projets portés par des gens qui m'inspirent. L'argent ne m'intéresse pas en soi — ce qui m'intéresse, c'est ce qu'on peut faire avec. »</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q5</span>
+      <span class="destab-q">« Décrivez-vous en trois mots. »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> choisir trois adjectifs génériques sans les justifier (« motivée, curieuse, sérieuse »). Le jury entend exactement les mêmes mots des dizaines de fois par jour.</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> choisir des mots inattendus et précis, et justifier chacun avec un exemple concret de moins de 10 secondes.</div>
+    <div class="pitch-exemple">« Adaptable — parce que j'ai recommencé à zéro dans quatre pays différents. Tenace — parce que l'équitation en compétition m'a appris qu'on ne progresse qu'en continuant après les chutes. Et curieuse — pas curieuse au sens poli du terme, mais vraiment incapable de me désintéresser de ce qui se passe dans le monde. »</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="destab-card">
+    <div class="destab-header">
+      <span class="destab-tag">Q6</span>
+      <span class="destab-q">« Convaincquez-moi en 30 secondes que vous méritez cette place plutôt qu'un autre candidat. »</span>
+    </div>
+    <div class="destab-piege"><strong>Le piège :</strong> commencer par « je suis motivée et je travaille dur » — tout le monde dit ça. Ou au contraire s'excuser de prendre autant de place.</div>
+    <div class="destab-good"><strong>La bonne approche :</strong> aller directement à ce qui te rend unique et irremplaçable. Pas d'humilité excessive — de la précision et de la conviction.</div>
+    <div class="pitch-exemple">« Parce que je ne suis pas une candidate sur le papier — je suis quelqu'un qui a déjà prouvé, à 17 ans, qu'elle peut gérer un projet de A à Z avec un budget, une équipe et un résultat concret. J'ai grandi sur trois continents, je parle trois langues, et je connais le marché du luxe et de l'événementiel de l'intérieur — parce que j'ai grandi dedans, à Abu Dhabi. Ce profil-là, vous ne le verrez pas souvent. »</div>
+  </div>
+
+  <div class="exercice">
+    <h4>Exercice — simulation sous pression chronomètrée</h4>
+    <div class="exercice-step">
+      <div class="ex-num">1</div>
+      <div>Demande à quelqu'un de te poser les 6 questions dans un ordre aléatoire. Tu réponds immédiatement — méthode AREA — 45 secondes max par réponse. Pas de notes.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">2</div>
+      <div>Après chaque réponse, ton interlocuteur dit juste : <em>« Développez. »</em> Tu dois continuer 20 secondes de plus sans répéter ce que tu viens de dire.</div>
+    </div>
+    <div class="exercice-step">
+      <div class="ex-num">3</div>
+      <div>Évalue toi-même après chaque réponse : est-ce que j'ai souri ? Est-ce que j'avais l'air de quelqu'un qui apprécie la question ou de quelqu'un qui la subit ?</div>
+    </div>
+  </div>
+
+  <div class="jury-box">
+    <h4>Ce que le jury évalue dans ces 6 questions</h4>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La créativité sous pression</strong> — Tu trouves des réponses originales sans bloquer.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>L'humour et la légèreté</strong> — Tu peux sourire face à une question absurde.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La cohérence</strong> — Tes réponses impromptues sont cohérentes avec ton pitch préparé.</span></div>
+    <div class="jury-item"><span class="jury-dot">→</span><span><strong>La confiance</strong> — Tu assumes tes réponses sans t'excuser ni te dévaloriser.</span></div>
+  </div>
+
+  <div class="piege">
+    <strong>⚠ Le méta-piège de toutes ces questions :</strong> chercher la réponse que le jury veut entendre. Il n'y en a pas. Les questions déstabilisantes n'ont pas de bonne réponse — elles ont des réponses authentiques et des réponses récitées. Le jury fait cette distinction en moins de 5 secondes.
+  </div>
+
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus si du temps reste (2 min)</strong><br><br>
+  Une question qui combine luxe et déstabilisation — à traiter à voix haute, sans préparation :<br><br>
+  <em>« Si vous deviez créer une nouvelle maison de luxe demain — quel serait son nom, quel serait son territoire, et quel serait son premier produit ? »</em><br><br>
+  Question créative qui teste ta connaissance du secteur ET ta capacité à imaginer. Une réponse originale et cohérente avec ton profil (design, multiculturel, événementiel) sera infiniment plus mémorable qu'une réponse générique.
+</div>
+
+</body>
+</html>

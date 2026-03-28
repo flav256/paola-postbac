@@ -1,0 +1,616 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    font-family: 'Georgia', serif;
+    max-width: 720px;
+    margin: 40px auto;
+    color: #1a1a1a;
+    line-height: 1.75;
+    font-size: 14px;
+  }
+
+  .header {
+    border-bottom: 3px solid #1a3a5c;
+    padding-bottom: 14px;
+    margin-bottom: 6px;
+  }
+  .header-top { display: flex; justify-content: space-between; align-items: flex-end; }
+  .header h1 { font-size: 20px; color: #1a3a5c; letter-spacing: 0.5px; }
+  .header .date { font-size: 12px; color: #888; font-style: italic; }
+  .header .sous-titre { font-size: 13px; color: #555; margin-top: 4px; }
+  .duree {
+    display: inline-block;
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    margin-top: 8px;
+    letter-spacing: 0.5px;
+  }
+
+  .intro-box {
+    background: #f4f7fa;
+    border-left: 4px solid #1a3a5c;
+    padding: 14px 18px;
+    border-radius: 0 4px 4px 0;
+    margin-bottom: 20px;
+    font-size: 13px;
+    color: #444;
+    line-height: 1.7;
+  }
+  .intro-box strong { color: #1a3a5c; }
+
+  .etape { margin-top: 28px; }
+  .etape-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 14px;
+  }
+  .etape-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 4px 10px;
+    border-radius: 3px;
+    letter-spacing: 1px;
+    white-space: nowrap;
+  }
+  .etape-title { font-size: 15px; font-weight: bold; color: #1a3a5c; }
+  .etape-time {
+    font-size: 11px;
+    color: #999;
+    font-style: italic;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
+  .qcm-item {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .qcm-header { display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
+  .qcm-num {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    font-weight: bold;
+    padding: 3px 10px;
+    border-radius: 12px;
+    white-space: nowrap;
+  }
+  .qcm-theme {
+    font-size: 11px;
+    background: #e8f0fb;
+    color: #1a3a5c;
+    border-radius: 12px;
+    padding: 3px 10px;
+    font-weight: 500;
+  }
+  .qcm-q { font-size: 14px; font-weight: bold; color: #1a1a1a; margin-bottom: 10px; line-height: 1.5; }
+  .qcm-opts { display: flex; flex-direction: column; gap: 5px; margin-bottom: 10px; }
+  .qcm-opt { font-size: 13px; color: #444; padding: 3px 0; }
+  .qcm-opt .letter { font-weight: bold; color: #1a3a5c; margin-right: 6px; }
+  .qcm-answer {
+    background: #eaf3de;
+    border: 1px solid #5a9e2f;
+    border-radius: 4px;
+    padding: 8px 12px;
+    font-size: 12px;
+    color: #2d6a0a;
+    margin-top: 8px;
+    line-height: 1.6;
+  }
+  .qcm-answer strong { color: #2d6a0a; }
+  .reponse-label {
+    font-size: 11px;
+    font-weight: bold;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 4px;
+  }
+
+  .score-box {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 8px;
+    padding: 14px 18px;
+    margin: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+  .score-label { font-size: 13px; opacity: 0.8; }
+  .score-sub { font-size: 11px; opacity: 0.55; margin-top: 2px; }
+  .score-num { font-size: 28px; font-weight: bold; }
+
+  .mot-box {
+    background: #fffbf0;
+    border: 2px dashed #e6a817;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin: 16px 0;
+    text-align: center;
+  }
+  .mot-label { font-size: 11px; color: #b8860b; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 8px; }
+  .mot-word { font-size: 28px; font-weight: bold; color: #1a3a5c; letter-spacing: 2px; }
+  .mot-consigne { font-size: 12px; color: #888; margin-top: 8px; font-style: italic; }
+
+  .sim-intro {
+    background: #fffbf0;
+    border: 1px solid #e8d87a;
+    border-radius: 4px;
+    padding: 14px 18px;
+    margin-bottom: 18px;
+    font-size: 13px;
+    color: #555;
+    line-height: 1.7;
+  }
+  .sim-intro strong { color: #b8860b; }
+
+  .sim-phase {
+    border: 1px solid #ddd;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 12px 0;
+    background: white;
+  }
+  .sim-phase-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 12px;
+  }
+  .sim-phase-tag {
+    background: #1a3a5c;
+    color: white;
+    font-size: 11px;
+    padding: 3px 10px;
+    border-radius: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+  .sim-phase-title { font-weight: bold; color: #1a3a5c; font-size: 14px; }
+  .sim-phase-time { font-size: 11px; color: #aaa; font-style: italic; margin-left: auto; white-space: nowrap; }
+
+  .sim-question {
+    background: #1a3a5c;
+    color: white;
+    border-radius: 6px;
+    padding: 12px 16px;
+    margin: 8px 0;
+    font-size: 14px;
+    font-style: italic;
+    line-height: 1.5;
+  }
+  .sim-tip {
+    background: #f9f9f9;
+    border-left: 3px solid #ddd;
+    padding: 8px 12px;
+    margin: 6px 0;
+    font-size: 12px;
+    color: #666;
+    border-radius: 0 3px 3px 0;
+    line-height: 1.6;
+  }
+  .sim-tip strong { color: #444; }
+
+  .feedback-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin: 16px 0;
+  }
+  .feedback-cell {
+    background: #f5f5f5;
+    border-radius: 6px;
+    padding: 12px 14px;
+  }
+  .feedback-cell-label {
+    font-size: 11px;
+    color: #aaa;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin-bottom: 4px;
+  }
+  .feedback-cell-content { font-size: 13px; color: #333; line-height: 1.5; }
+  .feedback-write {
+    border: 1px dashed #ccc;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin: 8px 0;
+    min-height: 50px;
+    font-size: 13px;
+    color: #bbb;
+    font-style: italic;
+  }
+
+  .bilan-box {
+    background: #f4f7fa;
+    border: 1px solid #c5d8ee;
+    border-radius: 6px;
+    padding: 16px 18px;
+    margin: 20px 0;
+  }
+  .bilan-box h4 { color: #1a3a5c; font-size: 14px; margin-bottom: 10px; }
+  .bilan-row {
+    display: flex;
+    gap: 10px;
+    margin: 7px 0;
+    font-size: 13px;
+    align-items: flex-start;
+  }
+  .bilan-check { color: #1a3a5c; font-weight: bold; flex-shrink: 0; }
+
+  .bonus {
+    border: 1px dashed #1a3a5c;
+    border-radius: 3px;
+    padding: 12px 16px;
+    margin-top: 24px;
+    font-size: 13px;
+    color: #555;
+  }
+  .bonus strong { color: #1a3a5c; }
+
+  .separator { border: none; border-top: 1px solid #eee; margin: 24px 0; }
+  h3 { color: #1a3a5c; margin: 16px 0 8px; font-size: 14px; }
+
+  @media print {
+    body { margin: 20px; }
+    .etape { page-break-inside: avoid; }
+    .qcm-item { page-break-inside: avoid; }
+    .sim-phase { page-break-inside: avoid; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="header">
+  <div class="header-top">
+    <h1>SESSION 12 · SAMEDI 28 MARS 2026</h1>
+    <span class="date">Programme Paola · Écoles de Commerce Post-Bac</span>
+  </div>
+  <div class="sous-titre">Bilan Semaine 2 &nbsp;·&nbsp; 10 QCM révision + Simulation entretien 25 min avec mot tiré au sort</div>
+  <span class="duree">⏱ 38 à 42 minutes</span>
+</div>
+
+<div class="intro-box">
+  <strong>Objectif de cette session</strong><br>
+  Pas de nouveau contenu. On consolide la Semaine 2 — RSE, organisations internationales, IA, géographie économique, luxe et événementiel — avec 10 QCM ciblés. Puis une simulation d'entretien complète de 25 minutes avec une nouveauté : le mot tiré au sort à intégrer dans la présentation, comme à l'EDHEC BBA. C'est plus long et plus exigeant que la simulation S6 — c'est voulu.
+</div>
+
+
+<!-- ÉTAPE 1 : QCM -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 1</span>
+    <span class="etape-title">10 QCM — Révision Semaine 2</span>
+    <span class="etape-time">12 à 14 min</span>
+  </div>
+
+  <p style="margin-bottom:14px;">Réponds mentalement avant de regarder la réponse. Note ton score au fil des questions.</p>
+
+  <!-- Q1 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q1</span>
+      <span class="qcm-theme">RSE</span>
+    </div>
+    <div class="qcm-q">Quelle est la définition officielle du développement durable, issue du rapport Brundtland (1987) ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Un développement qui maximise la croissance économique tout en protégeant l'environnement</div>
+      <div class="qcm-opt"><span class="letter">B</span>Un développement qui répond aux besoins du présent sans compromettre la capacité des générations futures à répondre aux leurs</div>
+      <div class="qcm-opt"><span class="letter">C</span>Un développement fondé uniquement sur les énergies renouvelables</div>
+      <div class="qcm-opt"><span class="letter">D</span>Un développement qui équilibre les intérêts des pays riches et des pays pauvres</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> C'est la définition fondatrice, à connaître par cœur. Elle repose sur 3 piliers : économique, social et environnemental. Un développement durable doit équilibrer ces trois dimensions simultanément.</div>
+  </div>
+
+  <!-- Q2 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q2</span>
+      <span class="qcm-theme">RSE</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que le greenwashing ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Une technique de marketing écologique efficace et certifiée</div>
+      <div class="qcm-opt"><span class="letter">B</span>Le fait de peindre ses bâtiments en vert pour montrer son engagement écologique</div>
+      <div class="qcm-opt"><span class="letter">C</span>Une communication trompeuse sur les engagements environnementaux d'une entreprise</div>
+      <div class="qcm-opt"><span class="letter">D</span>Un label officiel accordé aux entreprises durables</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> Le greenwashing (ou éco-blanchiment) consiste à se donner une image écologique sans que les pratiques réelles aient vraiment changé. Les autorités de régulation (en France, l'ARPP) sanctionnent de plus en plus ces pratiques trompeuses.</div>
+  </div>
+
+  <!-- Q3 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q3</span>
+      <span class="qcm-theme">Organisations internationales</span>
+    </div>
+    <div class="qcm-q">Quel est le rôle principal du FMI ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Financer des projets de développement à long terme dans les pays pauvres</div>
+      <div class="qcm-opt"><span class="letter">B</span>Réguler le commerce international entre pays membres</div>
+      <div class="qcm-opt"><span class="letter">C</span>Accorder des prêts d'urgence aux pays en difficulté financière et surveiller la stabilité économique mondiale</div>
+      <div class="qcm-opt"><span class="letter">D</span>Gérer la monnaie unique européenne</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> Le FMI aide les pays en crise financière avec des prêts d'urgence, en échange de réformes économiques. Il surveille aussi la stabilité du système financier mondial. À distinguer de la Banque Mondiale qui finance des projets de développement à long terme.</div>
+  </div>
+
+  <!-- Q4 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q4</span>
+      <span class="qcm-theme">Organisations internationales</span>
+    </div>
+    <div class="qcm-q">Quelle est la principale limite de l'ONU dans sa mission de maintien de la paix ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Elle n'a pas assez de membres pour être représentative</div>
+      <div class="qcm-opt"><span class="letter">B</span>Le droit de veto des 5 membres permanents du Conseil de Sécurité bloque souvent les décisions</div>
+      <div class="qcm-opt"><span class="letter">C</span>Elle n'a pas de budget suffisant pour financer ses opérations</div>
+      <div class="qcm-opt"><span class="letter">D</span>Elle est uniquement composée de pays occidentaux</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Les 5 membres permanents du Conseil de Sécurité (USA, Russie, Chine, France, UK) disposent d'un droit de veto. Un seul veto suffit à bloquer toute résolution — ce qui a paralysé l'ONU sur de nombreux conflits, notamment sur l'Ukraine où la Russie a bloqué toute condamnation formelle.</div>
+  </div>
+
+  <!-- Q5 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q5</span>
+      <span class="qcm-theme">IA et travail</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que l'IA générative ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Une IA capable de créer du contenu original — textes, images, code, musique</div>
+      <div class="qcm-opt"><span class="letter">B</span>Un robot humanoïde capable de remplacer un ouvrier d'usine</div>
+      <div class="qcm-opt"><span class="letter">C</span>Un algorithme qui prédit les comportements d'achat des consommateurs</div>
+      <div class="qcm-opt"><span class="letter">D</span>Un système de reconnaissance faciale utilisé par les États</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>A.</strong> L'IA générative (ChatGPT, Claude, Midjourney...) peut créer du contenu original à partir d'instructions. Elle représente une rupture depuis fin 2022 et transforme de nombreux secteurs professionnels : marketing, communication, droit, finance, médecine.</div>
+  </div>
+
+  <!-- Q6 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q6</span>
+      <span class="qcm-theme">Géographie économique</span>
+    </div>
+    <div class="qcm-q">Pourquoi l'Inde est-elle considérée comme la grande bénéficiaire de la démondialisation actuelle ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Parce qu'elle a fermé ses frontières aux importations chinoises</div>
+      <div class="qcm-opt"><span class="letter">B</span>Parce que les entreprises qui quittent la Chine s'y installent massivement, attirées par sa main-d'œuvre jeune et qualifiée</div>
+      <div class="qcm-opt"><span class="letter">C</span>Parce qu'elle a créé sa propre monnaie de réserve internationale</div>
+      <div class="qcm-opt"><span class="letter">D</span>Parce qu'elle est devenue le premier exportateur mondial de pétrole</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> L'Inde attire massivement les investissements des entreprises qui cherchent à réduire leur dépendance à la Chine. Apple fabrique désormais des iPhone en Inde. L'Inde combine une main-d'œuvre jeune et nombreuse, des coûts compétitifs, et une stabilité politique relative.</div>
+  </div>
+
+  <!-- Q7 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q7</span>
+      <span class="qcm-theme">Géographie économique</span>
+    </div>
+    <div class="qcm-q">Qu'est-ce que la guerre commerciale USA-Chine sur les semi-conducteurs ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Un conflit sur les droits de douane des téléphones portables</div>
+      <div class="qcm-opt"><span class="letter">B</span>Les USA ont interdit l'exportation de semi-conducteurs avancés vers la Chine pour freiner son développement technologique et militaire</div>
+      <div class="qcm-opt"><span class="letter">C</span>La Chine a racheté les principaux fabricants américains de puces électroniques</div>
+      <div class="qcm-opt"><span class="letter">D</span>Un accord commercial signé en 2023 sur le partage des technologies</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Les semi-conducteurs sont au cœur de la rivalité technologique USA-Chine. Les USA bloquent les exportations de puces avancées vers la Chine pour ralentir son armée et son industrie IA. La Chine investit massivement pour développer ses propres puces et réduire sa dépendance.</div>
+  </div>
+
+  <!-- Q8 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q8</span>
+      <span class="qcm-theme">Luxe</span>
+    </div>
+    <div class="qcm-q">Quel groupe possède les marques Louis Vuitton, Dior, Sephora et Tiffany ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Kering</div>
+      <div class="qcm-opt"><span class="letter">B</span>Richemont</div>
+      <div class="qcm-opt"><span class="letter">C</span>LVMH</div>
+      <div class="qcm-opt"><span class="letter">D</span>Hermès</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>C.</strong> LVMH (Louis Vuitton Moët Hennessy), dirigé par Bernard Arnault, est le premier groupe mondial du luxe avec 75 maisons. Kering possède Gucci et YSL. Richemont possède Cartier et Van Cleef. Hermès est indépendant — c'est son indépendance qui fait sa force.</div>
+  </div>
+
+  <!-- Q9 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q9</span>
+      <span class="qcm-theme">Luxe</span>
+    </div>
+    <div class="qcm-q">Pourquoi le marché du luxe résiste-t-il mieux aux crises économiques que d'autres secteurs ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Parce que les produits de luxe sont des biens de première nécessité</div>
+      <div class="qcm-opt"><span class="letter">B</span>Parce que les très riches sont peu affectés par les crises et continuent à consommer du luxe</div>
+      <div class="qcm-opt"><span class="letter">C</span>Parce que les marques de luxe baissent leurs prix en période de crise</div>
+      <div class="qcm-opt"><span class="letter">D</span>Parce que le luxe est un secteur entièrement digitalisé sans coûts fixes</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> Le luxe s'adresse principalement aux très aisés, dont le patrimoine et les revenus sont peu affectés par les crises conjoncturelles. De plus, les produits de luxe ont une valeur de rareté et de statut qui les rend moins substituables que les produits courants.</div>
+  </div>
+
+  <!-- Q10 -->
+  <div class="qcm-item">
+    <div class="qcm-header">
+      <span class="qcm-num">Q10</span>
+      <span class="qcm-theme">Mix S1 + S2</span>
+    </div>
+    <div class="qcm-q">Parmi ces affirmations, laquelle est correcte concernant les BRICS en 2024 ?</div>
+    <div class="qcm-opts">
+      <div class="qcm-opt"><span class="letter">A</span>Les BRICS se limitent toujours aux 5 membres fondateurs : Brésil, Russie, Inde, Chine, Afrique du Sud</div>
+      <div class="qcm-opt"><span class="letter">B</span>Les BRICS ont intégré de nouveaux membres dont les Émirats arabes unis et l'Arabie Saoudite en 2024</div>
+      <div class="qcm-opt"><span class="letter">C</span>Les BRICS ont créé une monnaie commune pour concurrencer le dollar</div>
+      <div class="qcm-opt"><span class="letter">D</span>La France a rejoint les BRICS en 2023</div>
+    </div>
+    <div class="reponse-label">Réponse</div>
+    <div class="qcm-answer"><strong>B.</strong> En janvier 2024, les BRICS s'élargissent à l'Éthiopie, l'Égypte, l'Iran, et les Émirats arabes unis (Abu Dhabi). L'Arabie Saoudite a été invitée mais n'a pas encore formellement adhéré. Cet élargissement montre la volonté de construire un bloc alternatif à l'ordre occidental.</div>
+  </div>
+
+  <div class="score-box">
+    <div>
+      <div class="score-label">Mon score Semaine 2</div>
+      <div class="score-sub">Remplis après les 10 questions</div>
+    </div>
+    <div class="score-num">__ / 10</div>
+  </div>
+
+</div>
+
+<hr class="separator">
+
+<!-- ÉTAPE 2 : SIMULATION -->
+<div class="etape">
+  <div class="etape-header">
+    <span class="etape-num">ÉTAPE 2</span>
+    <span class="etape-title">Simulation entretien — 25 minutes</span>
+    <span class="etape-time">25 min chrono</span>
+  </div>
+
+  <div class="sim-intro">
+    <strong>Nouveauté S12 — le mot tiré au sort</strong><br>
+    Comme à l'EDHEC BBA et dans plusieurs autres concours, un mot est tiré au sort avant la présentation. Tu dois l'intégrer naturellement dans ton discours d'ouverture de 2 minutes. Ce n'est pas une devinette — c'est un exercice de créativité et d'adaptabilité sous pression. Le mot d'aujourd'hui est ci-dessous. Tu as 30 secondes pour réfléchir, puis tu te lances.
+  </div>
+
+  <div class="mot-box">
+    <div class="mot-label">Mot tiré au sort — Session 12</div>
+    <div class="mot-word">FRONTIÈRE</div>
+    <div class="mot-consigne">Intègre ce mot naturellement dans ta présentation de 2 minutes. Il peut être utilisé au sens propre, figuré, géographique, personnel ou métaphorique.</div>
+  </div>
+
+  <!-- PHASE 1 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 1</span>
+      <span class="sim-phase-title">Ouverture — Présentation avec mot tiré au sort</span>
+      <span class="sim-phase-time">5 minutes</span>
+    </div>
+    <div class="sim-question">« Bonjour. Votre mot est FRONTIÈRE. Vous avez 30 secondes de réflexion, puis vous vous présentez. »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un pitch de 2 minutes fluide qui intègre le mot de façon naturelle et personnelle — pas forcée. Pour Paola, FRONTIÈRE peut relier son parcours international (elle a traversé de nombreuses frontières), sa vision du luxe (repousser les frontières de l'expérience), ou son projet (dépasser les frontières culturelles dans sa carrière).</div>
+    <div class="sim-question" style="margin-top:10px;">« Comment avez-vous choisi d'utiliser ce mot ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> expliquer en 30 secondes le lien que tu as fait. Montrer que tu penses vite et de façon personnelle.</div>
+  </div>
+
+  <!-- PHASE 2 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 2</span>
+      <span class="sim-phase-title">Motivation et culture générale</span>
+      <span class="sim-phase-time">8 minutes</span>
+    </div>
+    <div class="sim-question">« Vous venez d'Abu Dhabi. En quoi vivre dans un pays du Moyen-Orient vous a-t-il donné une vision différente du monde des affaires ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> relier ton expérience aux Émirats à des réalités économiques concrètes — hub financier mondial, carrefour entre Orient et Occident, membre des BRICS, marché du luxe en forte croissance. 1 minute 30.</div>
+    <div class="sim-question" style="margin-top:10px;">« La RSE est-elle compatible avec le luxe ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> une réponse nuancée — ni naïvement optimiste ni cynique. Citer Kering ou LVMH Life 360. Mentionner la tension entre rareté, artisanat et impact environnemental. 1 minute.</div>
+    <div class="sim-question" style="margin-top:10px;">« Quelle organisation internationale vous semble la plus utile aujourd'hui, et pourquoi ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> une réponse argumentée et assumée. Choisir une organisation, défendre ce choix, reconnaître ses limites. Pas de réponse générique sur « toutes sont utiles ». 45 secondes.</div>
+    <div class="sim-question" style="margin-top:10px;">« L'IA va-t-elle changer votre futur métier ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> montrer que tu as réfléchi au sujet dans ton domaine précis — marketing, luxe, événementiel. Citer un exemple concret. 1 minute.</div>
+  </div>
+
+  <!-- PHASE 3 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 3</span>
+      <span class="sim-phase-title">Projet et personnalité</span>
+      <span class="sim-phase-time">7 minutes</span>
+    </div>
+    <div class="sim-question">« Vous avez organisé des événements au lycée. Si vous deviez organiser un événement de lancement pour une nouvelle marque de luxe, comment vous y prendriez-vous ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> montrer que tu sais penser à la fois créativité et rigueur opérationnelle. Parler de cible, d'expérience, de budget, de communication. 1 minute 30.</div>
+    <div class="sim-question" style="margin-top:10px;">« Décrivez-vous en trois mots. »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> trois mots précis et inattendus — pas génériques — avec une courte justification pour chacun. 45 secondes.</div>
+    <div class="sim-question" style="margin-top:10px;">« Qu'est-ce que l'équitation vous a appris que l'école ne vous a pas appris ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> une réponse personnelle et profonde — pas une liste de qualités. Relier à une compétence transférable dans le monde professionnel. 1 minute.</div>
+  </div>
+
+  <!-- PHASE 4 -->
+  <div class="sim-phase">
+    <div class="sim-phase-header">
+      <span class="sim-phase-tag">PHASE 4</span>
+      <span class="sim-phase-title">Clôture</span>
+      <span class="sim-phase-time">5 minutes</span>
+    </div>
+    <div class="sim-question">« Quelle est votre plus grande faiblesse en tant que candidate ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> un vrai défaut, assumé avec maturité — pas un faux défaut. Montrer que tu travailles dessus. 45 secondes.</div>
+    <div class="sim-question" style="margin-top:10px;">« Avez-vous des questions pour nous ? »</div>
+    <div class="sim-tip"><strong>Ce qu'on attend :</strong> au moins une vraie question — préparée, pertinente, qui montre ton intérêt réel. Jamais répondre « non, tout est clair ». 1 minute.</div>
+  </div>
+
+  <!-- FEEDBACK -->
+  <h3>Grille d'auto-évaluation — à remplir après la simulation</h3>
+  <p style="font-size:13px; color:#666; margin-bottom:12px;">Compare avec la grille de la session 6 — est-ce que tu progresses ?</p>
+
+  <div class="feedback-grid">
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">Le mot tiré au sort</div>
+      <div class="feedback-cell-content">Intégré naturellement ? Lien personnel et crédible ? Ou forcé ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">Les questions de fond</div>
+      <div class="feedback-cell-content">RSE, IA, organisations internationales — des réponses nuancées avec exemples ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">La personnalité</div>
+      <div class="feedback-cell-content">Est-ce qu'on voit qui tu es vraiment — ou une candidate appliquée qui récite ?</div>
+    </div>
+    <div class="feedback-cell">
+      <div class="feedback-cell-label">La progression vs S6</div>
+      <div class="feedback-cell-content">Plus fluide ? Plus confiante ? Moins hésitante ? Qu'est-ce qui a changé ?</div>
+    </div>
+  </div>
+
+  <div style="font-size:13px; color:#1a3a5c; font-weight:bold; margin: 14px 0 6px;">Ce qui a clairement progressé depuis la Session 6 :</div>
+  <div class="feedback-write">Écris ici...</div>
+  <div style="font-size:13px; color:#cc3333; font-weight:bold; margin: 14px 0 6px;">Ce qui reste à travailler en Semaine 3 :</div>
+  <div class="feedback-write">Écris ici...</div>
+
+</div>
+
+<!-- BILAN SEMAINE 2 -->
+<div class="bilan-box">
+  <h4>Bilan Semaine 2 — Ce que tu dois maîtriser maintenant</h4>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Développement durable — définition Brundtland, 3 piliers, ODD, économie circulaire, greenwashing</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>RSE — définition, 3 dimensions, exemples d'entreprises (Patagonia, Veja, LVMH Life 360)</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>ONU, FMI, OMC, G20 — rôle, siège, limite principale de chacune</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>IA générative — définition, acteurs clés, impact sur le marketing et le luxe, questions éthiques</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Géographie économique — USA, Chine, UE, Inde, BRICS, guerre commerciale technologique</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Luxe — LVMH, Kering, Richemont, tendances digital et durabilité, marché mondial</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Questions déstabilisantes S2 — vendre un stylo, animal, 1 million d'euros, 3 mots, 30 secondes pour convaincre</span></div>
+  <div class="bilan-row"><span class="bilan-check">✓</span><span>Projet professionnel — structure en 4 temps, réponse à « comment pouvez-vous savoir à 17 ans »</span></div>
+</div>
+
+<!-- BONUS -->
+<div class="bonus">
+  <strong>⏱ Bonus — préparation Semaine 3</strong><br><br>
+  Avant de commencer lundi, une question à se poser à voix haute :<br><br>
+  <em>« Après deux semaines de préparation, quelle est la question d'entretien à laquelle je me sens encore vraiment pas à l'aise ? »</em><br><br>
+  Identifie cette question précisément — et note-la. La Semaine 3 sera l'occasion de la travailler en profondeur. Le progrès vient toujours de travailler ses vraies faiblesses, pas de répéter ce qu'on fait déjà bien.
+</div>
+
+</body>
+</html>
