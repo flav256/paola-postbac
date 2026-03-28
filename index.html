@@ -1,0 +1,1026 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paola — Orientation Post-Bac 2026</title>
+<style>
+:root {
+  --navy: #1a2e5a;
+  --navy-light: #2a4a8a;
+  --accent: #e8a838;
+  --green: #27ae60;
+  --red: #e74c3c;
+  --orange: #f39c12;
+  --purple: #8e44ad;
+  --teal: #16a085;
+  --bg: #f5f7fb;
+  --card: #ffffff;
+  --text: #2c3e50;
+  --muted: #7f8c8d;
+  --border: #e0e4ec;
+  --radius: 12px;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, -apple-system, sans-serif; background: var(--bg); color: var(--text); line-height: 1.5; }
+
+/* NAV */
+nav {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 100%);
+  color: #fff; padding: 0; position: sticky; top: 0; z-index: 100;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.15);
+}
+.nav-inner {
+  max-width: 1200px; margin: 0 auto; display: flex; align-items: center;
+  justify-content: space-between; padding: 0 20px; flex-wrap: wrap;
+}
+.nav-brand { font-size: 1.3rem; font-weight: 700; padding: 14px 0; letter-spacing: -0.5px; }
+.nav-brand span { color: var(--accent); }
+.nav-links { display: flex; gap: 0; flex-wrap: wrap; }
+.nav-links a {
+  color: rgba(255,255,255,0.85); text-decoration: none; padding: 14px 14px;
+  font-size: 0.85rem; font-weight: 500; transition: all 0.2s; border-bottom: 3px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active { color: #fff; border-bottom-color: var(--accent); background: rgba(255,255,255,0.08); }
+
+/* LAYOUT */
+main { max-width: 1200px; margin: 0 auto; padding: 24px 20px; }
+section { margin-bottom: 32px; }
+.section-title {
+  font-size: 1.35rem; font-weight: 700; color: var(--navy); margin-bottom: 16px;
+  padding-bottom: 8px; border-bottom: 3px solid var(--accent); display: flex;
+  align-items: center; gap: 10px;
+}
+.section-title .icon { font-size: 1.5rem; }
+
+/* HERO */
+.hero {
+  background: linear-gradient(135deg, var(--navy) 0%, var(--navy-light) 50%, var(--teal) 100%);
+  color: #fff; padding: 40px 30px; border-radius: var(--radius); margin-bottom: 32px;
+  text-align: center;
+}
+.hero h1 { font-size: 2rem; margin-bottom: 8px; }
+.hero p { font-size: 1.05rem; opacity: 0.9; }
+.hero .countdown {
+  margin-top: 16px; display: inline-block; background: rgba(255,255,255,0.15);
+  padding: 10px 24px; border-radius: 50px; font-weight: 600; font-size: 1.1rem;
+}
+
+/* CARDS */
+.card {
+  background: var(--card); border-radius: var(--radius); padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid var(--border);
+}
+
+/* CALENDAR */
+.calendar-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px;
+}
+.cal-event {
+  background: var(--card); border-radius: 10px; padding: 14px 16px;
+  border-left: 4px solid var(--navy); box-shadow: 0 1px 4px rgba(0,0,0,0.06);
+  display: flex; gap: 14px; align-items: flex-start;
+}
+.cal-event.urgent { border-left-color: var(--red); }
+.cal-event.done { border-left-color: var(--green); opacity: 0.7; }
+.cal-event.upcoming { border-left-color: var(--orange); }
+.cal-event.info { border-left-color: var(--teal); }
+.cal-date {
+  background: var(--bg); border-radius: 8px; padding: 6px 10px; text-align: center;
+  min-width: 52px; flex-shrink: 0;
+}
+.cal-date .day { font-size: 1.4rem; font-weight: 700; color: var(--navy); line-height: 1; }
+.cal-date .month { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; font-weight: 600; }
+.cal-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
+.cal-info p { font-size: 0.8rem; color: var(--muted); }
+
+/* TODO */
+.todo-input-row { display: flex; gap: 8px; margin-bottom: 16px; }
+.todo-input-row input {
+  flex: 1; padding: 10px 14px; border: 2px solid var(--border); border-radius: 8px;
+  font-size: 0.9rem; outline: none; transition: border-color 0.2s;
+}
+.todo-input-row input:focus { border-color: var(--navy); }
+.todo-input-row button {
+  padding: 10px 20px; background: var(--navy); color: #fff; border: none;
+  border-radius: 8px; font-weight: 600; cursor: pointer; font-size: 0.9rem;
+  transition: background 0.2s;
+}
+.todo-input-row button:hover { background: var(--navy-light); }
+.todo-list { list-style: none; }
+.todo-item {
+  display: flex; align-items: center; gap: 12px; padding: 10px 0;
+  border-bottom: 1px solid var(--border); font-size: 0.9rem;
+}
+.todo-item:last-child { border-bottom: none; }
+.todo-item.completed span { text-decoration: line-through; color: var(--muted); }
+.todo-item input[type="checkbox"] { width: 18px; height: 18px; accent-color: var(--green); cursor: pointer; flex-shrink: 0; }
+.todo-item span { flex: 1; }
+.todo-item .todo-delete {
+  background: none; border: none; color: var(--muted); cursor: pointer;
+  font-size: 1.1rem; padding: 2px 6px; border-radius: 4px; transition: all 0.2s;
+}
+.todo-item .todo-delete:hover { color: var(--red); background: #fdecea; }
+.todo-filters { display: flex; gap: 8px; margin-bottom: 12px; }
+.todo-filters button {
+  padding: 5px 14px; border: 1px solid var(--border); background: var(--card);
+  border-radius: 20px; font-size: 0.8rem; cursor: pointer; color: var(--text); transition: all 0.2s;
+}
+.todo-filters button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.todo-count { font-size: 0.8rem; color: var(--muted); margin-top: 8px; }
+
+/* SCHOOLS TABLE */
+.schools-tabs { display: flex; gap: 4px; margin-bottom: 16px; flex-wrap: wrap; }
+.schools-tabs button {
+  padding: 8px 16px; border: 1px solid var(--border); background: var(--card);
+  border-radius: 8px 8px 0 0; font-size: 0.82rem; cursor: pointer; font-weight: 500;
+  transition: all 0.2s; color: var(--text);
+}
+.schools-tabs button.active { background: var(--navy); color: #fff; border-color: var(--navy); }
+.school-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+.school-table thead { background: var(--bg); }
+.school-table th {
+  padding: 10px 12px; text-align: left; font-weight: 600; color: var(--navy);
+  border-bottom: 2px solid var(--border); white-space: nowrap; font-size: 0.8rem;
+}
+.school-table td { padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+.school-table tr:hover { background: #f8f9fd; }
+.school-table .school-name { font-weight: 600; }
+.school-table .campus { color: var(--muted); font-size: 0.78rem; }
+.badge {
+  display: inline-block; padding: 3px 10px; border-radius: 20px;
+  font-size: 0.75rem; font-weight: 600; white-space: nowrap;
+}
+.badge-green { background: #d4edda; color: #155724; }
+.badge-lgreen { background: #b8f0cc; color: #0d4f26; }
+.badge-orange { background: #fff3cd; color: #7a5600; }
+.badge-red { background: #f8d7da; color: #721c24; }
+.badge-blue { background: #d1ecf1; color: #0c5460; }
+.badge-grey { background: #e2e3e5; color: #383d41; }
+.badge-purple { background: #e8daff; color: #3d0070; }
+.stars { color: #c8900a; letter-spacing: -1px; }
+.tag { font-size: 0.75rem; padding: 2px 8px; border-radius: 12px; display: inline-block; margin: 1px 2px; }
+.tag-luxe { background: #fce4ec; color: #7d0000; }
+.tag-event { background: #e0f7fa; color: #005f7d; }
+.tag-intl { background: #e8f5e9; color: #0d4f26; }
+
+/* PREP */
+.prep-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px; }
+.prep-card {
+  background: var(--card); border-radius: 10px; padding: 16px; cursor: pointer;
+  border: 1px solid var(--border); transition: all 0.2s; position: relative;
+}
+.prep-card:hover { box-shadow: 0 4px 12px rgba(0,0,0,0.1); transform: translateY(-2px); }
+.prep-card h4 { font-size: 0.9rem; color: var(--navy); margin-bottom: 4px; }
+.prep-card .prep-date { font-size: 0.78rem; color: var(--muted); margin-bottom: 8px; }
+.prep-card .prep-topics { font-size: 0.82rem; }
+.prep-card .prep-tag {
+  display: inline-block; padding: 2px 8px; border-radius: 12px;
+  font-size: 0.72rem; font-weight: 600; margin: 2px 2px 0 0;
+}
+.prep-tag-culture { background: #e8daff; color: #3d0070; }
+.prep-tag-entretien { background: #d1ecf1; color: #0c5460; }
+
+/* PREP MODAL */
+.modal-overlay {
+  display: none; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.5); z-index: 200; justify-content: center; align-items: center;
+  padding: 20px;
+}
+.modal-overlay.show { display: flex; }
+.modal {
+  background: var(--card); border-radius: var(--radius); max-width: 800px;
+  width: 100%; max-height: 85vh; overflow-y: auto; padding: 30px; position: relative;
+}
+.modal-close {
+  position: absolute; top: 12px; right: 16px; background: none; border: none;
+  font-size: 1.5rem; cursor: pointer; color: var(--muted); padding: 4px 8px;
+}
+.modal h2 { color: var(--navy); margin-bottom: 16px; font-size: 1.3rem; }
+.modal h3 { color: var(--navy-light); margin: 16px 0 8px; font-size: 1.05rem; }
+.modal ul { margin-left: 20px; margin-bottom: 12px; }
+.modal li { margin-bottom: 6px; font-size: 0.9rem; }
+.modal p { font-size: 0.9rem; margin-bottom: 8px; }
+.modal .tip {
+  background: #fffbe6; border-left: 3px solid var(--accent); padding: 10px 14px;
+  border-radius: 0 8px 8px 0; margin: 12px 0; font-size: 0.85rem;
+}
+
+/* LINKS */
+.links-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; }
+.link-card {
+  background: var(--card); border-radius: 10px; padding: 16px;
+  border: 1px solid var(--border); transition: all 0.2s;
+}
+.link-card:hover { box-shadow: 0 2px 8px rgba(0,0,0,0.08); }
+.link-card h4 { font-size: 0.9rem; color: var(--navy); margin-bottom: 8px; }
+.link-card a {
+  display: block; color: var(--navy-light); text-decoration: none;
+  font-size: 0.82rem; padding: 4px 0; transition: color 0.2s;
+}
+.link-card a:hover { color: var(--accent); text-decoration: underline; }
+.link-category {
+  display: inline-block; padding: 2px 8px; border-radius: 12px;
+  font-size: 0.7rem; font-weight: 600; margin-bottom: 8px;
+}
+.cat-parcoursup { background: #e8daff; color: #3d0070; }
+.cat-intl { background: #d1ecf1; color: #0c5460; }
+.cat-prep { background: #fff3cd; color: #7a5600; }
+.cat-general { background: #d4edda; color: #155724; }
+
+/* NOTES */
+.notes-area {
+  width: 100%; min-height: 200px; padding: 14px; border: 2px solid var(--border);
+  border-radius: 8px; font-family: inherit; font-size: 0.9rem; resize: vertical;
+  outline: none; transition: border-color 0.2s;
+}
+.notes-area:focus { border-color: var(--navy); }
+.notes-saved { font-size: 0.8rem; color: var(--green); margin-top: 6px; display: none; }
+
+/* RESPONSIVE */
+@media (max-width: 768px) {
+  .nav-inner { flex-direction: column; align-items: flex-start; }
+  .nav-links { width: 100%; overflow-x: auto; }
+  .nav-links a { padding: 10px 12px; font-size: 0.8rem; }
+  .hero h1 { font-size: 1.5rem; }
+  main { padding: 16px 12px; }
+  .school-table { font-size: 0.78rem; }
+  .school-table th, .school-table td { padding: 8px 6px; }
+  .section-title { font-size: 1.1rem; }
+}
+@media (max-width: 480px) {
+  .calendar-grid, .prep-grid, .links-grid { grid-template-columns: 1fr; }
+  .hero { padding: 24px 16px; }
+}
+
+/* SCROLL */
+html { scroll-behavior: smooth; }
+section[id] { scroll-margin-top: 60px; }
+
+/* TABLE WRAPPER */
+.table-wrapper { overflow-x: auto; }
+</style>
+</head>
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand">Paola <span>Post-Bac 2026</span></div>
+    <div class="nav-links">
+      <a href="#calendrier">Calendrier</a>
+      <a href="#todo">To-Do</a>
+      <a href="#ecoles">Ecoles</a>
+      <a href="#preparation">Preparation</a>
+      <a href="#liens">Liens</a>
+      <a href="#notes">Notes</a>
+    </div>
+  </div>
+</nav>
+
+<!-- HERO -->
+<main>
+<div class="hero">
+  <h1>Orientation Post-Bac 2026</h1>
+  <p>Tableau de bord pour suivre les candidatures, les deadlines et la preparation</p>
+  <div class="countdown" id="countdown"></div>
+</div>
+
+<!-- CALENDRIER -->
+<section id="calendrier">
+  <h2 class="section-title"><span class="icon">&#128197;</span> Calendrier & Deadlines</h2>
+  <div class="calendar-grid">
+
+    <div class="cal-event done">
+      <div class="cal-date"><div class="day">11</div><div class="month">Mars</div></div>
+      <div class="cal-info"><h4>Snapshot Parcoursup</h4><p>Dossier Parcoursup extrait — 10/10 voeux deposes</p></div>
+    </div>
+
+    <div class="cal-event done">
+      <div class="cal-date"><div class="day">15</div><div class="month">Mars</div></div>
+      <div class="cal-info"><h4>RSM Rotterdam — OMPT-A</h4><p>Charger les resultats du test OMPT-A sur le portail RSM</p></div>
+    </div>
+
+    <div class="cal-event done">
+      <div class="cal-date"><div class="day">16-27</div><div class="month">Mars</div></div>
+      <div class="cal-info"><h4>Sessions Prep Entretien</h4><p>12 sessions quotidiennes — culture generale + entretien</p></div>
+    </div>
+
+    <div class="cal-event urgent">
+      <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Confirmation Parcoursup</h4><p><strong>23h59 — Confirmer les 10 voeux obligatoirement</strong></p></div>
+    </div>
+
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">2</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Examen Parcoursup</h4><p>Debut de l'examen des voeux par les formations</p></div>
+    </div>
+
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">Avr</div><div class="month">2026</div></div>
+      <div class="cal-info"><h4>Concours SESAME</h4><p>Epreuves ecrites — Langues, Raisonnement & Competences, Analyse documentaire</p></div>
+    </div>
+
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">Avr</div><div class="month">2026</div></div>
+      <div class="cal-info"><h4>Concours ACCES</h4><p>Epreuves ecrites — Synthese, Raisonnement logique, Maths, Anglais, Culture G</p></div>
+    </div>
+
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">Mai</div><div class="month">2026</div></div>
+      <div class="cal-info"><h4>Oraux SESAME / ACCES / EDHEC</h4><p>Entretiens de motivation — utiliser la preparation des 12 sessions</p></div>
+    </div>
+
+    <div class="cal-event info">
+      <div class="cal-date"><div class="day">5</div><div class="month">Juin</div></div>
+      <div class="cal-info"><h4>Resultats Parcoursup — Phase 1</h4><p>Premiere vague de reponses des formations</p></div>
+    </div>
+
+    <div class="cal-event info">
+      <div class="cal-date"><div class="day">Juil</div><div class="month">2026</div></div>
+      <div class="cal-info"><h4>Phase complementaire</h4><p>Listes d'attente + phase complementaire Parcoursup</p></div>
+    </div>
+
+  </div>
+</section>
+
+<!-- TODO -->
+<section id="todo">
+  <h2 class="section-title"><span class="icon">&#9745;</span> To-Do List</h2>
+  <div class="card">
+    <div class="todo-input-row">
+      <input type="text" id="todoInput" placeholder="Ajouter une tache..." onkeypress="if(event.key==='Enter')addTodo()">
+      <button onclick="addTodo()">Ajouter</button>
+    </div>
+    <div class="todo-filters">
+      <button class="active" onclick="filterTodos('all', this)">Toutes</button>
+      <button onclick="filterTodos('active', this)">A faire</button>
+      <button onclick="filterTodos('completed', this)">Faites</button>
+    </div>
+    <ul class="todo-list" id="todoList"></ul>
+    <div class="todo-count" id="todoCount"></div>
+  </div>
+</section>
+
+<!-- ECOLES -->
+<section id="ecoles">
+  <h2 class="section-title"><span class="icon">&#127891;</span> Candidatures & Ecoles</h2>
+  <div class="schools-tabs">
+    <button class="active" onclick="showSchoolTab('parcoursup', this)">Parcoursup (10 voeux)</button>
+    <button onclick="showSchoolTab('international', this)">Hors Parcoursup</button>
+    <button onclick="showSchoolTab('priority', this)">Priorites</button>
+  </div>
+  <div class="card">
+    <div class="table-wrapper">
+
+    <!-- PARCOURSUP -->
+    <table class="school-table" id="tab-parcoursup">
+      <thead><tr>
+        <th>Voeu</th><th>Ecole / Programme</th><th>Diplome</th><th>Campus</th>
+        <th>Rang</th><th>Frais/an</th><th>Selectivite</th><th>Atout Paola</th>
+      </tr></thead>
+      <tbody>
+        <tr>
+          <td>1</td>
+          <td><span class="school-name">Excelia PGE</span><br><span class="tag tag-event">tourisme</span><span class="tag tag-event">evenementiel</span></td>
+          <td>Bac+5</td><td><span class="campus">Paris-Cachan / La Rochelle / Tours</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;</span></td><td>~7 000 EUR</td>
+          <td><span class="badge badge-green">&gt;50%</span></td>
+          <td>Seul PGE avec ADN tourisme/evenementiel des l'entree</td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td><span class="school-name">Concours SESAME</span> (10 ecoles)<br>
+            <span class="tag tag-luxe">luxe</span><span class="tag tag-intl">international</span><br>
+            <span class="campus">SKEMA, NEOMA, KEDGE, GEM, ESSEC, emlyon, EM Normandie...</span>
+          </td>
+          <td>BBA Bac+4 / PGE Bac+5</td><td><span class="campus">Multi-campus France + Singapour</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>7 500 - 17 400 EUR</td>
+          <td><span class="badge badge-green">&gt;50%</span> a <span class="badge badge-red">Occasionnel</span></td>
+          <td>SKEMA Luxury & Fashion, ESSEC prestige max, NEOMA 100% anglais</td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td><span class="school-name">Concours ACCES</span><br>
+            <span class="campus">IESEG, ESSCA, ESDES Lyon</span>
+          </td>
+          <td>PGE Bac+5</td><td><span class="campus">Paris / Lyon / Bordeaux / Lille</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span></td><td>6 500 - 11 000 EUR</td>
+          <td><span class="badge badge-orange">Regulierement</span></td>
+          <td>ESDES Humanites & Creativite aligne profil Paola</td>
+        </tr>
+        <tr>
+          <td>4</td>
+          <td><span class="school-name">EGC Lille</span><br><span class="tag tag-intl">filet de securite</span></td>
+          <td>Bac+3</td><td><span class="campus">Lille</span></td>
+          <td><span class="stars">&#9733;</span></td><td>~3 000 EUR</td>
+          <td><span class="badge badge-lgreen">&gt;80% &#10003;</span></td>
+          <td>Frais tres bas, filet securite maximal</td>
+        </tr>
+        <tr>
+          <td>5</td>
+          <td><span class="school-name">EDHEC Int. BBA</span><br><span class="tag tag-luxe">luxe</span><span class="tag tag-intl">international</span></td>
+          <td>Bac+4</td><td><span class="campus">Nice / Lille (English & Classic)</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~14 500 EUR</td>
+          <td><span class="badge badge-orange">Regulierement</span></td>
+          <td>Top 5 France, triple accredite, luxe via spe M2</td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td><span class="school-name">ESCP Bachelor</span><br><span class="tag tag-luxe">luxe constructible</span></td>
+          <td>Bac+3</td><td><span class="campus">Paris 17e + mobilite campus europeens</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~13 000 EUR</td>
+          <td><span class="badge badge-orange">Regulierement</span></td>
+          <td>Passeport international absolu, 3 campus europeens</td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td><span class="school-name">ISG Paris PGE</span><br><span class="tag tag-luxe">luxe</span></td>
+          <td>Bac+5</td><td><span class="campus">Paris 16e (Int. + Classique)</span></td>
+          <td><span class="stars">&#9733;&#9733;</span></td><td>~8 000 EUR</td>
+          <td><span class="badge badge-green">&gt;50%</span></td>
+          <td>Section internationale accessible, option luxe/marketing</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+          <td>8</td>
+          <td><span class="school-name">Institut Lyfe</span> (ex-Paul Bocuse)<br>
+            <span class="tag tag-luxe">hotellerie luxe</span><span class="tag tag-event">evenementiel</span>
+          </td>
+          <td>Bac+4</td><td><span class="campus">Ecully, Lyon (FR + EN)</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~11 000 EUR</td>
+          <td><span class="badge badge-lgreen">&gt;80% &#10003;</span></td>
+          <td><strong>Alignement parfait projet Paola</strong>. Reseau palaces mondial.</td>
+        </tr>
+        <tr>
+          <td>9</td>
+          <td><span class="school-name">Lyon 3 — Gestion</span> (iaelyon)<br><span class="tag tag-intl">filet garanti</span></td>
+          <td>Licence Bac+3</td><td><span class="campus">Lyon 8e</span></td>
+          <td><span class="stars">&#9733;&#9733;</span></td><td>~700 EUR</td>
+          <td><span class="badge badge-lgreen">&gt;80% &#10003; Secteur &#10003;</span></td>
+          <td>Filet de securite maximal, 710 places, AEFE exemptee</td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td><span class="school-name">Dauphine-PSL</span><br><span class="tag tag-intl">international</span></td>
+          <td>Licence Bac+3</td><td><span class="campus">Paris / Madrid / Londres</span></td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~3 500-3 770 EUR</td>
+          <td><span class="badge badge-red">Tres selectif</span></td>
+          <td>Prestige Dauphine-PSL, profil multilingue = atout cle</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- INTERNATIONAL -->
+    <table class="school-table" id="tab-international" style="display:none;">
+      <thead><tr>
+        <th>Ecole</th><th>Diplome</th><th>Pays</th><th>Campus</th>
+        <th>Rang</th><th>Frais/an</th><th>Statut</th><th>Atout Paola</th>
+      </tr></thead>
+      <tbody>
+        <tr style="background:#eaf0fb;">
+          <td><span class="school-name">HEC Montreal</span></td>
+          <td>BBA Bac+3</td><td>Canada</td><td>Montreal</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~8 000 CAD</td>
+          <td><span class="badge badge-lgreen">Acceptee &#10003; Permis en cours</span></td>
+          <td>Top francophone Ameriques, filet premium Canada</td>
+        </tr>
+        <tr>
+          <td><span class="school-name">Concordia — John Molson</span></td>
+          <td>BCom Bac+4</td><td>Canada</td><td>Montreal</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span></td><td>~9 000 CAD</td>
+          <td><span class="badge badge-orange">En attente</span></td>
+          <td>Anglophone Montreal, marketing international</td>
+        </tr>
+        <tr>
+          <td><span class="school-name">RSM Rotterdam</span></td>
+          <td>BSc IBA Bac+3</td><td>Pays-Bas</td><td>Rotterdam</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~12 500 EUR</td>
+          <td><span class="badge badge-orange">OMPT-A passe — resultat a charger</span></td>
+          <td>Top 3 Europe IBA, 100% anglais</td>
+        </tr>
+        <tr style="background:#eafaf1;">
+          <td><span class="school-name">Hotelschool The Hague</span></td>
+          <td>Bac+4</td><td>Pays-Bas</td><td>La Haye / Amsterdam</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~9 500 EUR</td>
+          <td><span class="badge badge-red">Candidature a completer</span></td>
+          <td>Reference mondiale hotellerie, reseau palaces</td>
+        </tr>
+        <tr>
+          <td><span class="school-name">Vatel</span></td>
+          <td>Bac+5 (BBA-MBA)</td><td>France + 50 campus monde</td><td>Paris / Lyon / Bordeaux</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;</span></td><td>~11 000 EUR</td>
+          <td><span class="badge badge-grey">Candidature directe</span></td>
+          <td>Formation hotellerie integree 5 ans, 50 campus monde</td>
+        </tr>
+        <tr>
+          <td><span class="school-name">Ferrandi</span></td>
+          <td>Bac+3</td><td>France</td><td>Paris</td>
+          <td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>~9 000 EUR</td>
+          <td><span class="badge badge-orange">Concours + entretien</span></td>
+          <td>Prestige absolu hotellerie-restauration</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <!-- PRIORITY -->
+    <div id="tab-priority" style="display:none;">
+      <div style="padding: 16px 0;">
+        <h3 style="color:var(--navy); margin-bottom: 12px;">Coeur du projet — Hotellerie / Luxe / Evenementiel</h3>
+        <ul style="margin-left: 20px; margin-bottom: 20px;">
+          <li><strong>Institut Lyfe</strong> (voeu 8) — taux &gt;80%, alignement parfait. <em>Scenario ideal accessible.</em></li>
+          <li><strong>Hotelschool The Hague</strong> — reference mondiale. <span style="color:var(--red); font-weight:600;">Candidature a completer d'urgence.</span></li>
+          <li><strong>Ferrandi</strong> — prestige absolu, concours + entretien requis.</li>
+        </ul>
+
+        <h3 style="color:var(--navy); margin-bottom: 12px;">Grande ecole prestige + luxe constructible</h3>
+        <ul style="margin-left: 20px; margin-bottom: 20px;">
+          <li><strong>ESSEC Global BBA</strong> (SESAME) — prestige max, spe luxe ESSEC en M2</li>
+          <li><strong>ESCP Bachelor</strong> (voeu 6) — marque absolue, passerelle GE</li>
+          <li><strong>EDHEC BBA</strong> (voeu 5) — top 5 France, triple accredite</li>
+          <li><strong>SKEMA BBA</strong> (SESAME) — Luxury & Fashion Management, taux &gt;50%</li>
+        </ul>
+
+        <h3 style="color:var(--navy); margin-bottom: 12px;">Filets de securite</h3>
+        <ul style="margin-left: 20px; margin-bottom: 20px;">
+          <li><strong>HEC Montreal</strong> — <span class="badge badge-lgreen">ACCEPTEE</span> — permis d'etudes en cours. Filet premium Canada.</li>
+          <li><strong>Institut Lyfe</strong> — &gt;80% France</li>
+          <li><strong>Lyon 3 Gestion</strong> — &gt;80%, 710 places, secteur confirme</li>
+          <li><strong>EGC Lille</strong> — &gt;80%, frais tres bas</li>
+        </ul>
+      </div>
+    </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- PREPARATION ENTRETIEN -->
+<section id="preparation">
+  <h2 class="section-title"><span class="icon">&#128218;</span> Preparation Entretiens</h2>
+
+  <div class="card" style="margin-bottom: 16px; background: linear-gradient(135deg, #f8f9fd, #eef1fa);">
+    <h3 style="color:var(--navy); margin-bottom: 8px;">Programme de preparation — 12 sessions (16-27 mars 2026)</h3>
+    <p style="font-size: 0.88rem; color: var(--muted); margin-bottom: 4px;">Chaque session : ~30-35 min — Culture generale + Technique d'entretien</p>
+    <p style="font-size: 0.88rem; color: var(--muted);">Cliquer sur une session pour voir le detail</p>
+  </div>
+
+  <div class="prep-grid">
+
+    <div class="prep-card" onclick="showSession(1)">
+      <h4>Session 01</h4>
+      <div class="prep-date">16 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Business & Marches</span>
+        <span class="prep-tag prep-tag-entretien">Pitch personnel (2 min)</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(2)">
+      <h4>Session 02</h4>
+      <div class="prep-date">17 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Mondialisation</span>
+        <span class="prep-tag prep-tag-entretien">Pourquoi ecole de commerce ?</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(3)">
+      <h4>Session 03</h4>
+      <div class="prep-date">18 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Union Europeenne</span>
+        <span class="prep-tag prep-tag-entretien">Experiences = competences</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(4)">
+      <h4>Session 04</h4>
+      <div class="prep-date">19 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Histoire & dates cles</span>
+        <span class="prep-tag prep-tag-entretien">Questions destabilisantes</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(5)">
+      <h4>Session 05</h4>
+      <div class="prep-date">20 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Dates & economie</span>
+        <span class="prep-tag prep-tag-entretien">Presentation des forces</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(6)">
+      <h4>Session 06</h4>
+      <div class="prep-date">21 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Marche du luxe</span>
+        <span class="prep-tag prep-tag-entretien">Parler du secteur luxe</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(7)">
+      <h4>Session 07</h4>
+      <div class="prep-date">22 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Organisations internationales</span>
+        <span class="prep-tag prep-tag-entretien">Sujets geopolitiques</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(8)">
+      <h4>Session 08</h4>
+      <div class="prep-date">23 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Hotellerie / tourisme</span>
+        <span class="prep-tag prep-tag-entretien">Connaissance sectorielle</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(9)">
+      <h4>Session 09</h4>
+      <div class="prep-date">24 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Events & logistique projet</span>
+        <span class="prep-tag prep-tag-entretien">Expertise evenementiel</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(10)">
+      <h4>Session 10</h4>
+      <div class="prep-date">25 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Zones geographiques</span>
+        <span class="prep-tag prep-tag-entretien">Stratification marches</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(11)">
+      <h4>Session 11</h4>
+      <div class="prep-date">26 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Marques de luxe</span>
+        <span class="prep-tag prep-tag-entretien">Strategie luxe</span>
+      </div>
+    </div>
+
+    <div class="prep-card" onclick="showSession(12)">
+      <h4>Session 12</h4>
+      <div class="prep-date">27 Mars 2026</div>
+      <div class="prep-topics">
+        <span class="prep-tag prep-tag-culture">Simulation finale</span>
+        <span class="prep-tag prep-tag-entretien">Evaluation complete</span>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- KEY EXPERIENCES -->
+  <div class="card" style="margin-top: 16px;">
+    <h3 style="color:var(--navy); margin-bottom: 12px;">Experiences cles a valoriser en entretien</h3>
+    <div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 12px;">
+      <div style="background:var(--bg); border-radius:8px; padding:14px;">
+        <h4 style="color:var(--teal); font-size:0.9rem; margin-bottom:6px;">Coordinatrice evenementielle</h4>
+        <p style="font-size:0.82rem;">3 evenements organises au lycee. Budget 15 000 AED gere. 200+ participants. Competences : gestion de projet, budget, communication, leadership.</p>
+      </div>
+      <div style="background:var(--bg); border-radius:8px; padding:14px;">
+        <h4 style="color:var(--teal); font-size:0.9rem; margin-bottom:6px;">Stage militaire — Marine nationale</h4>
+        <p style="font-size:0.82rem;">Base navale francaise, Abu Dhabi. 2 semaines d'immersion. Discipline, adaptabilite, gestion du stress, observation du leadership.</p>
+      </div>
+      <div style="background:var(--bg); border-radius:8px; padding:14px;">
+        <h4 style="color:var(--teal); font-size:0.9rem; margin-bottom:6px;">Parcours international</h4>
+        <p style="font-size:0.82rem;">4 pays, 3 continents : Gabon, Australie, France, EAU. Intelligence culturelle, resilience, ouverture. Francais (natif), Anglais (C1), Espagnol (B1).</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- PITCH -->
+  <div class="card" style="margin-top: 16px; border-left: 4px solid var(--accent);">
+    <h3 style="color:var(--navy); margin-bottom: 8px;">Structure du pitch personnel (2 minutes)</h3>
+    <ol style="margin-left: 20px; font-size: 0.88rem;">
+      <li style="margin-bottom: 6px;"><strong>Qui je suis</strong> — Paola, Terminale au Lycee Louis Massignon (Abu Dhabi), spes Maths + SES</li>
+      <li style="margin-bottom: 6px;"><strong>D'ou je viens</strong> — 4 pays, 3 continents, environnement multiculturel</li>
+      <li style="margin-bottom: 6px;"><strong>Ce que je fais</strong> — Coordinatrice evenementielle, stage Marine nationale, engagement international</li>
+      <li style="margin-bottom: 6px;"><strong>Ou je vais</strong> — Hotellerie de luxe / evenementiel / management international</li>
+    </ol>
+  </div>
+</section>
+
+<!-- LIENS UTILES -->
+<section id="liens">
+  <h2 class="section-title"><span class="icon">&#128279;</span> Liens Utiles</h2>
+  <div class="links-grid">
+
+    <div class="link-card">
+      <span class="link-category cat-parcoursup">Parcoursup</span>
+      <h4>Plateforme & concours</h4>
+      <a href="https://www.parcoursup.fr" target="_blank">Parcoursup.fr — Plateforme officielle</a>
+      <a href="https://www.concours-sesame.net" target="_blank">Concours SESAME — Site officiel</a>
+      <a href="https://www.concours-acces.com" target="_blank">Concours ACCES — Site officiel</a>
+    </div>
+
+    <div class="link-card">
+      <span class="link-category cat-parcoursup">Ecoles Parcoursup</span>
+      <h4>Sites des ecoles (voeux Parcoursup)</h4>
+      <a href="https://www.excelia-group.com" target="_blank">Excelia Business School</a>
+      <a href="https://www.edhec.edu/fr/programmes/international-bba" target="_blank">EDHEC International BBA</a>
+      <a href="https://www.escp.eu/bachelor" target="_blank">ESCP Bachelor</a>
+      <a href="https://www.isg.fr" target="_blank">ISG Paris</a>
+      <a href="https://www.institutlyfe.com" target="_blank">Institut Lyfe (ex-Paul Bocuse)</a>
+      <a href="https://www.univ-lyon3.fr" target="_blank">Universite Lyon 3</a>
+      <a href="https://dauphine.psl.eu" target="_blank">Dauphine-PSL</a>
+    </div>
+
+    <div class="link-card">
+      <span class="link-category cat-parcoursup">Ecoles SESAME</span>
+      <h4>BBA & PGE via concours SESAME</h4>
+      <a href="https://www.skema-bs.fr/programmes/global-bba" target="_blank">SKEMA Global BBA</a>
+      <a href="https://neoma-bs.fr" target="_blank">NEOMA Business School</a>
+      <a href="https://kedge.edu" target="_blank">KEDGE Business School</a>
+      <a href="https://www.grenoble-em.com" target="_blank">GEM — Grenoble Ecole de Management</a>
+      <a href="https://www.essec.edu/fr/programme/global-bba/" target="_blank">ESSEC Global BBA</a>
+      <a href="https://em-lyon.com" target="_blank">emlyon business school</a>
+      <a href="https://www.em-normandie.com" target="_blank">EM Normandie</a>
+    </div>
+
+    <div class="link-card">
+      <span class="link-category cat-intl">International</span>
+      <h4>Candidatures hors Parcoursup</h4>
+      <a href="https://www.hec.ca/programmes/baa/" target="_blank">HEC Montreal — BAA</a>
+      <a href="https://www.concordia.ca/jmsb.html" target="_blank">Concordia — John Molson School</a>
+      <a href="https://www.rsm.nl/bachelor/" target="_blank">RSM Rotterdam — BSc IBA</a>
+      <a href="https://www.hotelschool.nl" target="_blank">Hotelschool The Hague</a>
+      <a href="https://www.vatel.fr" target="_blank">Vatel International</a>
+      <a href="https://www.ferrandi-paris.fr" target="_blank">Ferrandi Paris</a>
+    </div>
+
+    <div class="link-card">
+      <span class="link-category cat-prep">Preparation</span>
+      <h4>Ressources de preparation</h4>
+      <a href="https://www.concours-sesame.net/les-epreuves" target="_blank">Epreuves SESAME — detail</a>
+      <a href="https://www.concours-acces.com/epreuves" target="_blank">Epreuves ACCES — detail</a>
+      <a href="https://notebooklm.google.com" target="_blank">NotebookLM — Podcasts de revision</a>
+      <a href="https://www.studyrama.com/revision-examen/concours-ecoles-de-commerce" target="_blank">Studyrama — Revision concours</a>
+    </div>
+
+    <div class="link-card">
+      <span class="link-category cat-general">Outils</span>
+      <h4>Liens pratiques</h4>
+      <a href="https://www.immigration.ca/fr" target="_blank">Immigration Canada — Permis d'etudes</a>
+      <a href="https://www.campusfrance.org" target="_blank">Campus France</a>
+      <a href="https://www.onisep.fr" target="_blank">ONISEP — Orientation</a>
+      <a href="https://www.letudiant.fr" target="_blank">L'Etudiant</a>
+    </div>
+
+  </div>
+</section>
+
+<!-- NOTES PERSO -->
+<section id="notes">
+  <h2 class="section-title"><span class="icon">&#128221;</span> Notes personnelles</h2>
+  <div class="card">
+    <textarea class="notes-area" id="notesArea" placeholder="Ecris tes notes ici... Elles seront sauvegardees automatiquement dans ton navigateur." oninput="saveNotes()"></textarea>
+    <div class="notes-saved" id="notesSaved">Sauvegarde automatique &#10003;</div>
+  </div>
+</section>
+
+</main>
+
+<!-- SESSION MODAL -->
+<div class="modal-overlay" id="sessionModal" onclick="if(event.target===this)closeModal()">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <div id="sessionContent"></div>
+  </div>
+</div>
+
+<script>
+// =================== COUNTDOWN ===================
+function updateCountdown() {
+  const parcoursup = new Date('2026-04-01T23:59:00');
+  const now = new Date();
+  const diff = parcoursup - now;
+  const el = document.getElementById('countdown');
+  if (diff <= 0) {
+    el.textContent = 'Date de confirmation Parcoursup passee';
+    return;
+  }
+  const days = Math.floor(diff / 86400000);
+  const hours = Math.floor((diff % 86400000) / 3600000);
+  el.textContent = `${days}j ${hours}h avant la confirmation Parcoursup (1er avril 23h59)`;
+}
+updateCountdown();
+setInterval(updateCountdown, 60000);
+
+// =================== NAVIGATION ===================
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', function() {
+    document.querySelectorAll('.nav-links a').forEach(l => l.classList.remove('active'));
+    this.classList.add('active');
+  });
+});
+
+// =================== TODO ===================
+const STORAGE_KEY = 'paola-todos';
+let currentFilter = 'all';
+
+function loadTodos() {
+  try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || getDefaultTodos(); }
+  catch { return getDefaultTodos(); }
+}
+
+function getDefaultTodos() {
+  return [
+    { id: 1, text: 'Confirmer les 10 voeux Parcoursup (avant 1er avril 23h59)', done: false },
+    { id: 2, text: 'Completer le dossier Institut Lyfe', done: false },
+    { id: 3, text: 'Completer candidature Hotelschool The Hague (URGENT)', done: false },
+    { id: 4, text: 'Charger resultats OMPT-A sur portail RSM Rotterdam', done: false },
+    { id: 5, text: 'Initier candidature Vatel', done: false },
+    { id: 6, text: 'Suivre permis etudes CAQ — HEC Montreal', done: false },
+    { id: 7, text: 'Reviser les 12 sessions de preparation entretien', done: false },
+    { id: 8, text: 'Preparer le pitch personnel (2 minutes)', done: false },
+    { id: 9, text: 'Verifier lettre de motivation Parcoursup', done: false },
+    { id: 10, text: 'S\'inscrire au concours Ferrandi', done: false },
+  ];
+}
+
+let todos = loadTodos();
+
+function saveTodos() {
+  localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
+}
+
+function renderTodos() {
+  const list = document.getElementById('todoList');
+  const filtered = todos.filter(t =>
+    currentFilter === 'all' ? true : currentFilter === 'active' ? !t.done : t.done
+  );
+  list.innerHTML = filtered.map(t => `
+    <li class="todo-item ${t.done ? 'completed' : ''}">
+      <input type="checkbox" ${t.done ? 'checked' : ''} onchange="toggleTodo(${t.id})">
+      <span>${escapeHtml(t.text)}</span>
+      <button class="todo-delete" onclick="deleteTodo(${t.id})" title="Supprimer">&times;</button>
+    </li>
+  `).join('');
+  const active = todos.filter(t => !t.done).length;
+  document.getElementById('todoCount').textContent = `${active} tache${active !== 1 ? 's' : ''} restante${active !== 1 ? 's' : ''} sur ${todos.length}`;
+}
+
+function addTodo() {
+  const input = document.getElementById('todoInput');
+  const text = input.value.trim();
+  if (!text) return;
+  todos.push({ id: Date.now(), text, done: false });
+  input.value = '';
+  saveTodos();
+  renderTodos();
+}
+
+function toggleTodo(id) {
+  const t = todos.find(t => t.id === id);
+  if (t) t.done = !t.done;
+  saveTodos();
+  renderTodos();
+}
+
+function deleteTodo(id) {
+  todos = todos.filter(t => t.id !== id);
+  saveTodos();
+  renderTodos();
+}
+
+function filterTodos(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.todo-filters button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+  renderTodos();
+}
+
+function escapeHtml(text) {
+  const d = document.createElement('div');
+  d.textContent = text;
+  return d.innerHTML;
+}
+
+renderTodos();
+
+// =================== SCHOOLS TABS ===================
+function showSchoolTab(tab, btn) {
+  ['parcoursup', 'international', 'priority'].forEach(t => {
+    document.getElementById('tab-' + t).style.display = t === tab ? '' : 'none';
+  });
+  document.querySelectorAll('.schools-tabs button').forEach(b => b.classList.remove('active'));
+  btn.classList.add('active');
+}
+
+// =================== SESSION MODAL ===================
+const sessions = {
+  1: {
+    title: 'Session 01 — 16 Mars',
+    content: `
+      <h3>Culture generale : Business & Marches</h3>
+      <ul>
+        <li><strong>PIB mondial</strong> : ~105 000 milliards USD (2024). USA #1, Chine #2, Japon #3</li>
+        <li><strong>Marche du luxe</strong> : ~380 Mds EUR (Bain 2024). LVMH #1 mondial. Kering, Hermes, Richemont</li>
+        <li><strong>Hotellerie mondiale</strong> : ~900 Mds USD. Marriott, Hilton, IHG, Accor. Luxe = 15% du CA total</li>
+        <li><strong>Economie UAE</strong> : PIB ~510 Mds USD. Diversification post-petrole. Tourisme = 12% PIB Dubai</li>
+      </ul>
+      <h3>Entretien : Pitch personnel (2 minutes)</h3>
+      <div class="tip">Structure : Qui je suis &rarr; D'ou je viens &rarr; Ce que je fais &rarr; Ou je vais</div>
+      <ul>
+        <li><strong>Qui je suis</strong> : Paola, Terminale Maths + SES, Lycee Louis Massignon Abu Dhabi</li>
+        <li><strong>D'ou je viens</strong> : 4 pays, 3 continents, famille multiculturelle</li>
+        <li><strong>Ce que je fais</strong> : Coordinatrice evenementielle (3 events, 200+ pers, 15k AED), stage Marine</li>
+        <li><strong>Ou je vais</strong> : Hotellerie de luxe / evenementiel / management international</li>
+      </ul>
+    `
+  },
+  2: {
+    title: 'Session 02 — 17 Mars',
+    content: `
+      <h3>Culture generale : Mondialisation</h3>
+      <ul>
+        <li><strong>Definition</strong> : Processus d'integration economique, culturelle et politique a l'echelle mondiale</li>
+        <li><strong>Etapes cles</strong> : Routes de la soie &rarr; Grandes decouvertes &rarr; Revolution industrielle &rarr; OMC (1995) &rarr; Internet</li>
+        <li><strong>Acteurs</strong> : FMI, Banque mondiale, OMC, G7/G20, firmes transnationales</li>
+        <li><strong>Debats</strong> : Inegalites Nord-Sud, delocalisations, souverainete vs integration, enjeux ecologiques</li>
+      </ul>
+      <h3>Entretien : Pourquoi une ecole de commerce ?</h3>
+      <div class="tip">Ancrer la reponse dans l'experience reelle : l'organisation d'evenements = declencheur</div>
+      <ul>
+        <li>Parcours multiculturel = besoin d'un cadre international structure</li>
+        <li>Experience coordinatrice = decouverte du management concret</li>
+        <li>Objectif hotellerie/luxe = formations specialisees en ecole de commerce</li>
+        <li>Alternance theorie/pratique = ADN des BBA/PGE</li>
+      </ul>
+    `
+  },
+  3: {
+    title: 'Session 03 — 18 Mars',
+    content: `
+      <h3>Culture generale : Union Europeenne</h3>
+      <ul>
+        <li><strong>Institutions</strong> : Commission, Parlement, Conseil, BCE, CJUE</li>
+        <li><strong>27 membres</strong> post-Brexit (2020). Euro = 20 pays</li>
+        <li><strong>Crises recentes</strong> : Dettes souveraines (2010-2012), migration (2015), Covid, Ukraine (2022)</li>
+        <li><strong>Green Deal</strong> : Neutralite carbone 2050, taxonomie verte, mecanisme carbone aux frontieres</li>
+      </ul>
+      <h3>Entretien : Transformer experiences en competences</h3>
+      <div class="tip">3 experiences cles de Paola a preparer en format STAR (Situation-Tache-Action-Resultat)</div>
+      <ul>
+        <li><strong>Coordination evenementielle</strong> &rarr; Gestion de projet, leadership, budget, communication</li>
+        <li><strong>Stage militaire Marine nationale</strong> &rarr; Discipline, adaptabilite, gestion du stress</li>
+        <li><strong>Parcours international (4 pays)</strong> &rarr; Intelligence culturelle, resilience, ouverture</li>
+      </ul>
+    `
+  },
+  4: { title: 'Session 04 — 19 Mars', content: '<h3>Culture generale : Histoire & dates cles</h3><ul><li>Grandes dates de l\'histoire economique et politique</li><li>Revolution industrielle, crises financieres, construction europeenne</li></ul><h3>Entretien : Questions destabilisantes</h3><ul><li>Techniques pour gerer les questions pieges</li><li>Garder son calme, reformuler, ne pas inventer</li></ul>' },
+  5: { title: 'Session 05 — 20 Mars', content: '<h3>Culture generale : Dates & economie</h3><ul><li>Chiffres cles de l\'economie mondiale et francaise</li><li>Indicateurs : PIB, inflation, chomage, dette publique</li></ul><h3>Entretien : Presentation des forces</h3><ul><li>Identifier ses 3 forces principales</li><li>Les illustrer avec des exemples concrets</li></ul>' },
+  6: { title: 'Session 06 — 21 Mars', content: '<h3>Culture generale : Marche du luxe</h3><ul><li>LVMH, Kering, Hermes, Richemont — groupes et marques</li><li>Tendances : experience client, digital, durabilite</li><li>Marche ~380 Mds EUR, croissance Asie + Moyen-Orient</li></ul><h3>Entretien : Parler du secteur luxe</h3><ul><li>Montrer sa connaissance du secteur</li><li>Relier a son parcours et projet professionnel</li></ul>' },
+  7: { title: 'Session 07 — 22 Mars', content: '<h3>Culture generale : Organisations internationales</h3><ul><li>ONU, FMI, Banque mondiale, OMC, OTAN</li><li>Commerce international et geopolitique</li></ul><h3>Entretien : Sujets geopolitiques complexes</h3><ul><li>Structurer sa pensee : contexte, enjeux, perspective</li><li>Nuancer ses propos, eviter les positions tranchees</li></ul>' },
+  8: { title: 'Session 08 — 23 Mars', content: '<h3>Culture generale : Hotellerie & tourisme</h3><ul><li>Tourisme mondial : 1,5 Md de touristes internationaux (2024)</li><li>Groupes hoteliers : Marriott, Hilton, Accor, IHG</li><li>Tendances : tourisme durable, experiences, bleisure</li></ul><h3>Entretien : Connaissance sectorielle</h3><ul><li>Montrer sa passion pour l\'hotellerie</li><li>Chiffres cles et tendances du secteur</li></ul>' },
+  9: { title: 'Session 09 — 24 Mars', content: '<h3>Culture generale : Events & logistique</h3><ul><li>Marche evenementiel mondial</li><li>Types d\'evenements, logistique, gestion de projet</li></ul><h3>Entretien : Expertise evenementielle</h3><ul><li>Detailler l\'experience de coordinatrice</li><li>Budget, equipe, defis, resultats</li></ul>' },
+  10: { title: 'Session 10 — 25 Mars', content: '<h3>Culture generale : Zones geographiques & regions economiques</h3><ul><li>BRICS, ASEAN, UE, ALENA/USMCA</li><li>Emergents vs developpes, axes commerciaux</li></ul><h3>Entretien : Marches et stratification</h3><ul><li>Comprendre les differences entre marches</li><li>Adapter son discours selon l\'ecole ciblee</li></ul>' },
+  11: { title: 'Session 11 — 26 Mars', content: '<h3>Culture generale : Marques de luxe & positionnement</h3><ul><li>Strategies de positionnement des grandes maisons</li><li>Heritage, exclusivite, storytelling, digital</li></ul><h3>Entretien : Strategie management luxe</h3><ul><li>Vision strategique du luxe</li><li>Articuler parcours Paola + projet luxe</li></ul>' },
+  12: { title: 'Session 12 — 27 Mars', content: '<h3>Simulation finale d\'entretien</h3><ul><li>Entretien complet simule (15-20 min)</li><li>Pitch + questions culture G + motivation + destabilisation</li><li>Feedback et ajustements finaux</li></ul><div class="tip">Derniere session avant les concours — consolider tous les acquis des 11 sessions precedentes</div>' },
+};
+
+function showSession(n) {
+  const s = sessions[n];
+  if (!s) return;
+  document.getElementById('sessionContent').innerHTML = `<h2>${s.title}</h2>${s.content}`;
+  document.getElementById('sessionModal').classList.add('show');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeModal() {
+  document.getElementById('sessionModal').classList.remove('show');
+  document.body.style.overflow = '';
+}
+
+document.addEventListener('keydown', e => { if (e.key === 'Escape') closeModal(); });
+
+// =================== NOTES ===================
+const NOTES_KEY = 'paola-notes';
+
+function loadNotes() {
+  const saved = localStorage.getItem(NOTES_KEY);
+  if (saved) document.getElementById('notesArea').value = saved;
+}
+
+let saveTimeout;
+function saveNotes() {
+  clearTimeout(saveTimeout);
+  saveTimeout = setTimeout(() => {
+    localStorage.setItem(NOTES_KEY, document.getElementById('notesArea').value);
+    const el = document.getElementById('notesSaved');
+    el.style.display = 'block';
+    setTimeout(() => el.style.display = 'none', 2000);
+  }, 500);
+}
+
+loadNotes();
+</script>
+
+</body>
+</html>
