@@ -1165,13 +1165,32 @@ const sessions = {
   12: { title: 'Session 12 — 27 Mars', content: '<h3>Simulation finale d\'entretien</h3><ul><li>Entretien complet simule (15-20 min)</li><li>Pitch + questions culture G + motivation + destabilisation</li><li>Feedback et ajustements finaux</li></ul><div class="tip">Derniere session avant les concours — consolider tous les acquis des 11 sessions precedentes</div>' },
 };
 
+const sessionFiles = {
+  1: { html: 'prep/SESSION_01_-_16_Mars.html', pdf: 'prep/SESSION_01_-_16_Mars.html.pdf' },
+  2: { html: 'prep/SESSION_02_-_17_Mars.html', pdf: 'prep/SESSION_02_-_17_Mars.html.pdf' },
+  3: { html: 'prep/SESSION_03_-_18_Mars.html', pdf: 'prep/SESSION_03_-_18_Mars.html.pdf' },
+  4: { html: 'prep/SESSION_04-_19_Mars.html', pdf: 'prep/SESSION_04-_19_Mars.html.pdf' },
+  5: { html: 'prep/SESSION_05-_20_Mars.html', pdf: 'prep/SESSION_05-_20_Mars.html.pdf' },
+  6: { html: 'prep/SESSION_06-_21_Mars.html', pdf: 'prep/SESSION_06-_21_Mars.html.pdf' },
+  7: { html: 'prep/SESSION_07-_22_Mars.html', pdf: 'prep/SESSION_07-_22_Mars.html.pdf' },
+  8: { html: 'prep/SESSION_08-_23_Mars.html', pdf: 'prep/SESSION_08-_23_Mars.html.pdf' },
+  9: { html: 'prep/SESSION_09-_24_Mars.html', pdf: 'prep/SESSION_09-_24_Mars.html.pdf' },
+  10: { html: 'prep/SESSION_10-_25_Mars.html', pdf: 'prep/SESSION_10-_25_Mars.html.pdf' },
+  11: { html: 'prep/SESSION_11-_26_Mars.html', pdf: 'prep/SESSION_11-_26_Mars.html.pdf' },
+  12: { html: 'prep/SESSION_12-_27_Mars.html', pdf: 'prep/SESSION_12-_27_Mars.html.pdf' },
+};
+
 function showSession(n) {
   const s = sessions[n];
   if (!s) return;
+  const f = sessionFiles[n] || {};
   const podcastHtml = podcastLinks[n]
     ? `<a class="podcast-link" href="${podcastLinks[n]}" target="_blank">&#127911; Ecouter le podcast NotebookLM</a>`
     : '';
-  document.getElementById('sessionContent').innerHTML = `<h2>${s.title}</h2>${s.content}${podcastHtml}`;
+  const filesHtml = f.html
+    ? `<div class="prep-links" style="margin-top:16px;"><a class="prep-file-link prep-file-html" href="${f.html}" target="_blank">Fiche complete HTML</a><a class="prep-file-link prep-file-pdf" href="${f.pdf}" target="_blank">Telecharger PDF</a>${podcastHtml}</div>`
+    : podcastHtml;
+  document.getElementById('sessionContent').innerHTML = `<h2>${s.title}</h2>${s.content}${filesHtml}`;
   document.getElementById('sessionModal').classList.add('show');
   document.body.style.overflow = 'hidden';
 }
