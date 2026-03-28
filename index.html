@@ -342,9 +342,9 @@ section[id] { scroll-margin-top: 60px; }
       <div class="cal-info"><h4>Sessions Prep Entretien</h4><p>12 sessions quotidiennes — culture generale + entretien</p></div>
     </div>
 
-    <div class="cal-event urgent">
+    <div class="cal-event done">
       <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>DEADLINE Parcoursup — 23h59</h4><p><strong>Confirmer Dauphine Londres + Dauphine Paris Classique (NON CONFIRMES). Regler frais ESSCA.</strong></p></div>
+      <div class="cal-info"><h4>Confirmation Parcoursup — 23h59</h4><p>10/10 voeux CONFIRMES &#10003; (dont 3 Dauphine). Tous dossiers transmis.</p></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
@@ -428,7 +428,7 @@ section[id] { scroll-margin-top: 60px; }
   <h2 class="section-title"><span class="icon">&#127891;</span> Candidatures & Ecoles</h2>
 
   <div class="school-tabs">
-    <button class="active" onclick="filterSchools('all', this)">Toutes (17)</button>
+    <button class="active" onclick="filterSchools('all', this)">Toutes</button>
     <button onclick="filterSchools('parcoursup', this)">Parcoursup (10)</button>
     <button onclick="filterSchools('intl', this)">International (6)</button>
     <button onclick="filterSchools('urgent', this)">Actions urgentes</button>
@@ -577,7 +577,7 @@ section[id] { scroll-margin-top: 60px; }
 const SCHOOLS = [
   {
     key: 'excelia', name: 'Excelia Business School', voeu: 1, type: 'parcoursup',
-    diploma: 'PGE Bac+5', campus: 'Paris-Cachan (1 campus retenu)',
+    diploma: 'PGE Bac+5', campus: 'Paris-Cachan / La Rochelle / Tours (3 campus)',
     stars: 3, fees: '~7 000 EUR', tags: ['tourisme', 'evenementiel'],
     status: 'Voeu CONFIRME', statusBadge: 'badge-green', statusText: 'Confirme &#10003;',
     atout: 'Seul PGE avec ADN tourisme/evenementiel integre des l\'entree',
@@ -649,7 +649,7 @@ const SCHOOLS = [
   },
   {
     key: 'edhec', name: 'EDHEC International BBA', voeu: 5, type: 'parcoursup',
-    diploma: 'BBA Bac+4', campus: 'Lille (4 sous-voeux retenus sur 5)',
+    diploma: 'BBA Bac+4', campus: 'Nice + Lille (9 sous-voeux : English/Classic/Global/Data/Humanities/Law)',
     stars: 5, fees: '~14 500 EUR', tags: ['luxe', 'international'],
     status: 'CONFIRME — Frais payes — Admissibilite le 15 avril', statusBadge: 'badge-orange', statusText: 'Admiss. 15 avril',
     atout: 'Top 5 France. Triple accredite. Fort reseau luxe/finance/conseil. Frais de dossier payes.',
@@ -689,7 +689,7 @@ const SCHOOLS = [
   },
   {
     key: 'isg', name: 'ISG Paris PGE', voeu: 7, type: 'parcoursup',
-    diploma: 'PGE Bac+5', campus: 'Paris 16e (2 sections retenues : Int. + Classique)',
+    diploma: 'PGE Bac+5', campus: 'Paris 16e (4 sections : Internationale, Classique, Manager IA, Tech & Mgmt)',
     stars: 2, fees: '~8 000 EUR', tags: ['luxe'],
     status: 'Voeu CONFIRME', statusBadge: 'badge-green', statusText: '>50% &#10003;',
     atout: 'Section internationale accessible, option luxe/marketing en 3e-5e annee',
@@ -739,21 +739,19 @@ const SCHOOLS = [
   },
   {
     key: 'dauphine', name: 'Dauphine-PSL', voeu: 10, type: 'parcoursup',
-    diploma: 'Licence Bac+3 Sciences des Organisations', campus: 'Paris / Madrid / Londres',
+    diploma: 'Licence Bac+3 Sciences des Organisations', campus: 'Paris Classique / Madrid / Londres',
     stars: 5, fees: '~3 500-3 770 EUR', tags: ['international'],
-    status: 'Madrid CONFIRME — Londres + Paris NON CONFIRMES', statusBadge: 'badge-red', statusText: '2 non confirmes !',
-    atout: 'Prestige Dauphine-PSL. Profil multilingue de Paola = atout cle. 3 campus au choix.',
+    status: '3 sous-voeux CONFIRMES', statusBadge: 'badge-green', statusText: 'Confirme &#10003;',
+    atout: 'Prestige Dauphine-PSL. Profil multilingue de Paola = atout cle. 3 campus confirmes.',
     accreditations: 'Dauphine-PSL',
     nextSteps: [
+      'Dauphine Paris Classique confirme &#10003;',
       'Dauphine Madrid confirme &#10003;',
-      '<strong>URGENT : Confirmer Dauphine LONDRES + Dauphine PARIS CLASSIQUE avant le 1er avril 23h59</strong>',
+      'Dauphine Londres confirme &#10003;',
       'Dossier tres selectif — pas d\'epreuves ecrites',
       'Resultats phase 1 (5 juin)'
     ],
-    actions: [
-      { id: 'dauphine-londres', text: 'CONFIRMER sous-voeu Dauphine LONDRES sur Parcoursup', deadline: '1 avril 23h59' },
-      { id: 'dauphine-paris', text: 'CONFIRMER sous-voeu Dauphine PARIS CLASSIQUE sur Parcoursup', deadline: '1 avril 23h59' }
-    ]
+    actions: []
   },
   // === HORS PARCOURSUP ===
   {
@@ -886,22 +884,6 @@ const SCHOOLS = [
       { id: 'esade-decide', text: 'DECIDER si on maintient la candidature Esade (sinon retrait automatique)', deadline: 'URGENT' }
     ]
   },
-  // === GENERAL PARCOURSUP ===
-  {
-    key: 'essca-frais', name: 'ESSCA (via ACCES) — Frais concours', type: 'parcoursup',
-    diploma: '', campus: '',
-    stars: 0, fees: '', tags: [],
-    status: 'Frais a regler sur Parcoursup', statusBadge: 'badge-red', statusText: 'Frais a regler',
-    atout: 'Si frais non regles, voeu annule automatiquement.',
-    accreditations: '',
-    hidden: true,
-    nextSteps: [
-      '<strong>Regler les frais de concours ESSCA sur Parcoursup AVANT le 1er avril</strong> (annulation automatique sinon)'
-    ],
-    actions: [
-      { id: 'essca-frais', text: 'Regler frais concours ESSCA sur Parcoursup (sinon annulation)', deadline: '1 avril' }
-    ]
-  }
 ];
 
 // =================== COUNTDOWN ===================
