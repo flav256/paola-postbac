@@ -357,13 +357,13 @@ section[id] { scroll-margin-top: 60px; }
       <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
       <div class="cal-info"><h4>Confirmation Parcoursup — 23h59</h4><p>10/10 voeux CONFIRMES &#10003; (dont 3 Dauphine). Tous dossiers transmis.</p></div>
     </div>
-    <div class="cal-event upcoming">
+    <div class="cal-event done">
       <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Webinar SESAME — 18h00</h4><p>Webinar "Special epreuves ecrites" avec Thomas LAGATHU, directeur du concours</p></div>
+      <div class="cal-info"><h4>Webinar SESAME — 18h00</h4><p>Webinar "Special epreuves ecrites" — fait</p></div>
     </div>
-    <div class="cal-event urgent">
+    <div class="cal-event done">
       <div class="cal-date"><div class="day">2</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Concours blanc ACCES n&deg;2 — 13h45</h4><p><strong>WISEflow (europe.wiseflow.net). QCM Anglais + Raisonnement logique ET Synthese. OBLIGATOIRE.</strong></p></div>
+      <div class="cal-info"><h4>Concours blanc ACCES n&deg;2 — WISEflow</h4><p>QCM Anglais + Raisonnement logique + Synthese — fait</p></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">7</div><div class="month">Avril</div></div>
@@ -377,17 +377,29 @@ section[id] { scroll-margin-top: 60px; }
       <div class="cal-date"><div class="day">9</div><div class="month">Avril</div></div>
       <div class="cal-info"><h4>Epreuves ecrites ACCES — WISEflow</h4><p><strong>8h30-17h distanciel. Synthese, Raisonnement logique, Maths, Anglais, Culture G.</strong></p></div>
     </div>
+    <div class="cal-event urgent">
+      <div class="cal-date"><div class="day">13</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Institut Lyfe — Oral Parcoursup</h4><p><strong>14h30, 30 min. Epreuve Hotellerie-restauration / Hospitality Management. Virtuel, Salle 1.</strong></p></div>
+    </div>
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">14</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Concours ISG Paris</h4><p>Epreuves de selection ISG</p></div>
+    </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Resultats EDHEC admissibilite + RSM Rotterdam</h4><p>EDHEC : admissibilite + invitation oral. RSM : classement Studielink/OLAF (1-750 = offre).</p></div>
+      <div class="cal-info"><h4>EDHEC — Resultats admissibilite</h4><p>Resultats + invitation oral motivation + epreuve anglais. Entretiens du 18 avril au 9 mai.</p></div>
+    </div>
+    <div class="cal-event upcoming">
+      <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>RSM Rotterdam — Classement final</h4><p>Studielink + OLAF. Rangs 1-750 = offre. Historiquement ~1250 admis.</p></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">18</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Epreuves ecrites Institut Lyfe</h4><p><strong>8h00-19h00 Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p></div>
+      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p><strong>8h00-19h00 Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">18/4</div><div class="month">9/5</div></div>
-      <div class="cal-info"><h4>Oraux EDHEC (si admissible)</h4><p>Test Emage-me + oral Zoom ~20min + test anglais mobile ~90min</p></div>
+      <div class="cal-info"><h4>Oraux EDHEC (si admissible)</h4><p>Oral motivation Zoom ~20min + test anglais mobile ~90min</p></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">27/4</div><div class="month">11/5</div></div>
@@ -395,7 +407,7 @@ section[id] { scroll-margin-top: 60px; }
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">5</div><div class="month">Mai</div></div>
-      <div class="cal-info"><h4>HEC Montreal — Atelier logement</h4><p>Atelier "Je cherche un logement" 12h-13h30 heure Montreal. S'inscrire.</p></div>
+      <div class="cal-info"><h4>HEC Montreal — Webinaire logement</h4><p>Zoom 16h-17h30 (heure Paris). Webinaire FR logement nouveaux admis automne 2026.</p></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">18-22</div><div class="month">Mai</div></div>
@@ -706,36 +718,38 @@ const SCHOOLS = [
     key: 'isg', name: 'ISG Paris PGE', voeu: 7, type: 'parcoursup',
     diploma: 'PGE Bac+5', campus: 'Paris 16e (4 sections : Internationale, Classique, Manager IA, Tech & Mgmt)',
     stars: 2, fees: '~8 000 EUR', tags: ['luxe'],
-    status: 'Voeu CONFIRME', statusBadge: 'badge-green', statusText: '>50% &#10003;',
+    status: 'CONFIRME — Concours le 14 avril', statusBadge: 'badge-orange', statusText: 'Concours 14 avril',
     atout: 'Section internationale accessible, option luxe/marketing en 3e-5e annee',
     accreditations: 'AACSB',
     nextSteps: [
       'Voeu confirme sur Parcoursup &#10003;',
-      'Attendre resultats phase 1 (5 juin)',
-      'Oral de motivation si convoquee'
+      '<strong>14 AVRIL : Concours ISG Paris</strong>',
+      'Resultats phase 1 (5 juin)'
     ],
-    actions: []
+    actions: [
+      { id: 'isg-concours', text: 'Passer le concours ISG Paris', deadline: '14 avril' }
+    ]
   },
   {
     key: 'lyfe', name: 'Institut Lyfe (ex-Paul Bocuse)', voeu: 8, type: 'parcoursup',
     diploma: 'Bac+4 Bachelor Hotellerie', campus: 'Ecully, Lyon (2 parcours retenus : FR + EN)',
     stars: 5, fees: '~11 000 EUR', tags: ['hotellerie luxe', 'evenementiel'],
-    status: 'CONFIRME — Frais payes — Ecrits le 18 avril', statusBadge: 'badge-orange', statusText: 'Ecrits 18 avril',
+    status: 'CONFIRME — Oral 13 avril + Ecrits 18 avril', statusBadge: 'badge-orange', statusText: 'Oral 13 avr + Ecrits 18 avr',
     atout: 'ALIGNEMENT PARFAIT projet Paola. Ex-Institut Paul Bocuse. Reseau palaces, gastronomie, luxe hotelier mondial.',
     accreditations: 'Reconnu Etat',
     highlight: true,
     nextSteps: [
       'Voeu confirme sur Parcoursup &#10003;',
       'Frais d\'inscription payes &#10003;',
+      '<strong>13 AVRIL 14h30 : ORAL Parcoursup — Epreuve Hotellerie-restauration / Hospitality Management (30 min, virtuel, Salle 1)</strong>',
       '<strong>18 AVRIL 8h00 : EPREUVES ECRITES Institut Lyfe (distanciel MeetYourSchool, jusqu\'a 19h)</strong>',
-      'Materiel : PC portable + camera + chargeur + stylo. Lien de connexion envoye quelques jours avant.',
-      'Email a venir pour choisir la date de l\'ENTRETIEN DE MOTIVATION (visioconference)',
+      'Materiel ecrits : PC portable + camera + chargeur + stylo.',
       'Resultats phase 1 (5 juin) — forte probabilite'
     ],
     actions: [
+      { id: 'lyfe-oral', text: 'Passer oral Lyfe Parcoursup (virtuel, 30 min)', deadline: '13 avril 14h30' },
       { id: 'lyfe-ecrits', text: 'Passer epreuves ecrites Lyfe sur MeetYourSchool (PC+camera+stylo)', deadline: '18 avril' },
-      { id: 'lyfe-entretien-date', text: 'Repondre a l\'email Lyfe pour choisir date entretien motivation', deadline: 'Des reception' },
-      { id: 'lyfe-prep-entretien', text: 'Preparer entretien motivation Institut Lyfe' }
+      { id: 'lyfe-prep-entretien', text: 'Preparer entretien motivation Lyfe (hotellerie, projet, parcours)' }
     ]
   },
   {
@@ -906,11 +920,13 @@ function updateCountdown() {
   const now = new Date();
   const el = document.getElementById('countdown');
   const deadlines = [
-    { date: new Date('2026-04-02T13:45:00'), label: 'Concours blanc ACCES n\u00b02 (WISEflow)' },
+    { date: new Date('2026-04-07T16:00:00'), label: 'HEC Montreal — Reservation residence Darlington' },
     { date: new Date('2026-04-08T08:00:00'), label: 'Epreuves ecrites SESAME' },
-    { date: new Date('2026-04-09T08:30:00'), label: 'Epreuves ecrites ACCES' },
-    { date: new Date('2026-04-15T09:00:00'), label: 'Resultats EDHEC + RSM Rotterdam' },
-    { date: new Date('2026-04-18T08:00:00'), label: 'Epreuves ecrites Institut Lyfe' },
+    { date: new Date('2026-04-09T08:30:00'), label: 'Epreuves ecrites ACCES (WISEflow)' },
+    { date: new Date('2026-04-13T14:30:00'), label: 'Institut Lyfe — Oral Parcoursup (14h30)' },
+    { date: new Date('2026-04-14T09:00:00'), label: 'Concours ISG Paris' },
+    { date: new Date('2026-04-15T09:00:00'), label: 'Resultats EDHEC admissibilite + RSM Rotterdam' },
+    { date: new Date('2026-04-18T08:00:00'), label: 'Epreuves ecrites Institut Lyfe (MeetYourSchool)' },
     { date: new Date('2026-05-18T09:00:00'), label: 'Selection Day Hotelschool The Hague' },
   ];
   const next = deadlines.find(d => d.date > now);
