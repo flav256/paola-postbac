@@ -93,6 +93,13 @@ section { margin-bottom: 32px; }
 .cal-date .month { font-size: 0.7rem; color: var(--muted); text-transform: uppercase; font-weight: 600; }
 .cal-info h4 { font-size: 0.9rem; margin-bottom: 2px; }
 .cal-info p { font-size: 0.8rem; color: var(--muted); }
+.cal-ics {
+  display: inline-flex; align-items: center; gap: 4px; margin-top: 6px;
+  padding: 4px 10px; background: #e3f2fd; color: #1565c0; border-radius: 16px;
+  font-size: 0.72rem; font-weight: 600; text-decoration: none; cursor: pointer;
+  border: none; transition: all 0.2s;
+}
+.cal-ics:hover { background: #bbdefb; }
 
 /* TODO */
 .todo-input-row { display: flex; gap: 8px; margin-bottom: 16px; }
@@ -367,59 +374,59 @@ section[id] { scroll-margin-top: 60px; }
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">7</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>HEC Montreal — Residence Darlington</h4><p>Ouverture reservations 10h Montreal (16h Paris). Places limitees — agir des l'ouverture.</p></div>
+      <div class="cal-info"><h4>HEC Montreal — Residence Darlington</h4><p>Ouverture reservations 10h Montreal (16h Paris). Places limitees — agir des l'ouverture.</p><button class="cal-ics" onclick="downloadIcs('20260407T160000','20260407T170000','HEC Montreal - Reservation Residence Darlington','Ouverture reservations 10h Montreal (16h Paris). Places limitees.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">8</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Epreuves ecrites SESAME</h4><p><strong>Journee complete — distanciel. Langues, Raisonnement & Competences, Analyse documentaire.</strong></p></div>
+      <div class="cal-info"><h4>Epreuves ecrites SESAME</h4><p><strong>Journee complete — distanciel. Langues, Raisonnement & Competences, Analyse documentaire.</strong></p><button class="cal-ics" onclick="downloadIcs('20260408T080000','20260408T180000','Concours SESAME - Epreuves ecrites','Journee complete distanciel. Langues, Raisonnement & Competences, Analyse documentaire.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">9</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Epreuves ecrites ACCES — WISEflow</h4><p><strong>8h30-17h distanciel. Synthese, Raisonnement logique, Maths, Anglais, Culture G.</strong></p></div>
+      <div class="cal-info"><h4>Epreuves ecrites ACCES — WISEflow</h4><p><strong>8h30-17h distanciel. Synthese, Raisonnement logique, Maths, Anglais, Culture G.</strong></p><button class="cal-ics" onclick="downloadIcs('20260409T083000','20260409T170000','Concours ACCES - Epreuves ecrites (WISEflow)','8h30-17h distanciel sur europe.wiseflow.net. Synthese, Raisonnement logique, Maths, Anglais, Culture G.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">13</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Institut Lyfe — Oral Parcoursup</h4><p><strong>14h30, 30 min. Epreuve Hotellerie-restauration / Hospitality Management. Virtuel, Salle 1.</strong></p></div>
+      <div class="cal-info"><h4>Institut Lyfe — Oral Parcoursup</h4><p><strong>14h30, 30 min. Epreuve Hotellerie-restauration / Hospitality Management. Virtuel, Salle 1.</strong></p><button class="cal-ics" onclick="downloadIcs('20260413T143000','20260413T150000','Institut Lyfe - Oral Parcoursup','Epreuve Hotellerie-restauration / Hospitality Management. 30 min, virtuel, Salle 1.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">14</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Concours ISG Paris</h4><p>Epreuves de selection ISG</p></div>
+      <div class="cal-info"><h4>Concours ISG Paris</h4><p>Epreuves de selection ISG</p><button class="cal-ics" onclick="downloadIcs('20260414T090000','20260414T170000','Concours ISG Paris','Epreuves de selection ISG Paris PGE.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>EDHEC — Resultats admissibilite</h4><p>Resultats + invitation oral motivation + epreuve anglais. Entretiens du 18 avril au 9 mai.</p></div>
+      <div class="cal-info"><h4>EDHEC — Resultats admissibilite</h4><p>Resultats + invitation oral motivation + epreuve anglais. Entretiens du 18 avril au 9 mai.</p><button class="cal-ics" onclick="downloadIcs('20260415T090000','20260415T100000','EDHEC - Resultats admissibilite','Resultats admissibilite EDHEC BBA + invitation oral motivation et epreuve anglais. Entretiens 18 avril-9 mai.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>RSM Rotterdam — Classement final</h4><p>Studielink + OLAF. Rangs 1-750 = offre. Historiquement ~1250 admis.</p></div>
+      <div class="cal-info"><h4>RSM Rotterdam — Classement final</h4><p>Studielink + OLAF. Rangs 1-750 = offre. Historiquement ~1250 admis.</p><button class="cal-ics" onclick="downloadIcs('20260415T090000','20260415T100000','RSM Rotterdam - Classement final','Verifier classement sur Studielink + OLAF. Rangs 1-750 = offre admission.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">18</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p><strong>8h00-19h00 Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p></div>
+      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p><strong>8h00-19h00 Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p><button class="cal-ics" onclick="downloadIcs('20260418T080000','20260418T190000','Institut Lyfe - Epreuves ecrites','Distanciel MeetYourSchool 8h-19h Paris. Materiel: PC portable + camera + chargeur + stylo.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">18/4</div><div class="month">9/5</div></div>
-      <div class="cal-info"><h4>Oraux EDHEC (si admissible)</h4><p>Oral motivation Zoom ~20min + test anglais mobile ~90min</p></div>
+      <div class="cal-info"><h4>Oraux EDHEC (si admissible)</h4><p>Oral motivation Zoom ~20min + test anglais mobile ~90min</p><button class="cal-ics" onclick="downloadIcs('20260418T090000','20260509T180000','EDHEC - Periode oraux (si admissible)','Oral motivation Zoom ~20min (2 jures) + test anglais mobile ~90min. Date exacte a confirmer.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">27/4</div><div class="month">11/5</div></div>
-      <div class="cal-info"><h4>Oraux ESSCA / ACCES</h4><p>Oraux d'admission distanciel (hors France metro possible). Resultats 2 juin.</p></div>
+      <div class="cal-info"><h4>Oraux ESSCA / ACCES</h4><p>Oraux d'admission distanciel (hors France metro possible). Resultats 2 juin.</p><button class="cal-ics" onclick="downloadIcs('20260427T090000','20260511T180000','Oraux ESSCA / ACCES','Oraux admission distanciel. Resultats 2 juin sur Parcoursup.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">5</div><div class="month">Mai</div></div>
-      <div class="cal-info"><h4>HEC Montreal — Webinaire logement</h4><p>Zoom 16h-17h30 (heure Paris). Webinaire FR logement nouveaux admis automne 2026.</p></div>
+      <div class="cal-info"><h4>HEC Montreal — Webinaire logement</h4><p>Zoom 16h-17h30 (heure Paris). Webinaire FR logement nouveaux admis automne 2026.</p><button class="cal-ics" onclick="downloadIcs('20260505T160000','20260505T173000','HEC Montreal - Webinaire logement','Zoom. Webinaire FR logement nouveaux admis automne 2026.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">18-22</div><div class="month">Mai</div></div>
-      <div class="cal-info"><h4>Hotelschool The Hague — Selection Day</h4><p>En ligne. Essai + interview, test connaissances, algebre, Oxford English Test. Tenue pro.</p></div>
+      <div class="cal-info"><h4>Hotelschool The Hague — Selection Day</h4><p>En ligne. Essai + interview, test connaissances, algebre, Oxford English Test. Tenue pro.</p><button class="cal-ics" onclick="downloadIcs('20260518T090000','20260522T180000','Hotelschool The Hague - Selection Day','Selection Day en ligne 18-22 mai. Essai + interview, test connaissances, algebre, Oxford English Test. Tenue professionnelle obligatoire.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event info">
       <div class="cal-date"><div class="day">2</div><div class="month">Juin</div></div>
-      <div class="cal-info"><h4>Resultats ESSCA / ACCES sur Parcoursup</h4><p>Publication des resultats d'admission</p></div>
+      <div class="cal-info"><h4>Resultats ESSCA / ACCES sur Parcoursup</h4><p>Publication des resultats d'admission</p><button class="cal-ics" onclick="downloadIcs('20260602T090000','20260602T100000','Resultats ESSCA / ACCES sur Parcoursup','Publication resultats admission ESSCA (via concours ACCES) sur Parcoursup.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event info">
       <div class="cal-date"><div class="day">5</div><div class="month">Juin</div></div>
-      <div class="cal-info"><h4>Resultats Parcoursup — Phase 1</h4><p>Premiere vague de reponses des formations</p></div>
+      <div class="cal-info"><h4>Resultats Parcoursup — Phase 1</h4><p>Premiere vague de reponses des formations</p><button class="cal-ics" onclick="downloadIcs('20260605T090000','20260605T100000','Resultats Parcoursup - Phase 1','Premiere vague de reponses des formations Parcoursup.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event info">
       <div class="cal-date"><div class="day">Juil</div><div class="month">2026</div></div>
@@ -914,6 +921,48 @@ const SCHOOLS = [
     ]
   },
 ];
+
+// =================== ICS DOWNLOAD ===================
+function downloadIcs(dtstart, dtend, summary, description) {
+  const now = new Date();
+  const stamp = now.toISOString().replace(/[-:]/g,'').replace(/\.\d+/,'');
+  const uid = 'paola-' + dtstart + '-' + Math.random().toString(36).substr(2,8) + '@postbac';
+  const ics = [
+    'BEGIN:VCALENDAR',
+    'VERSION:2.0',
+    'PRODID:-//Paola PostBac//FR',
+    'CALSCALE:GREGORIAN',
+    'METHOD:PUBLISH',
+    'BEGIN:VEVENT',
+    'DTSTART;TZID=Europe/Paris:' + dtstart,
+    'DTEND;TZID=Europe/Paris:' + dtend,
+    'DTSTAMP:' + stamp,
+    'UID:' + uid,
+    'SUMMARY:' + summary,
+    'DESCRIPTION:' + description.replace(/\n/g,'\\n'),
+    'BEGIN:VALARM',
+    'TRIGGER:-PT1H',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Rappel: ' + summary,
+    'END:VALARM',
+    'BEGIN:VALARM',
+    'TRIGGER:-P1D',
+    'ACTION:DISPLAY',
+    'DESCRIPTION:Demain: ' + summary,
+    'END:VALARM',
+    'END:VEVENT',
+    'END:VCALENDAR'
+  ].join('\r\n');
+  const blob = new Blob([ics], { type: 'text/calendar;charset=utf-8' });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url;
+  a.download = summary.replace(/[^a-zA-Z0-9 -]/g,'').replace(/ +/g,'_') + '.ics';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
 
 // =================== COUNTDOWN ===================
 function updateCountdown() {
