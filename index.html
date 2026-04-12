@@ -733,18 +733,19 @@ const SCHOOLS = [
     key: 'isg', name: 'ISG Paris PGE', voeu: 7, type: 'parcoursup',
     diploma: 'PGE Bac+5', campus: 'Paris 16e (4 sections : Internationale, Classique, Manager IA, Tech & Mgmt)',
     stars: 2, fees: '~8 000 EUR', tags: ['luxe'],
-    status: 'Entretien Parcoursup 14 avril 13h00', statusBadge: 'badge-orange', statusText: 'Entretien 14 avril 13h',
+    status: 'URGENT — Contacter ISG CE SOIR + Entretien demain 13h', statusBadge: 'badge-red', statusText: 'Action CE SOIR !',
     atout: 'Section internationale accessible, option luxe/marketing en 3e-5e annee',
     accreditations: 'AACSB',
     nextSteps: [
       'Voeu confirme sur Parcoursup &#10003;',
+      '<strong style="color:#c0392b;">REUNION INFO OBLIGATOIRE : NON FAITE. CONTACTER YASMINE KHOUKHI CE SOIR.</strong>',
+      '<strong style="color:#c0392b;">FORMULAIRE CHOIX DATE/VILLE : NON REMPLI. Remplir CE SOIR (selectionner Paris).</strong>',
       '<strong>14 AVRIL 13h00 : Entretien Parcoursup en ligne</strong> (RDV modifie par l\'etablissement)',
-      'Verifier : reunion d\'information obligatoire (email Yasmine Khoukhi 3 avril) — faite ?',
-      'Verifier : choix date concours via formulaire (email 2 avril) — fait ?',
       'Resultats phase 1 (5 juin)'
     ],
     actions: [
-      { id: 'isg-reunion', text: 'Verifier participation reunion info obligatoire ISG (email 3 avril)', deadline: 'Avant 14 avril' },
+      { id: 'isg-email', text: 'CONTACTER Yasmine Khoukhi (ISG) CE SOIR — expliquer absence reunion + demander confirmation entretien demain', deadline: 'CE SOIR' },
+      { id: 'isg-formulaire', text: 'Remplir formulaire choix date/ville ISG (email 2 avril — selectionner Paris)', deadline: 'CE SOIR' },
       { id: 'isg-concours', text: 'Passer entretien ISG Paris en ligne (13h00)', deadline: '14 avril' }
     ]
   },
