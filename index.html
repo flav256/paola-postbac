@@ -413,9 +413,9 @@ section[id] { scroll-margin-top: 60px; }
       <div class="cal-date"><div class="day">18</div><div class="month">Avril</div></div>
       <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p><strong>8h-19h Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p><button class="cal-ics" onclick="downloadIcs('20260418T080000','20260418T190000','Institut Lyfe - Epreuves ecrites','8h-19h distanciel MeetYourSchool. PC + camera + chargeur + stylo.')">&#128197; Ajouter au calendrier</button></div>
     </div>
-    <div class="cal-event upcoming">
-      <div class="cal-date"><div class="day">17/20</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Excelia PGE — Oral (report demande)</h4><p>Email envoye pour deplacer du 18 au vendredi 17 apres-midi ou lundi 20 apres-midi. Attente reponse Excelia.</p></div>
+    <div class="cal-event urgent">
+      <div class="cal-date"><div class="day">20</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Excelia PGE — Oral distanciel (apres-midi)</h4><p><strong>Report confirme au lundi 20 avril apres-midi. Attente convocation + horaire exact.</strong></p><button class="cal-ics" onclick="downloadIcs('20260420T140000','20260420T160000','Excelia PGE - Oral distanciel','Report confirme lundi 20 avril apres-midi. Horaire exact a confirmer par convocation.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">20</div><div class="month">Avril</div></div>
@@ -654,20 +654,20 @@ const SCHOOLS = [
     key: 'excelia', name: 'Excelia Business School', voeu: 1, type: 'parcoursup',
     diploma: 'PGE Bac+5', campus: 'Paris-Cachan / La Rochelle / Tours (3 campus)',
     stars: 3, fees: '~7 000 EUR', tags: ['tourisme', 'evenementiel'],
-    status: 'Oral PGE — REPORT DEMANDE (17 ou 20 avril)', statusBadge: 'badge-orange', statusText: 'Report demande',
+    status: 'Oral PGE reporte au 20 avril apres-midi — attente convocation', statusBadge: 'badge-blue', statusText: 'Oral 20 avril PM',
     atout: 'Seul PGE avec ADN tourisme/evenementiel integre des l\'entree',
     accreditations: 'AACSB, EPAS',
     highlight: true,
     nextSteps: [
       'Voeu confirme sur Parcoursup &#10003;',
       'Dossier retenu &#10003;',
-      'RDV oral PGE initial : 18 avril 13h30 — <strong>REPORT DEMANDE (conflit Lyfe ecrits)</strong>',
-      '<strong>Email envoye pour deplacer au vendredi 17 apres-midi ou lundi 20 apres-midi. Attente reponse Excelia.</strong>',
+      'Report oral PGE confirme &#10003; — <strong>Lundi 20 avril apres-midi (distanciel)</strong>',
+      'Attente convocation + horaire exact par email',
       '<strong>NOUVEAU : Bachelor Business aussi ADMISSIBLE — prendre RDV oral</strong>',
       'Resultats phase 1 (5 juin)'
     ],
     actions: [
-      { id: 'excelia-report', text: 'Attendre reponse Excelia sur report oral PGE (17 ou 20 avril)', deadline: 'En attente' },
+      { id: 'excelia-convoc', text: 'Attendre convocation + horaire exact oral Excelia PGE (20 avril PM)', deadline: 'Avant 20 avril' },
       { id: 'excelia-bachelor-rdv', text: 'Prendre RDV oral Bachelor Business Excelia (code recu 13 avril) + demander distanciel', deadline: 'URGENT' },
       { id: 'excelia-oral', text: 'Passer oral Excelia PGE distanciel (13h30 Paris / 15h30 Abu Dhabi)', deadline: '18 avril' }
     ]
