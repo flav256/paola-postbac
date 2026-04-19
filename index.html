@@ -409,17 +409,25 @@ section[id] { scroll-margin-top: 60px; }
       <div class="cal-info"><h4>RSM Rotterdam — Classement final</h4><p>Rang 2229 — Hors classement utile &#10007;</p></div>
     </div>
 
-    <div class="cal-event urgent">
+    <div class="cal-event done">
       <div class="cal-date"><div class="day">18</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p><strong>8h-19h Paris, distanciel MeetYourSchool. PC + camera + chargeur + stylo.</strong></p><button class="cal-ics" onclick="downloadIcs('20260418T080000','20260418T190000','Institut Lyfe - Epreuves ecrites','8h-19h distanciel MeetYourSchool. PC + camera + chargeur + stylo.')">&#128197; Ajouter au calendrier</button></div>
+      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p>Fait &#10003; — English test + epreuves ecrites (MeetYourSchool)</p></div>
     </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">20</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Excelia PGE — Oral distanciel (apres-midi)</h4><p><strong>Report confirme au lundi 20 avril apres-midi. Attente convocation + horaire exact.</strong></p><button class="cal-ics" onclick="downloadIcs('20260420T140000','20260420T160000','Excelia PGE - Oral distanciel','Report confirme lundi 20 avril apres-midi. Horaire exact a confirmer par convocation.')">&#128197; Ajouter au calendrier</button></div>
+      <div class="cal-info"><h4>Excelia PGE — Oral distanciel (13h25)</h4><p><strong>Presentation du programme puis heure de passage annoncee. Attente convocation.</strong></p><button class="cal-ics" onclick="downloadIcs('20260420T132500','20260420T160000','Excelia PGE - Oral distanciel','13h25 presentation du programme puis passage oral. Distanciel.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">20</div><div class="month">Avril</div></div>
       <div class="cal-info"><h4>Resultats admissibilite ACCES</h4><p><strong>IESEG, ESSCA, ESDES — Prendre RDV entretien en ligne LE JOUR MEME si admissible</strong></p><button class="cal-ics" onclick="downloadIcs('20260420T090000','20260420T180000','Resultats admissibilite ACCES - Prendre RDV','IESEG ESSCA ESDES. Si admissible: prendre RDV entretien en ligne IMMEDIATEMENT.')">&#128197; Ajouter au calendrier</button></div>
+    </div>
+    <div class="cal-event urgent">
+      <div class="cal-date"><div class="day">24</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>Permis de conduire — 9h00</h4><p><strong>Examen du permis de conduire.</strong></p><button class="cal-ics" onclick="downloadIcs('20260424T090000','20260424T110000','Permis de conduire','Examen du permis. 9h00.')">&#128197; Ajouter au calendrier</button></div>
+    </div>
+    <div class="cal-event urgent">
+      <div class="cal-date"><div class="day">24</div><div class="month">Avril</div></div>
+      <div class="cal-info"><h4>EDHEC — Deadline test British Council + Emage-me</h4><p><strong>72h avant oral du 27 : passer test anglais British Council + video/motivation Emage-me. OBLIGATOIRE.</strong></p><button class="cal-ics" onclick="downloadIcs('20260424T090000','20260424T180000','EDHEC - Deadline test British Council + Emage-me','72h avant oral du 27. Test anglais British Council + video motivation Emage-me. OBLIGATOIRE.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">23</div><div class="month">Avril</div></div>
@@ -452,10 +460,6 @@ section[id] { scroll-margin-top: 60px; }
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">7</div><div class="month">Mai</div></div>
       <div class="cal-info"><h4>ESDES — Oral session 3 (si admissible ACCES)</h4><p>Apres-midi. Entretien a distance.</p><button class="cal-ics" onclick="downloadIcs('20260507T140000','20260507T180000','ESDES - Oral session 3','Entretien a distance ESDES apres-midi.')">&#128197; Ajouter au calendrier</button></div>
-    </div>
-    <div class="cal-event upcoming">
-      <div class="cal-date"><div class="day">9</div><div class="month">Mai</div></div>
-      <div class="cal-info"><h4>EDHEC — Fin fenetre oraux</h4><p>Deadline pour passer oral motivation Zoom + test anglais mobile</p><button class="cal-ics" onclick="downloadIcs('20260509T090000','20260509T180000','EDHEC - Fin fenetre oraux','Deadline oral motivation Zoom + test anglais mobile EDHEC.')">&#128197; Ajouter au calendrier</button></div>
     </div>
     <div class="cal-event upcoming">
       <div class="cal-date"><div class="day">18-22</div><div class="month">Mai</div></div>
@@ -654,22 +658,20 @@ const SCHOOLS = [
     key: 'excelia', name: 'Excelia Business School', voeu: 1, type: 'parcoursup',
     diploma: 'PGE Bac+5', campus: 'Paris-Cachan / La Rochelle / Tours (3 campus)',
     stars: 3, fees: '~7 000 EUR', tags: ['tourisme', 'evenementiel'],
-    status: 'Oral PGE reporte au 20 avril apres-midi — attente convocation', statusBadge: 'badge-blue', statusText: 'Oral 20 avril PM',
+    status: 'Oral PGE lundi 20 avril 13h25 distanciel', statusBadge: 'badge-orange', statusText: 'Oral 20 avril 13h25',
     atout: 'Seul PGE avec ADN tourisme/evenementiel integre des l\'entree',
     accreditations: 'AACSB, EPAS',
     highlight: true,
     nextSteps: [
       'Voeu confirme sur Parcoursup &#10003;',
       'Dossier retenu &#10003;',
-      'Report oral PGE confirme &#10003; — <strong>Lundi 20 avril apres-midi (distanciel)</strong>',
-      'Attente convocation + horaire exact par email',
+      '<strong>ORAL PGE LUNDI 20 AVRIL 13h25 distanciel</strong> — presentation du programme puis heure de passage annoncee',
       '<strong>NOUVEAU : Bachelor Business aussi ADMISSIBLE — prendre RDV oral</strong>',
       'Resultats phase 1 (5 juin)'
     ],
     actions: [
-      { id: 'excelia-convoc', text: 'Attendre convocation + horaire exact oral Excelia PGE (20 avril PM)', deadline: 'Avant 20 avril' },
-      { id: 'excelia-bachelor-rdv', text: 'Prendre RDV oral Bachelor Business Excelia (code recu 13 avril) + demander distanciel', deadline: 'URGENT' },
-      { id: 'excelia-oral', text: 'Passer oral Excelia PGE distanciel (13h30 Paris / 15h30 Abu Dhabi)', deadline: '18 avril' }
+      { id: 'excelia-oral', text: 'Passer oral Excelia PGE distanciel (13h25 — presentation puis passage)', deadline: '20 avril' },
+      { id: 'excelia-bachelor-rdv', text: 'Prendre RDV oral Bachelor Business Excelia (code recu 13 avril) + demander distanciel', deadline: 'URGENT' }
     ]
   },
   {
@@ -736,21 +738,21 @@ const SCHOOLS = [
     key: 'edhec', name: 'EDHEC International BBA', voeu: 5, type: 'parcoursup',
     diploma: 'BBA Bac+4', campus: 'Nice + Lille (9 sous-voeux : English/Classic/Global/Data/Humanities/Law)',
     stars: 5, fees: '~14 500 EUR', tags: ['luxe', 'international'],
-    status: 'ADMISSIBLE — Oral a planifier 18 avr-9 mai', statusBadge: 'badge-lgreen', statusText: 'Admissible &#10003;',
-    atout: 'Top 5 France. Triple accredite. Fort reseau luxe/finance/conseil. Frais de dossier payes.',
+    status: 'ADMISSIBLE — Oral le 27 avril 14h00', statusBadge: 'badge-lgreen', statusText: 'Oral 27 avril 14h',
+    atout: 'Top 5 France. Triple accredite. Fort reseau luxe/finance/conseil.',
     accreditations: 'AACSB, EQUIS, AMBA',
     nextSteps: [
-      'Voeu confirme &#10003;',
-      'Frais payes &#10003;',
-      'ADMISSIBLE &#10003; — Convocation oral recue le 15 avril',
-      'Creneau oral reserve &#10003; : <strong>lundi 27 avril 14h00 — Entretien bilingue distanciel (Zoom)</strong>',
+      'Voeu confirme &#10003; | Frais payes &#10003; | ADMISSIBLE &#10003; | Creneau oral reserve &#10003;',
+      '<strong>ORAL LUNDI 27 AVRIL 14h00 — Entretien bilingue distanciel (Zoom)</strong>',
       'Se connecter 5 min en avance',
-      'Test anglais mobile ~90min a passer egalement (avant le 9 mai)'
+      '<strong style="color:#c0392b;">AVANT LE 24 AVRIL (72h avant) :</strong>',
+      '<strong style="color:#c0392b;">1. Passer test anglais British Council (obligatoire)</strong>',
+      '<strong style="color:#c0392b;">2. Completer Emage-me : video + points de motivation (obligatoire)</strong>'
     ],
     actions: [
-      { id: 'edhec-admitio', text: 'Creneau oral EDHEC reserve : lundi 27 avril 14h00 (entretien bilingue distanciel)', deadline: 'Fait' },
-      { id: 'edhec-oral', text: 'Passer oral motivation EDHEC Zoom (~20 min)', deadline: '18 avr-9 mai' },
-      { id: 'edhec-english', text: 'Passer test anglais mobile EDHEC (~90 min)', deadline: '18 avr-9 mai' }
+      { id: 'edhec-british', text: 'Passer test anglais British Council EDHEC (obligatoire avant 72h)', deadline: '24 avril' },
+      { id: 'edhec-emageme', text: 'Completer Emage-me : video + points de motivation (obligatoire avant 72h)', deadline: '24 avril' },
+      { id: 'edhec-oral', text: 'Passer oral motivation EDHEC Zoom bilingue (14h00)', deadline: '27 avril' }
     ]
   },
   {
@@ -784,22 +786,17 @@ const SCHOOLS = [
     key: 'lyfe', name: 'Institut Lyfe (ex-Paul Bocuse)', voeu: 8, type: 'parcoursup',
     diploma: 'Bac+4 Bachelor Hotellerie', campus: 'Ecully, Lyon (2 parcours retenus : FR + EN)',
     stars: 5, fees: '~11 000 EUR', tags: ['hotellerie luxe', 'evenementiel'],
-    status: 'Oral FAIT — Ecrits vendredi 18 avril', statusBadge: 'badge-orange', statusText: 'Oral fait, ecrits 18 avr',
+    status: 'Oral + Ecrits PASSES — Attente resultats', statusBadge: 'badge-blue', statusText: 'Tout passe &#10003;',
     atout: 'ALIGNEMENT PARFAIT projet Paola. Ex-Institut Paul Bocuse. Reseau palaces, gastronomie, luxe hotelier mondial.',
     accreditations: 'Reconnu Etat',
     highlight: true,
     nextSteps: [
-      'Voeu confirme sur Parcoursup &#10003;',
-      'Frais d\'inscription payes &#10003;',
-      'Oral d\'admission passe le 13 avril &#10003; — email de remerciement recu',
-      '<strong>18 AVRIL 8h00 : EPREUVES ECRITES Institut Lyfe (distanciel MeetYourSchool, jusqu\'a 19h)</strong>',
-      'Materiel ecrits : PC portable + camera + chargeur + stylo.',
-      'Resultats phase 1 (5 juin) — forte probabilite'
+      'Voeu confirme &#10003; | Frais payes &#10003;',
+      'Oral d\'admission passe le 13 avril &#10003;',
+      'Epreuves ecrites passees le 18 avril &#10003; (English test + ecrits MeetYourSchool)',
+      'Attendre resultats Parcoursup phase 1 (5 juin) — forte probabilite'
     ],
-    actions: [
-      { id: 'lyfe-ecrits', text: 'Passer epreuves ecrites Lyfe sur MeetYourSchool (PC+camera+stylo)', deadline: '18 avril' },
-      { id: 'lyfe-prep-entretien', text: 'Preparer entretien motivation Lyfe (hotellerie, projet, parcours)' }
-    ]
+    actions: []
   },
   {
     key: 'lyon3', name: 'Universite Lyon 3 — Gestion (iaelyon)', voeu: 9, type: 'parcoursup',
@@ -902,7 +899,7 @@ const SCHOOLS = [
       'Annulation : prevenir 1 semaine avant a admissions@hotelschool.nl'
     ],
     actions: [
-      { id: 'hotelschool-english', text: 'Passer le Oxford English Placement Test (lien par email)', deadline: 'Avant mai' },
+      { id: 'hotelschool-english', text: 'Passer le Oxford English Placement Test (lien par email) — OBLIGATOIRE', deadline: 'Fin avril' },
       { id: 'hotelschool-prep', text: 'Preparer Selection Day : essai, pitch motivation, algebre, article', deadline: '18 mai' },
       { id: 'hotelschool-tenue', text: 'Preparer tenue professionnelle pour Selection Day' }
     ]
@@ -911,17 +908,17 @@ const SCHOOLS = [
     key: 'vatel', name: 'Vatel International', type: 'intl',
     diploma: 'Bac+5 (BBA-MBA integre)', campus: 'Paris / Lyon / Bordeaux / 50 campus monde',
     stars: 4, fees: '~11 000 EUR', tags: ['hotellerie luxe', 'evenementiel'],
-    status: 'PAS ENCORE CANDIDATEE', statusBadge: 'badge-red', statusText: 'A faire',
+    status: 'DECISION A PRENDRE : candidater ou non ?', statusBadge: 'badge-orange', statusText: 'A decider',
     atout: 'Formation hotellerie-restauration integree 5 ans. 50 campus monde. Stage des annee 1.',
     accreditations: 'Accredite Etat',
     nextSteps: [
-      'Soumettre la candidature sur le portail Vatel',
-      'Passer l\'entretien d\'admission si convoquee',
-      'Si acceptee : comparer avec Lyfe / Hotelschool'
+      '<strong style="color:#e67e22;">DECISION A PRENDRE : candidater a Vatel ou non ?</strong>',
+      'Si oui : soumettre candidature sur le portail Vatel + passer entretien',
+      'Si non : se concentrer sur Lyfe + Hotelschool The Hague',
+      'Comparer : Vatel (5 ans, 50 campus) vs Lyfe (4 ans, ex-Bocuse) vs Hotelschool (4 ans, reference mondiale)'
     ],
     actions: [
-      { id: 'vatel-apply', text: 'Soumettre candidature Vatel (portail en ligne)', deadline: 'A faire' },
-      { id: 'vatel-docs', text: 'Preparer dossier Vatel (bulletins, CV, lettre motivation)' }
+      { id: 'vatel-decision', text: 'Decider si candidature Vatel (comparer avec Lyfe + Hotelschool)', deadline: 'Cette semaine' }
     ]
   },
   {
@@ -1008,14 +1005,14 @@ function updateCountdown() {
   const now = new Date();
   const el = document.getElementById('countdown');
   const deadlines = [
-    { date: new Date('2026-04-18T08:00:00'), label: 'Institut Lyfe — Epreuves ecrites (8h-19h MeetYourSchool)' },
+    { date: new Date('2026-04-20T13:25:00'), label: 'Excelia PGE — Oral distanciel (13h25)' },
     { date: new Date('2026-04-20T09:00:00'), label: 'Resultats admissibilite ACCES — prendre RDV oraux' },
     { date: new Date('2026-04-23T09:00:00'), label: 'Oraux SESAME — Ouverture prises de RDV' },
+    { date: new Date('2026-04-24T09:00:00'), label: 'Permis de conduire + Deadline test British Council / Emage-me EDHEC' },
     { date: new Date('2026-04-27T14:00:00'), label: 'EDHEC — Oral motivation bilingue (14h00, Zoom)' },
     { date: new Date('2026-04-28T09:00:00'), label: 'ESSCA — Oraux session 1 (si admissible ACCES)' },
     { date: new Date('2026-04-30T09:00:00'), label: 'IESEG + ESDES — Oraux (si admissible ACCES)' },
     { date: new Date('2026-05-05T16:00:00'), label: 'HEC Montreal — Webinaire logement' },
-    { date: new Date('2026-05-09T18:00:00'), label: 'EDHEC — Fin fenetre oraux' },
     { date: new Date('2026-05-18T09:00:00'), label: 'Selection Day Hotelschool The Hague' },
     { date: new Date('2026-06-02T09:00:00'), label: 'Resultats ACCES sur Parcoursup' },
     { date: new Date('2026-06-05T09:00:00'), label: 'Resultats Parcoursup — Phase principale' },
