@@ -101,6 +101,25 @@ section { margin-bottom: 32px; }
 }
 .cal-ics:hover { background: #bbdefb; }
 
+/* HISTORY COMPACT */
+.cal-history {
+  background: var(--card); border-radius: var(--radius); padding: 0;
+  margin-bottom: 16px; border: 1px solid var(--border);
+  box-shadow: 0 1px 4px rgba(0,0,0,0.04);
+}
+.cal-history-toggle {
+  padding: 14px 20px; cursor: pointer; font-size: 0.92rem; font-weight: 600;
+  color: var(--green); list-style: none; display: flex; align-items: center; gap: 8px;
+}
+.cal-history-toggle::-webkit-details-marker { display: none; }
+.cal-history-toggle::before { content: ''; display: inline-block; width: 0; height: 0; border-left: 6px solid var(--green); border-top: 5px solid transparent; border-bottom: 5px solid transparent; transition: transform 0.2s; }
+details.cal-history[open] > .cal-history-toggle::before { transform: rotate(90deg); }
+.cal-history-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 4px 16px;
+  padding: 0 20px 14px; font-size: 0.8rem; color: var(--muted);
+}
+.cal-history-grid span { padding: 3px 0; border-bottom: 1px solid #f0f0f0; }
+
 /* TODO */
 .todo-input-row { display: flex; gap: 8px; margin-bottom: 16px; }
 .todo-input-row input {
@@ -346,73 +365,26 @@ section[id] { scroll-margin-top: 60px; }
 <!-- CALENDRIER -->
 <section id="calendrier">
   <h2 class="section-title"><span class="icon">&#128197;</span> Calendrier & Deadlines</h2>
+  <details class="cal-history">
+    <summary class="cal-history-toggle">&#10003; Etapes completees (mars — 18 avril) — cliquer pour deplier</summary>
+    <div class="cal-history-grid">
+      <span>11 mars — Snapshot Parcoursup (10/10 voeux)</span>
+      <span>15 mars — RSM OMPT-A passe (53%)</span>
+      <span>16-27 mars — 12 sessions prep entretien</span>
+      <span>1 avril — 10/10 voeux Parcoursup CONFIRMES</span>
+      <span>1 avril — Webinar SESAME epreuves ecrites</span>
+      <span>2 avril — Concours blanc ACCES n&deg;2</span>
+      <span>7 avril — Darlington demande (liste d'attente)</span>
+      <span>8 avril — Epreuves ecrites SESAME &#10003;</span>
+      <span>9 avril — Epreuves ecrites ACCES &#10003;</span>
+      <span>13 avril — Lyfe oral &#10003; | ESCP refusee &#10007;</span>
+      <span>14 avril — ISG oral + anglais &#10003; | Webinaire ACCES oraux</span>
+      <span>15 avril — EDHEC ADMISSIBLE &#10003; | RSM rang 2229 &#10007;</span>
+      <span>18 avril — Lyfe epreuves ecrites &#10003;</span>
+    </div>
+  </details>
+
   <div class="calendar-grid">
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">11</div><div class="month">Mars</div></div>
-      <div class="cal-info"><h4>Snapshot Parcoursup</h4><p>Dossier Parcoursup extrait — 10/10 voeux deposes</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">15</div><div class="month">Mars</div></div>
-      <div class="cal-info"><h4>RSM Rotterdam — OMPT-A</h4><p>Test OMPT-A passe (53%) et envoye</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">16-27</div><div class="month">Mars</div></div>
-      <div class="cal-info"><h4>Sessions Prep Entretien</h4><p>12 sessions quotidiennes — culture generale + entretien</p></div>
-    </div>
-
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Confirmation Parcoursup — 23h59</h4><p>10/10 voeux CONFIRMES &#10003; (dont 3 Dauphine). Tous dossiers transmis.</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">1</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Webinar SESAME — 18h00</h4><p>Webinar "Special epreuves ecrites" — fait</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">2</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Concours blanc ACCES n&deg;2 — WISEflow</h4><p>QCM Anglais + Raisonnement logique + Synthese — fait</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">7</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>HEC Montreal — Residence Darlington</h4><p>Demande envoyee — LISTE D'ATTENTE (toutes chambres reservees)</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">8</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Epreuves ecrites SESAME</h4><p>Fait &#10003;</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">9</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Epreuves ecrites ACCES — WISEflow</h4><p>Fait &#10003;</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">13</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Institut Lyfe — Oral d'admission</h4><p>Fait &#10003; — 14h30, 30 min, virtuel</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">13</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>ESCP Bachelor — Resultats admissibilite</h4><p>Non admissible &#10007;</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">14</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>ISG Paris — Oral + Anglais</h4><p>Fait &#10003; — Discovery One + entretien motivation + anglais (Teams)</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">14</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Webinaire ACCES — Preparation oraux</h4><p>Fait &#10003;</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>EDHEC — Resultats admissibilite</h4><p>ADMISSIBLE &#10003; — Convocation oral recue</p></div>
-    </div>
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">15</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>RSM Rotterdam — Classement final</h4><p>Rang 2229 — Hors classement utile &#10007;</p></div>
-    </div>
-
-    <div class="cal-event done">
-      <div class="cal-date"><div class="day">18</div><div class="month">Avril</div></div>
-      <div class="cal-info"><h4>Institut Lyfe — Epreuves ecrites</h4><p>Fait &#10003; — English test + epreuves ecrites (MeetYourSchool)</p></div>
-    </div>
     <div class="cal-event urgent">
       <div class="cal-date"><div class="day">20</div><div class="month">Avril</div></div>
       <div class="cal-info"><h4>Excelia PGE — Oral distanciel (13h25)</h4><p><strong>Presentation du programme puis heure de passage annoncee. Attente convocation.</strong></p><button class="cal-ics" onclick="downloadIcs('20260420T132500','20260420T160000','Excelia PGE - Oral distanciel','13h25 presentation du programme puis passage oral. Distanciel.')">&#128197; Ajouter au calendrier</button></div>
