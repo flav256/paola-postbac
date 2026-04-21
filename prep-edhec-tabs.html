@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EDHEC BBA — Guide Complet Paola</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#0f1b2d;--paper:#f9f8f5;--red:#c0392b;--red-s:#fbe9e7;--nvy:#1a3a5c;--nvy-s:#e3eaf1;--gld:#c19a3e;--gld-s:#f9f0d9;--tl:#1a7a6d;--tl-s:#e0f2ee;--grn:#2d7d46;--grn-s:#e6f4ea;--bdr:#e0dbd2;--prp:#6c3483;--prp-s:#f0e6f6}
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
+.hdr{background:linear-gradient(135deg,#0f1b2d,#1e3a5f);color:#fff;padding:1.8rem 1.5rem 1rem;text-align:center}
+.hdr h1{font-family:'DM Serif Display',serif;font-size:1.6rem}
+.hdr .sub{font-size:.82rem;opacity:.7;margin-top:.2rem;font-weight:300}
+.hdr .badges{display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-top:.6rem}
+.hdr .badge{font-size:.65rem;font-weight:700;padding:.25rem .7rem;border-radius:15px;text-transform:uppercase;letter-spacing:1px}
+.badge-red{background:var(--red)}.badge-gld{background:var(--gld);color:var(--ink)}
+
+/* TABS */
+.tabs-bar{position:sticky;top:0;z-index:100;background:var(--ink);display:flex;border-bottom:3px solid var(--gld);overflow-x:auto;-webkit-overflow-scrolling:touch}
+.tab-btn{flex:1;min-width:0;padding:.75rem .5rem;text-align:center;color:rgba(255,255,255,.55);font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.8px;cursor:pointer;transition:all .2s;border:none;background:none;white-space:nowrap;position:relative}
+.tab-btn:hover{color:rgba(255,255,255,.85)}
+.tab-btn.active{color:#fff;background:rgba(255,255,255,.08)}
+.tab-btn.active::after{content:'';position:absolute;bottom:-3px;left:10%;right:10%;height:3px;background:var(--gld);border-radius:2px 2px 0 0}
+.tab-btn .emoji{display:block;font-size:1.2rem;margin-bottom:.15rem}
+.tab-panel{display:none;animation:fadeIn .3s}
+.tab-panel.active{display:block}
+@keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+.c{max-width:740px;margin:0 auto;padding:1.2rem}
+.alert{border-left:4px solid var(--red);background:var(--red-s);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.8rem 0;font-size:.82rem}
+.alert strong{color:var(--red)}
+.alert-gld{border-left-color:var(--gld);background:var(--gld-s)}
+.alert-gld strong{color:var(--gld)}
+.s{margin:1.5rem 0}
+.st{font-family:'DM Serif Display',serif;font-size:1.15rem;padding-bottom:.4rem;border-bottom:2px solid var(--gld);margin-bottom:.8rem}
+.card{background:#fff;border:1px solid var(--bdr);border-radius:10px;margin:.7rem 0;overflow:hidden}
+.card-h{display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;border-bottom:1px solid var(--bdr);cursor:pointer}
+.card-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0}
+.card-title{font-weight:700;font-size:.88rem;flex:1}
+.card-tag{font-size:.62rem;font-weight:700;padding:.15rem .5rem;border-radius:10px;text-transform:uppercase;letter-spacing:.5px}
+.card-body{padding:.7rem .9rem;font-size:.82rem;color:#444}
+.card-body p{margin:.4rem 0}
+.tip{background:var(--gld-s);border-radius:6px;padding:.5rem .7rem;margin:.5rem 0;font-size:.8rem}
+.tip::before{content:'💡 '}
+.ex{background:var(--nvy-s);border-radius:6px;padding:.55rem .75rem;margin:.5rem 0;font-size:.8rem}
+.ex strong{display:block;font-size:.65rem;text-transform:uppercase;letter-spacing:.8px;color:var(--nvy);margin-bottom:.15rem}
+.star{background:#fff;border:2px solid var(--tl);border-radius:8px;padding:.6rem .8rem;margin:.5rem 0;font-size:.8rem}
+.star .label{font-size:.62rem;text-transform:uppercase;letter-spacing:1px;font-weight:700;margin-bottom:.15rem;margin-top:.4rem}
+.star .label:first-child{margin-top:0}
+.star .s-s{color:var(--tl)}.star .s-t{color:var(--prp)}.star .s-a{color:var(--gld)}.star .s-r{color:var(--grn)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:.5rem;margin:.6rem 0}
+@media(max-width:500px){.grid2{grid-template-columns:1fr}}
+.spec{background:#fff;border:1px solid var(--bdr);border-radius:8px;padding:.55rem .75rem}
+.spec .lbl{font-size:.62rem;text-transform:uppercase;letter-spacing:1px;color:var(--nvy);font-weight:700}
+.spec .val{font-size:.88rem;font-weight:600;margin-top:.05rem}
+.spec .note{font-size:.7rem;color:#888}
+.checklist{background:#fff;border:1px solid var(--bdr);border-radius:10px;padding:.8rem .9rem;margin:.6rem 0}
+.cl-item{display:flex;align-items:flex-start;gap:.5rem;padding:.35rem 0;border-bottom:1px solid #f0ece6;font-size:.82rem}
+.cl-item:last-child{border-bottom:none}
+.cl-item .box{flex-shrink:0;color:var(--red);font-weight:700}
+.strat{background:linear-gradient(135deg,var(--tl-s),#fff);border:1px solid #c8dede;border-radius:10px;padding:.8rem;margin:.6rem 0}
+.strat h4{color:var(--tl);font-size:.82rem;margin-bottom:.25rem}
+.strat p{font-size:.8rem;color:#444}
+.pitch{background:var(--prp-s);border:2px solid var(--prp);border-radius:10px;padding:.9rem;margin:.7rem 0;font-size:.82rem}
+.pitch h4{color:var(--prp);font-size:.85rem;margin-bottom:.4rem}
+.pitch .line{padding:.25rem 0;border-bottom:1px solid rgba(108,52,131,.12)}
+.pitch .line:last-child{border-bottom:none}
+.pitch .timing{font-size:.65rem;color:var(--prp);font-weight:700;text-transform:uppercase;letter-spacing:.5px}
+.strengths{background:var(--grn-s);border:1px solid #c5d8cb;border-radius:10px;padding:.8rem .9rem;margin:.6rem 0}
+.strengths .cl-item .box{color:var(--grn)}
+/* Sub-tabs within Oral section */
+.subtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.8rem 0}
+.subtab{padding:.4rem .8rem;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--bdr);background:#fff;transition:all .2s}
+.subtab.active{background:var(--nvy);color:#fff;border-color:var(--nvy)}
+.subpanel{display:none}.subpanel.active{display:block;animation:fadeIn .25s}
+footer{text-align:center;padding:1.5rem;font-size:.68rem;color:#999;margin-top:1rem}
+</style>
+</head>
+<body>
+<div class="hdr">
+<h1>EDHEC International BBA</h1>
+<div class="sub">Guide de Préparation Détaillé — Personnalisé pour Paola</div>
+<div class="badges"><span class="badge badge-red">Oral 27 Avril</span><span class="badge badge-gld">EnglishScore → 23 Avril</span></div>
+</div>
+
+<!-- TABS BAR -->
+<div class="tabs-bar">
+<button class="tab-btn active" onclick="showTab('overview')"><span class="emoji">📋</span>Aperçu</button>
+<button class="tab-btn" onclick="showTab('english')"><span class="emoji">🇬🇧</span>EnglishScore</button>
+<button class="tab-btn" onclick="showTab('emage')"><span class="emoji">📱</span>Emage-me</button>
+<button class="tab-btn" onclick="showTab('oral')"><span class="emoji">🎤</span>Oral</button>
+<button class="tab-btn" onclick="showTab('ecole')"><span class="emoji">🏫</span>École</button>
+</div>
+
+<!-- ============================================================ -->
+<!-- TAB: OVERVIEW -->
+<!-- ============================================================ -->
+<div id="tab-overview" class="tab-panel active"><div class="c">
+
+<div class="alert"><strong>3 deadlines critiques :</strong><br>
+🔴 <strong>23 avril minuit</strong> — EnglishScore (Core Skills + Speaking)<br>
+🔴 <strong>24 avril</strong> — Profil Emage-me 100% complété<br>
+🔴 <strong>27 avril</strong> — Oral de motivation Zoom (20-25 min)</div>
+
+<div class="s">
+<h2 class="st">📅 Planning</h2>
+<div class="checklist">
+<div class="cl-item"><span class="box">1️⃣</span> <strong>21-22 avril</strong> — Passer EnglishScore (Core Skills + Speaking) via le lien British Council</div>
+<div class="cl-item"><span class="box">2️⃣</span> <strong>22-23 avril</strong> — Compléter Emage-me (5 questions + 4 vidéos + feedbacks proches)</div>
+<div class="cl-item"><span class="box">3️⃣</span> <strong>24 avril</strong> — Vérifier réception lien Zoom (~72h avant oral)</div>
+<div class="cl-item"><span class="box">4️⃣</span> <strong>24-26 avril</strong> — Préparer pitch 2min30 + s'entraîner aux questions + réviser l'école</div>
+<div class="cl-item"><span class="box">5️⃣</span> <strong>27 avril</strong> — JOUR J : Oral Zoom 20-25 min</div>
+</div>
+</div>
+
+<div class="s">
+<h2 class="st">💪 Tes Atouts</h2>
+<div class="strengths">
+<div class="cl-item"><span class="box">✓</span> <strong>4 pays, 3 continents</strong> — Gabon, Australie, EAU, France → profil international rare</div>
+<div class="cl-item"><span class="box">✓</span> <strong>IELTS 7.5</strong> — Bilingue FR/EN natif → parcours anglophone sans stress</div>
+<div class="cl-item"><span class="box">✓</span> <strong>15 000 AED levés</strong> — Leadership, coordination d'équipe de 8, négociation sponsors</div>
+<div class="cl-item"><span class="box">✓</span> <strong>Marine nationale</strong> — Discipline, service, dépassement de soi</div>
+<div class="cl-item"><span class="box">✓</span> <strong>Équitation compétition</strong> — Rigueur, stress, persévérance</div>
+<div class="cl-item"><span class="box">✓</span> <strong>Spé Maths + SES</strong> — Fondamentaux solides école de commerce</div>
+<div class="cl-item"><span class="box">✓</span> <strong>HEC Montréal admise</strong> — Plan B crédible et prestigieux</div>
+</div>
+</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB: ENGLISHSCORE -->
+<!-- ============================================================ -->
+<div id="tab-english" class="tab-panel"><div class="c">
+
+<h2 class="st">🇬🇧 EnglishScore — British Council</h2>
+<div class="grid2">
+<div class="spec"><div class="lbl">Deadline</div><div class="val">23 avril minuit</div></div>
+<div class="spec"><div class="lbl">Durée</div><div class="val">~55 min total</div><div class="note">Core 40 min + Speaking 15 min</div></div>
+<div class="spec"><div class="lbl">Support</div><div class="val">📱 Mobile uniquement</div></div>
+<div class="spec"><div class="lbl">Score</div><div class="val">A2 → C1 (CEFR)</div></div>
+</div>
+
+<div class="alert alert-gld"><strong style="color:var(--gld)">⚠️ CRITIQUE :</strong> Utilise UNIQUEMENT le lien reçu par email du British Council. Pas le lien standard de l'app. Sinon le score n'est PAS transmis à l'EDHEC.</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--nvy)">A</div><div class="card-title">Core Skills Test (~40 min)</div></div>
+<div class="card-body">
+<p><strong>1. Grammar & Vocabulary (15-20 min)</strong> — QCM adaptatif. Pièges : present perfect vs past simple, past perfect, conditionals, prepositions (interested IN, good AT), phrasal verbs (look UP, carry OUT).</p>
+<p><strong>2. Reading (~10 min)</strong> — Passages courts. Piège : "pick the best title". Lis les questions AVANT le texte.</p>
+<p><strong>3. Listening (~10 min)</strong> — Audio + QCM. Utilise écouteurs filaires. Lis la question avant l'audio.</p>
+<div class="tip">Avec IELTS 7.5, c'est une formalité. Première intuition = généralement correcte. Fais-le le 21 ou 22 avril.</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--red)">B</div><div class="card-title">Speaking Test (~15 min)</div></div>
+<div class="card-body">
+<p><strong>Part 1 — Read Aloud :</strong> Phrase 8-24 mots à lire à voix haute. 2 essais.</p>
+<p><strong>Part 2 — Listen & Repeat :</strong> Vidéo → tu répètes la phrase (5-16 mots). 2 essais.</p>
+<p><strong>Part 3 — Answer Questions :</strong> Vidéo → tu enregistres ta réponse. <strong>Min 18 secondes</strong>, couvrir TOUTES les parties. 2 essais.</p>
+<p><strong>Part 4 — Grade Others :</strong> Écouter et évaluer d'autres candidats. Obligatoire pour ton score.</p>
+<div class="tip">Parle naturellement, pas trop vite. Ton accent est parfait. Utilise "Well...", "I'd say that...", "On top of that..." pour les transitions.</div>
+</div>
+</div>
+
+<div class="s">
+<h2 class="st">✍️ Pièges Grammar à Réviser</h2>
+<div class="ex"><strong>Present Perfect vs Past Simple</strong>
+✗ "I lived in Lyon for 3 years" (si toujours là) → ✓ "I <strong>have lived</strong> in Lyon for 3 years"</div>
+<div class="ex"><strong>Past Perfect</strong>
+✗ "When I arrived, she already left" → ✓ "When I arrived, she <strong>had already left</strong>"</div>
+<div class="ex"><strong>Conditional 3</strong>
+✗ "If I would have known..." → ✓ "If I <strong>had known</strong>, I <strong>would have told</strong> you"</div>
+<div class="ex"><strong>Prepositions</strong>
+✗ good IN / married WITH → ✓ good <strong>AT</strong> / married <strong>TO</strong> / interested <strong>IN</strong> / depend <strong>ON</strong></div>
+<div class="ex"><strong>False Friends FR→EN</strong>
+Actually ≠ actuellement (= currently) · Library ≠ librairie (= bookshop) · Eventually ≠ éventuellement (= finally)</div>
+</div>
+
+<div class="checklist">
+<div class="cl-item"><span class="box">☐</span> App EnglishScore téléchargée (iOS/Android)</div>
+<div class="cl-item"><span class="box">☐</span> Lien British Council (email reçu) — PAS le lien standard</div>
+<div class="cl-item"><span class="box">☐</span> Téléphone chargé + écouteurs filaires + WiFi stable</div>
+<div class="cl-item"><span class="box">☐</span> Pièce calme, caméra activée, seule</div>
+<div class="cl-item"><span class="box">☐</span> Core Skills d'abord → Speaking ensuite</div>
+<div class="cl-item"><span class="box">☐</span> Tout terminé <strong>avant 23 avril minuit</strong></div>
+</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB: EMAGE-ME -->
+<!-- ============================================================ -->
+<div id="tab-emage" class="tab-panel"><div class="c">
+
+<h2 class="st">📱 Profil Emage-me</h2>
+<p style="font-size:.84rem;color:#555;margin-bottom:.6rem">Le jury a ton profil Emage-me devant lui pendant l'oral. C'est leur document de référence. Tout ce que tu écris/filmes peut être discuté.</p>
+
+<div class="grid2">
+<div class="spec"><div class="lbl">Deadline</div><div class="val">24 avril</div><div class="note">72h avant l'oral du 27</div></div>
+<div class="spec"><div class="lbl">Si pas complété</div><div class="val">⚠️ Oral ANNULÉ</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--nvy)">⚙️</div><div class="card-title">Installation</div></div>
+<div class="card-body">
+<p>1. Télécharger <strong>Emage-me</strong> (App Store / Play Store)</p>
+<p>2. Créer compte avec <strong>paola.maire8@gmail.com</strong> (même email Parcoursup)</p>
+<p>3. Code privé : <strong>EDHEC</strong></p>
+<p>4. Compléter test de personnalité (mises en situation, QCM soft skills)</p>
+<p>5. Solliciter <strong>feedbacks de proches</strong> → sélectionner ceux à partager avec l'école</p>
+<p>6. Répondre aux 6 questions motivation + enregistrer 4 pitchs vidéo</p>
+<p>7. Noter ton <strong>code Emage-me</strong></p>
+</div>
+</div>
+
+<div class="s">
+<h2 class="st">✍️ 6 Réponses Écrites — Motivations & Valeurs</h2>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">1</div><div class="card-title">"Pourquoi l'EDHEC ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Éléments de réponse</strong>
+L'EDHEC BBA combine excellence académique et dimension internationale (120 universités partenaires, 40 pays). Ayant grandi entre le Gabon, l'Australie et Abu Dhabi, je recherche un programme qui valorise la mobilité. Le parcours Global Business correspond à mon bilinguisme (IELTS 7.5) et à mon projet en marketing international / événementiel de luxe. La triple accréditation AACSB-EQUIS-AMBA est un gage de qualité mondiale.</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">2</div><div class="card-title">"Votre projet professionnel ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Éléments de réponse</strong>
+Marketing international dans le luxe ou l'événementiel haut de gamme. Mon événement caritatif (15 000 AED levés, équipe de 8) m'a confirmé mon goût pour la gestion de projet, la négociation et la coordination d'équipe. Abu Dhabi m'a exposée au marché du luxe (LVMH, Kering) et au commerce international — c'est là que mon projet s'est cristallisé.</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">3</div><div class="card-title">"Votre plus grande qualité ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Éléments de réponse</strong>
+L'adaptabilité. 4 pays, 4 systèmes scolaires, 4 cultures. J'ai appris à m'intégrer rapidement, comprendre des codes différents, et trouver ma place dans des environnements nouveaux. C'est aussi ce qui me pousse vers une carrière internationale.</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">4</div><div class="card-title">"Vos valeurs ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Éléments de réponse</strong>
+<strong>Engagement</strong> — je m'investis pleinement (événement caritatif, équitation compétition).<br>
+<strong>Ouverture d'esprit</strong> — mon parcours multiculturel m'a appris à voir le monde sous plusieurs angles.<br>
+<strong>Rigueur</strong> — stage Marine nationale, spé Maths. Je crois que l'excellence vient de la discipline.</div></div>
+</div>
+</div>
+
+<div class="s">
+<h2 class="st">🎥 4 Pitchs Vidéo (30 sec chacun)</h2>
+<p style="font-size:.82rem;color:#555;margin-bottom:.6rem">Enregistrés directement dans l'app. Tu peux les refaire avant de valider. Vise 25-28 sec.</p>
+
+<div class="pitch">
+<h4>Pitch 1 — Qui es-tu ?</h4>
+<div class="line">"Je m'appelle Paola Maire, j'ai 17 ans, je suis en Terminale au Lycée Louis Massignon à Abu Dhabi. J'ai grandi entre le Gabon, l'Australie et les Émirats. Cette vie multiculturelle m'a donné une vraie curiosité pour les échanges internationaux et le commerce."</div>
+</div>
+
+<div class="pitch">
+<h4>Pitch 2 — Pourquoi l'EDHEC BBA ?</h4>
+<div class="line">"L'EDHEC m'attire pour son classement d'excellence, ses 120 universités partenaires dans 40 pays, et sa philosophie 'Making an Impact'. Le parcours anglophone correspond à mon bilinguisme et à mon projet dans le marketing international et le luxe."</div>
+</div>
+
+<div class="pitch">
+<h4>Pitch 3 — Une expérience marquante</h4>
+<div class="line">"J'ai organisé un événement caritatif au lycée et levé 15 000 AED. J'ai coordonné 8 personnes, négocié avec les sponsors et géré le budget. Ça m'a confirmé que j'aime le management de projet et la relation partenaires — c'est ce qui m'oriente vers le commerce."</div>
+</div>
+
+<div class="pitch">
+<h4>Pitch 4 — Tes ambitions</h4>
+<div class="line">"Dans 5 ans, je me vois en marketing dans un grand groupe international du luxe. L'EDHEC m'offre les stages, la mobilité et le réseau alumni de 55 000 diplômés pour y arriver. Mon objectif : combiner sensibilité multiculturelle et expertise en stratégie commerciale."</div>
+</div>
+
+<div class="strat">
+<h4>Conseils techniques vidéo</h4>
+<p>• Visage centré, épaules visibles, fond neutre · Éclairage face (fenêtre ou lampe) · Regarde la caméra pas l'écran · Souris — école de commerce = contact humain · Écris 3-4 phrases, répète 3× à voix haute, puis enregistre sans lire</p>
+</div>
+</div>
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB: ORAL -->
+<!-- ============================================================ -->
+<div id="tab-oral" class="tab-panel"><div class="c">
+
+<h2 class="st">🎤 Oral de Motivation — 27 Avril</h2>
+<div class="grid2">
+<div class="spec"><div class="lbl">Durée</div><div class="val">20–25 min</div></div>
+<div class="spec"><div class="lbl">Format</div><div class="val">Zoom distanciel</div></div>
+<div class="spec"><div class="lbl">Jury</div><div class="val">2 personnes</div><div class="note">2 profs ou 1 prof + 1 diplômé</div></div>
+<div class="spec"><div class="lbl">Critères</div><div class="val">Impact · Engagement · Innovation</div></div>
+</div>
+
+<p style="font-size:.84rem;color:#555;margin:.6rem 0">Le jury a devant lui : <strong>dossier Parcoursup</strong> + <strong>profil Emage-me</strong>. Langue selon sous-vœux (FR / EN / bilingue).</p>
+
+<!-- SUB-TABS for Oral section -->
+<div class="subtabs">
+<button class="subtab active" onclick="showSub('pitch')">🎯 Pitch</button>
+<button class="subtab" onclick="showSub('questions')">❓ Questions STAR</button>
+<button class="subtab" onclick="showSub('checklist')">✅ Checklist</button>
+</div>
+
+<!-- SUB: PITCH -->
+<div id="sub-pitch" class="subpanel active">
+<div class="pitch">
+<h4>Pitch de Présentation (2 min 30)</h4>
+
+<div class="line"><span class="timing">0:00–0:15 · Accroche</span><br>
+"Bonjour, je suis Paola Maire, j'ai 17 ans, Terminale au Lycée Louis Massignon à Abu Dhabi. Ce qui me caractérise : mon parcours multiculturel — j'ai grandi entre le Gabon, l'Australie, la France et les Émirats."</div>
+
+<div class="line"><span class="timing">0:15–0:50 · Parcours international</span><br>
+"Ce parcours m'a appris à m'adapter rapidement, à communiquer avec des cultures variées, et à être à l'aise en français comme en anglais — IELTS 7.5. C'est cette ouverture qui me pousse vers une carrière internationale dans le commerce."</div>
+
+<div class="line"><span class="timing">0:50–1:30 · 3 expériences clés</span><br>
+"J'ai eu trois expériences qui m'ont confirmée dans cette voie.<br>
+① J'ai organisé un événement caritatif au lycée — 15 000 AED levés, 8 personnes coordonnées, sponsors négociés. Ça m'a montré que j'aime le management de projet.<br>
+② Stage Marine nationale — rigueur, discipline, sens du service collectif.<br>
+③ Équitation en compétition — persévérance, gestion du stress, humilité face à l'échec."</div>
+
+<div class="line"><span class="timing">1:30–2:00 · Projet pro</span><br>
+"Mon projet s'oriente vers le marketing international, dans le luxe ou l'événementiel haut de gamme. Travailler dans un environnement multiculturel, créer des expériences client uniques, développer des stratégies de marque à l'international."</div>
+
+<div class="line"><span class="timing">2:00–2:30 · Pourquoi l'EDHEC</span><br>
+"L'EDHEC BBA est le programme idéal : classement #2 France, triple accréditation AACSB-EQUIS-AMBA, 120 universités partenaires dans 40 pays, et la philosophie 'Making an Impact'. Le parcours Global Business en anglais me permettra de combiner ma sensibilité interculturelle avec une formation d'excellence."</div>
+</div>
+<div class="tip">Chronomètre : 2min15–2min30 idéal. Entraîne-toi 5× devant un miroir, 2× en vidéo. Fluide mais PAS récité mot à mot.</div>
+</div>
+
+<!-- SUB: QUESTIONS STAR -->
+<div id="sub-questions" class="subpanel">
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">1</div><div class="card-title">"Pourquoi l'EDHEC et pas une autre ?"</div></div>
+<div class="card-body">
+<div class="star">
+<p>→ Expertise <strong>finance</strong> unique (EDHEC Risk Institute, classé mondial)<br>
+→ Réseau <strong>55 000 alumni dans 127 pays</strong><br>
+→ Philosophie <strong>"Making an Impact"</strong> — leadership qui transforme<br>
+→ <strong>Triple accréditation</strong> AACSB-EQUIS-AMBA (1% des écoles mondiales)<br>
+→ Campus <strong>Lille, Nice, Paris, Londres, Singapour</strong><br>
+→ Parcours <strong>Global Business 100% anglais</strong> dès la 1ère année</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">2</div><div class="card-title">"Parlez de votre événement caritatif"</div></div>
+<div class="card-body">
+<div class="star">
+<div class="label s-s">S — Situation</div>
+<p>"Au Lycée Louis Massignon à Abu Dhabi, nous voulions organiser une levée de fonds pour une association locale."</p>
+<div class="label s-t">T — Tâche</div>
+<p>"J'ai pris la responsabilité de coordonner l'ensemble : objectif 15 000 AED, équipe de 8, deadline 6 semaines."</p>
+<div class="label s-a">A — Action</div>
+<p>"J'ai réparti les rôles selon les forces de chacun, négocié avec 5 sponsors, créé le programme de la soirée, géré le budget. Quand un sponsor s'est désisté à 2 semaines, j'ai trouvé un remplacement via mon réseau."</p>
+<div class="label s-r">R — Résultat</div>
+<p>"Objectif dépassé. J'ai appris que le leadership c'est de l'écoute, que la négociation nécessite de comprendre l'autre partie, et que le stress se gère sur le terrain."</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">3</div><div class="card-title">"Stage Marine nationale — qu'avez-vous appris ?"</div></div>
+<div class="card-body">
+<div class="star">
+<div class="label s-s">S — Situation</div><p>"Stage d'observation avec la Marine nationale française."</p>
+<div class="label s-t">T — Tâche</div><p>"Découvrir un environnement exigeant, hors de ma zone de confort."</p>
+<div class="label s-a">A — Action</div><p>"Observé la chaîne de commandement, participé aux briefings, échangé avec les officiers sur le leadership."</p>
+<div class="label s-r">R — Résultat</div><p>"3 qualités transférables : rigueur dans la préparation, discipline personnelle, sens du service collectif — la mission du groupe passe avant l'individu."</p>
+</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">4</div><div class="card-title">"Forces et faiblesses ?"</div></div>
+<div class="card-body">
+<div class="ex"><strong>3 Forces</strong>
+<strong>Adaptabilité</strong> — 4 pays, 4 systèmes scolaires. Je m'intègre rapidement partout.<br>
+<strong>Leadership par l'écoute</strong> — L'événement caritatif m'a montré que diriger = comprendre l'équipe.<br>
+<strong>Bilinguisme opérationnel</strong> — FR/EN courant (IELTS 7.5), je travaille dans les deux langues.</div>
+<div class="ex"><strong>1 Faiblesse (avec progression)</strong>
+"J'ai tendance à vouloir tout gérer seule au lieu de déléguer. Pendant l'événement caritatif, j'ai appris à faire confiance. C'est un travail en cours — chaque projet m'aide à progresser."</div>
+<div class="tip">Jamais de faiblesse déguisée en qualité ("trop perfectionniste"). Toujours avec la solution.</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">5</div><div class="card-title">"Votre parcours international ?"</div></div>
+<div class="card-body">
+<div class="ex"><strong>Par pays — ce que chacun t'a apporté</strong>
+<strong>Gabon</strong> — Sensibilité à la diversité culturelle, conscience des enjeux de développement.<br>
+<strong>Australie</strong> — Autonomie, "can-do attitude", pas peur de l'échec.<br>
+<strong>France</strong> — Ancrage culturel français, rigueur intellectuelle, art de vivre.<br>
+<strong>Abu Dhabi</strong> — Hub économique mondial → exposition à l'entrepreneuriat, au luxe, au commerce international. Projet pro cristallisé ici.<br><br>
+→ "Chaque pays m'a apporté une compétence. Ensemble, ils font de moi une personne adaptable, ouverte et prête pour une carrière globale."</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">6</div><div class="card-title">"Où dans 5 ans ?"</div></div>
+<div class="card-body">
+<div class="ex"><strong>Réponse</strong>
+"BBA terminé, 2-3 stages internationaux. En poste marketing dans un grand groupe — luxe (LVMH, Kering) ou événementiel (GL Events, MCI). Objectif : piloter des campagnes multi-pays en tirant parti de ma double culture."</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">7</div><div class="card-title">"Un sujet d'actualité ?"</div></div>
+<div class="card-body">
+<div class="ex"><strong>Option A — IA et marketing</strong>
+L'IA générative transforme la création de contenu et la personnalisation client. Opportunité et défi éthique pour le luxe qui mise sur l'authenticité.</div>
+<div class="ex"><strong>Option B — Luxe au Moyen-Orient</strong>
+LVMH a ouvert son plus grand magasin au monde à Dubai Mall. Le marché du luxe aux EAU est en pleine expansion — un sujet que je vis au quotidien.</div>
+<div class="ex"><strong>Option C — Tourisme durable</strong>
+Tension entre croissance du tourisme de luxe et développement durable. Comment concilier excellence de service et responsabilité environnementale ?</div>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">8</div><div class="card-title">"Qu'apporteriez-vous à la promo ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Réponse</strong>
+"Un regard multiculturel unique — peu d'étudiants ont vécu sur 3 continents avant 18 ans. Ma double culture FR/EN, mon expérience événementielle, et mon énergie pour la vie associative."</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">9</div><div class="card-title">"Si vous n'êtes pas prise ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Réponse</strong>
+"L'EDHEC est mon 1er choix BBA en France, mais j'ai aussi été acceptée à HEC Montréal en BAA — une excellente alternative internationale. Quelle que soit l'issue, je suis déterminée à poursuivre en management international. Cela dit, l'EDHEC reste le programme qui correspond le mieux à mon profil."</div>
+<div class="tip">Plan B HEC Montréal = crédible et prestigieux. Le jury apprécie la maturité.</div></div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">10</div><div class="card-title">"Des questions pour nous ?"</div></div>
+<div class="card-body"><div class="ex"><strong>Prépare 3, pose 2</strong>
+1. "Quelles possibilités de stages internationaux dès la 1ère année ?"<br>
+2. "Comment fonctionne le réseau alumni au Moyen-Orient / Asie ?"<br>
+3. "Peut-on combiner Global Business avec une spé marketing digital en 4e année ?"</div>
+<div class="tip">TOUJOURS poser au moins 1 question. Pas de question = désintérêt.</div></div>
+</div>
+</div>
+
+<!-- SUB: CHECKLIST -->
+<div id="sub-checklist" class="subpanel">
+<h2 class="st">✅ Checklist Jour J — 27 Avril</h2>
+<div class="checklist">
+<div class="cl-item"><span class="box">☐</span> EnglishScore TERMINÉ (avant 23 avril)</div>
+<div class="cl-item"><span class="box">☐</span> Emage-me 100% complété (avant 24 avril)</div>
+<div class="cl-item"><span class="box">☐</span> Lien Zoom reçu par email</div>
+<div class="cl-item"><span class="box">☐</span> Relire réponses Emage-me + lettre motivation Parcoursup</div>
+<div class="cl-item"><span class="box">☐</span> Pitch 2min30 répété et chronométré (5×)</div>
+<div class="cl-item"><span class="box">☐</span> 3 réponses STAR préparées</div>
+<div class="cl-item"><span class="box">☐</span> 1 sujet d'actu maîtrisé avec avis personnel</div>
+<div class="cl-item"><span class="box">☐</span> 3 faits EDHEC mémorisés</div>
+<div class="cl-item"><span class="box">☐</span> 2 questions au jury préparées</div>
+<div class="cl-item"><span class="box">☐</span> Tenue soignée (haut visible caméra)</div>
+<div class="cl-item"><span class="box">☐</span> Zoom installé et testé (caméra, micro, audio)</div>
+<div class="cl-item"><span class="box">☐</span> WiFi stable + pièce calme + fond neutre</div>
+<div class="cl-item"><span class="box">☐</span> Verre d'eau + ordi chargé</div>
+<div class="cl-item"><span class="box">☐</span> Se connecter 5 min avant</div>
+<div class="cl-item"><span class="box">☐</span> Certificat IELTS 7.5 prêt si demandé</div>
+</div>
+</div>
+
+</div></div>
+
+<!-- ============================================================ -->
+<!-- TAB: ÉCOLE -->
+<!-- ============================================================ -->
+<div id="tab-ecole" class="tab-panel"><div class="c">
+
+<h2 class="st">🏫 Connaissance de l'EDHEC</h2>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--nvy)">📊</div><div class="card-title">L'École en Bref</div></div>
+<div class="card-body">
+<p>• Fondée en <strong>1906</strong> à Lille<br>
+• 5 campus : <strong>Lille, Nice, Paris, Londres, Singapour</strong><br>
+• <strong>Triple accréditation AACSB-EQUIS-AMBA</strong> (1% des écoles mondiales)<br>
+• <strong>#2 BBA France</strong> (Challenges) · <strong>Top 7 Master Europe</strong> (Financial Times)<br>
+• <strong>55 000+ alumni</strong> dans 127 pays<br>
+• Centre de recherche finance <strong>#1 France, top 5 Europe</strong><br>
+• Plan stratégique <strong>"Génération 2050"</strong></p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--gld)">🎓</div><div class="card-title">Le BBA en Détail</div></div>
+<div class="card-body">
+<p>• <strong>4 ans post-bac</strong>, diplôme visé par l'État (Bac+4)<br>
+• <strong>7 parcours</strong> : Business Management FR/EN, Global Business, Entrepreneurship & Innovation, International Law & Finance, Double Diplôme Ingénierie, Online<br>
+• <strong>120 universités partenaires</strong> dans 40 pays<br>
+• <strong>2 stages obligatoires</strong> + possibilité césure<br>
+• Spécialisations 4e année : finance, marketing digital, entrepreneuriat, conseil, data<br>
+• <strong>98% insertion pro</strong> à 6 mois · Salaire moyen sortie ~38 000€</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--tl)">✨</div><div class="card-title">Ce qui Différencie l'EDHEC (à citer)</div></div>
+<div class="card-body">
+<p>• <strong>"Making an Impact"</strong> — la devise = leadership qui transforme positivement<br>
+• <strong>Expertise finance unique</strong> — EDHEC Risk Institute, référence mondiale<br>
+• <strong>Entrepreneuriat intégré</strong> — incubateur sur campus<br>
+• <strong>Double compétence possible</strong> — droit, ingénierie, data + management<br>
+• <strong>Alumni influents</strong> : dirigeants L'Oréal, LVMH, BNP, Decathlon<br>
+• <strong>Recherche</strong> : 200+ publications académiques/an, 40% du corps professoral publie dans des revues classées</p>
+</div>
+</div>
+
+<div class="card">
+<div class="card-h"><div class="card-num" style="background:var(--red)">🌍</div><div class="card-title">Parcours Global Business (celui de Paola)</div></div>
+<div class="card-body">
+<p>• <strong>100% en anglais</strong> dès la 1ère année<br>
+• Recommandé pour profils bilingues/internationaux (niveau B1/B2 min recommandé → tu es C1)<br>
+• Semestres d'échange dans les 120 universités partenaires<br>
+• Stages internationaux intégrés<br>
+• Accès aux spécialisations 4e année : marketing, finance, digital, entrepreneuriat<br>
+• Campus principal : <strong>Lille</strong> (1ère et 2e année)</p>
+</div>
+</div>
+
+<div class="s">
+<h2 class="st">❓ Questions à Poser au Jury</h2>
+<div class="strat">
+<h4>Choisis-en 2 parmi ces 5</h4>
+<p>
+1. "Quelles possibilités de stages internationaux dès la 1ère année ?"<br>
+2. "Comment l'EDHEC accompagne la construction du projet pro ?"<br>
+3. "Quels doubles diplômes depuis le parcours International ?"<br>
+4. "Comment fonctionne le réseau alumni au Moyen-Orient / Asie ?"<br>
+5. "Quels projets entrepreneuriaux les 1ère année peuvent-ils mener ?"
+</p>
+</div>
+</div>
+</div></div>
+
+<footer>
+Guide de préparation pour Paola MAIRE · EDHEC International BBA · Oral 27 avril 2026<br>
+Sources : edhec.edu, Parcoursup, convocation 15/04/2026, emage-me.com · Avril 2026
+</footer>
+
+<script>
+function showTab(id){
+document.querySelectorAll('.tab-panel').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+document.getElementById('tab-'+id).classList.add('active');
+event.currentTarget.classList.add('active');
+window.scrollTo({top:0,behavior:'smooth'});
+}
+function showSub(id){
+document.querySelectorAll('.subpanel').forEach(p=>p.classList.remove('active'));
+document.querySelectorAll('.subtab').forEach(b=>b.classList.remove('active'));
+document.getElementById('sub-'+id).classList.add('active');
+event.currentTarget.classList.add('active');
+}
+</script>
+</body>
+</html>

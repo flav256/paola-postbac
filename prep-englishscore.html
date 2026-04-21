@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>EnglishScore Prep — Paola</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #0a2540;
+  --paper: #fdfcf9;
+  --accent: #e63946;
+  --accent-soft: #fde4e6;
+  --blue: #1d4e89;
+  --blue-soft: #dde7f2;
+  --gold: #d4a574;
+  --gold-soft: #f8ecd9;
+  --sage: #4a6b57;
+  --sage-soft: #e2ebe4;
+  --coral: #f4a261;
+  --border: #e8e0d0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Inter', -apple-system, sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+}
+
+.header {
+  background: linear-gradient(135deg, var(--ink) 0%, #12355b 100%);
+  color: white;
+  padding: 2rem 1.5rem 1.8rem;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+.header::before {
+  content: '';
+  position: absolute;
+  top: -50px; right: -50px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(230,57,70,0.15) 0%, transparent 70%);
+}
+.header .kicker {
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 3px;
+  opacity: 0.6;
+  margin-bottom: 0.4rem;
+}
+.header h1 {
+  font-family: 'Fraunces', serif;
+  font-size: 1.8rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  line-height: 1.15;
+}
+.header .subtitle { font-size: 0.88rem; opacity: 0.75; margin-top: 0.4rem; font-weight: 300; }
+.header .union {
+  display: inline-flex;
+  gap: 0.5rem;
+  align-items: center;
+  background: var(--accent);
+  color: white;
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 0.35rem 0.9rem;
+  border-radius: 20px;
+  margin-top: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.container { max-width: 720px; margin: 0 auto; padding: 1.2rem; }
+
+.banner {
+  background: var(--sage-soft);
+  border-left: 4px solid var(--sage);
+  border-radius: 0 8px 8px 0;
+  padding: 0.9rem 1.1rem;
+  margin: 1rem 0 1.5rem;
+  font-size: 0.88rem;
+}
+.banner strong { color: var(--sage); }
+
+.section { margin: 1.8rem 0; }
+.section-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: var(--ink);
+  padding-bottom: 0.4rem;
+  margin-bottom: 1rem;
+  position: relative;
+}
+.section-title::after {
+  content: '';
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 40px; height: 3px;
+  background: var(--accent);
+}
+
+/* Quick specs */
+.specs {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.spec {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.8rem 0.9rem;
+}
+.spec .icon { font-size: 1.1rem; margin-bottom: 0.3rem; }
+.spec .lbl { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 1px; color: var(--blue); font-weight: 700; }
+.spec .val { font-size: 0.9rem; font-weight: 600; margin-top: 0.1rem; }
+
+/* Part cards */
+.part {
+  background: white;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  margin: 0.9rem 0;
+  overflow: hidden;
+}
+.part-head {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.9rem 1.1rem;
+  background: linear-gradient(to right, var(--paper), white);
+  border-bottom: 1px solid var(--border);
+}
+.part-num {
+  width: 32px; height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Fraunces', serif;
+  font-weight: 800;
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.part-title { font-weight: 700; font-size: 0.98rem; flex: 1; }
+.part-time {
+  font-size: 0.7rem;
+  font-weight: 700;
+  padding: 0.25rem 0.6rem;
+  border-radius: 10px;
+  background: var(--gold-soft);
+  color: var(--gold);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+.part-body { padding: 0.9rem 1.1rem 1.1rem; font-size: 0.88rem; color: #333; }
+.part-body p { margin: 0.5rem 0; }
+
+.example {
+  background: var(--blue-soft);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin: 0.6rem 0;
+  font-size: 0.83rem;
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  color: var(--ink);
+}
+.example::before {
+  content: 'Example → ';
+  font-family: 'Inter', sans-serif;
+  font-style: normal;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  color: var(--blue);
+  font-weight: 700;
+  display: block;
+  margin-bottom: 0.2rem;
+}
+
+.tip {
+  background: var(--accent-soft);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  margin: 0.6rem 0;
+  font-size: 0.85rem;
+}
+.tip::before {
+  content: '💡 Tip — ';
+  font-weight: 700;
+  color: var(--accent);
+}
+
+/* Color coding */
+.part-1 .part-num { background: var(--blue); color: white; }
+.part-2 .part-num { background: var(--sage); color: white; }
+.part-3 .part-num { background: var(--accent); color: white; }
+.part-4 .part-num { background: var(--gold); color: white; }
+
+/* Strategy */
+.strategy {
+  display: grid;
+  gap: 0.7rem;
+  margin: 1rem 0;
+}
+.strategy-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  position: relative;
+  padding-left: 3rem;
+}
+.strategy-card::before {
+  content: attr(data-icon);
+  position: absolute;
+  left: 0.9rem;
+  top: 0.9rem;
+  font-size: 1.3rem;
+}
+.strategy-card h4 { font-size: 0.9rem; margin-bottom: 0.25rem; color: var(--ink); }
+.strategy-card p { font-size: 0.83rem; color: #555; }
+
+/* Checklist */
+.checklist {
+  background: white;
+  border-radius: 10px;
+  border: 1px solid var(--border);
+  padding: 1rem 1.1rem;
+  margin: 0.8rem 0;
+}
+.checklist-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.45rem 0;
+  border-bottom: 1px solid #f2ece0;
+  font-size: 0.88rem;
+}
+.checklist-item:last-child { border-bottom: none; }
+.checklist-item .box { flex-shrink: 0; margin-top: 0.1rem; color: var(--accent); font-weight: 700; }
+
+/* Grammar quick ref */
+.grammar-grid {
+  display: grid;
+  gap: 0.6rem;
+  margin: 0.8rem 0;
+}
+.grammar-item {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.9rem;
+  font-size: 0.85rem;
+}
+.grammar-item .label { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 0.8px; color: var(--blue); font-weight: 700; margin-bottom: 0.15rem; }
+.grammar-item .wrong { color: #c0392b; text-decoration: line-through; font-size: 0.82rem; }
+.grammar-item .right { color: #27ae60; font-weight: 600; font-size: 0.88rem; }
+
+/* Phrases card */
+.phrases {
+  background: var(--gold-soft);
+  border-radius: 10px;
+  padding: 1rem 1.1rem;
+  margin: 0.8rem 0;
+  font-size: 0.85rem;
+}
+.phrases h4 { color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; font-weight: 700; }
+.phrases ul { list-style: none; padding: 0; }
+.phrases li { padding: 0.3rem 0; border-bottom: 1px solid rgba(212, 165, 116, 0.2); }
+.phrases li:last-child { border-bottom: none; }
+.phrases li strong { color: var(--ink); }
+
+footer {
+  text-align: center;
+  padding: 1.5rem;
+  font-size: 0.72rem;
+  color: #999;
+  margin-top: 2rem;
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <div class="kicker">British Council</div>
+  <h1>EnglishScore Test</h1>
+  <div class="subtitle">Core Skills Test + Speaking Test — EDHEC BBA Admission</div>
+  <div class="union">📱 Mobile App Only</div>
+</div>
+
+<div class="container">
+
+  <div class="banner">
+    <strong>You've got this, Paola.</strong> With IELTS 7.5 (B2/C1), you're well above the bar — EnglishScore scores max out at C1. The goal is simply to confirm your level without stress. The test is mobile-only, so download the app and get comfortable before launching.
+  </div>
+
+  <!-- QUICK SPECS -->
+  <div class="section">
+    <h2 class="section-title">Quick Facts</h2>
+    <div class="specs">
+      <div class="spec">
+        <div class="icon">⏱️</div>
+        <div class="lbl">Core Skills</div>
+        <div class="val">~40 min</div>
+      </div>
+      <div class="spec">
+        <div class="icon">🎙️</div>
+        <div class="lbl">Speaking</div>
+        <div class="val">~15 min</div>
+      </div>
+      <div class="spec">
+        <div class="icon">📲</div>
+        <div class="lbl">Platform</div>
+        <div class="val">Mobile app</div>
+      </div>
+      <div class="spec">
+        <div class="icon">🎯</div>
+        <div class="lbl">Score range</div>
+        <div class="val">A2 → C1</div>
+      </div>
+      <div class="spec">
+        <div class="icon">🔒</div>
+        <div class="lbl">Security</div>
+        <div class="val">Camera on</div>
+      </div>
+      <div class="spec">
+        <div class="icon">🚫</div>
+        <div class="lbl">Pauses</div>
+        <div class="val">Not allowed</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ORDER -->
+  <div class="section">
+    <h2 class="section-title">Test Order</h2>
+    <p style="font-size: 0.9rem; color: #555; margin-bottom: 1rem;">You must complete the <strong>Core Skills Test first</strong>. Speaking unlocks only if you score A2 or above (you will easily — you're B2/C1). Do the Core Skills Test, take a short break, then do the Speaking Test.</p>
+  </div>
+
+  <!-- CORE SKILLS TEST -->
+  <div class="section">
+    <h2 class="section-title">📝 Core Skills Test — Structure</h2>
+    <p style="font-size: 0.88rem; color: #555; margin-bottom: 0.8rem;">3 sections, adaptive difficulty (better you perform, harder questions get). Cannot go back to previous questions.</p>
+
+    <!-- Part 1 -->
+    <div class="part part-1">
+      <div class="part-head">
+        <div class="part-num">1</div>
+        <div class="part-title">Grammar & Vocabulary</div>
+        <div class="part-time">15–20 min</div>
+      </div>
+      <div class="part-body">
+        <p>Multiple-choice questions testing verb tenses, word choice, prepositions, collocations. This section sets the difficulty level for Reading & Listening.</p>
+        <div class="example">Choose the correct option: "By the time we arrived, the film _____ already started." (had / has / was / did)</div>
+        <div class="tip">Verb tenses are heavily tested — especially <strong>present perfect vs. past simple</strong> ("I have lived" vs. "I lived") and <strong>past perfect</strong> ("had done"). Read each option before choosing.</div>
+      </div>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="part part-2">
+      <div class="part-head">
+        <div class="part-num">2</div>
+        <div class="part-title">Reading</div>
+        <div class="part-time">~10 min</div>
+      </div>
+      <div class="part-body">
+        <p>Short passages (emails, notices, articles) followed by comprehension questions. Watch out for <strong>"pick the best title"</strong> questions — they're a known tricky type.</p>
+        <div class="example">"Pick the best title for this passage" — or questions asking about the author's purpose, main idea, or detail retrieval.</div>
+        <div class="tip">Skim the questions FIRST, then read the text with those questions in mind. Don't re-read the whole passage for each question.</div>
+      </div>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="part part-3">
+      <div class="part-head">
+        <div class="part-num">3</div>
+        <div class="part-title">Listening</div>
+        <div class="part-time">~10 min</div>
+      </div>
+      <div class="part-body">
+        <p>Audio clips (conversations, announcements, short monologues) with multiple-choice questions. You may need to listen more than once — check if replays are allowed.</p>
+        <div class="example">Conversations between colleagues, customer-service calls, airport announcements, short news reports.</div>
+        <div class="tip">Use earphones if possible — external speaker is OK but risks noise interference. Test your audio volume BEFORE starting. You'll see the question before/during the audio, so read it first to know what to listen for.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- SPEAKING TEST -->
+  <div class="section">
+    <h2 class="section-title">🎙️ Speaking Test — Structure</h2>
+    <p style="font-size: 0.88rem; color: #555; margin-bottom: 0.8rem;">4 parts. Topics mix everyday life + workplace/professional settings. Scoring: pronunciation, fluency, communication. You can re-record most answers once.</p>
+
+    <!-- Part 1 -->
+    <div class="part part-1">
+      <div class="part-head">
+        <div class="part-num">1</div>
+        <div class="part-title">Read Aloud</div>
+        <div class="part-time">~3 min</div>
+      </div>
+      <div class="part-body">
+        <p>You see a sentence on screen (8–24 words). Record yourself reading it out loud. You can try twice.</p>
+        <div class="example">"The new employee will attend the training session scheduled for next Wednesday morning."</div>
+        <div class="tip">Read the sentence silently first, then aloud at a <strong>natural conversational pace</strong>. Don't rush. Pronounce word endings clearly (-s, -ed, -ing). Stress content words (nouns, verbs) more than function words (a, the, of).</div>
+      </div>
+    </div>
+
+    <!-- Part 2 -->
+    <div class="part part-2">
+      <div class="part-head">
+        <div class="part-num">2</div>
+        <div class="part-title">Listen & Repeat</div>
+        <div class="part-time">~3 min</div>
+      </div>
+      <div class="part-body">
+        <p>Watch a video of someone saying a sentence (5–16 words). Record yourself repeating it exactly. You can try twice.</p>
+        <div class="example">Video: "I usually go to the gym three times a week." → You record the same sentence.</div>
+        <div class="tip">Listen carefully to the <strong>intonation and stress pattern</strong>, not just the words. Copy the rhythm of the speaker. If you miss a word, use context to guess — don't freeze.</div>
+      </div>
+    </div>
+
+    <!-- Part 3 -->
+    <div class="part part-3">
+      <div class="part-head">
+        <div class="part-num">3</div>
+        <div class="part-title">Answer Questions</div>
+        <div class="part-time">~6 min</div>
+      </div>
+      <div class="part-body">
+        <p>Watch a video of someone asking a question. Record your answer. <strong>Minimum 18 seconds</strong>, must answer EVERY part of the question. Two attempts allowed.</p>
+        <div class="example">"Tell me about a time you worked in a team. What was your role, and what did you learn from it?"</div>
+        <div class="tip">Before recording, take 5 seconds to think. Structure your answer: <strong>situation → what you did → result/learning</strong>. Use simple but varied sentences. Don't memorize — speak naturally. Fill pauses with "Well...", "So...", "Let me think...".</div>
+      </div>
+    </div>
+
+    <!-- Part 4 -->
+    <div class="part part-4">
+      <div class="part-head">
+        <div class="part-num">4</div>
+        <div class="part-title">Grade Others</div>
+        <div class="part-time">~3 min</div>
+      </div>
+      <div class="part-body">
+        <p>You listen to OTHER test-takers' Part 3 responses and answer questions about them. You can replay as many times as needed. <strong>This is required to get your own score.</strong></p>
+        <div class="tip">Take this seriously — it's not optional. Listen for whether the response is relevant, clear, and grammatically correct. Report any audio problems or inappropriate content.</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- USEFUL PHRASES SPEAKING -->
+  <div class="section">
+    <h2 class="section-title">🗣️ Speaking: Useful Phrases (B2/C1)</h2>
+
+    <div class="phrases">
+      <h4>Starting your answer</h4>
+      <ul>
+        <li><strong>"Well, that's an interesting question. I'd say..."</strong></li>
+        <li><strong>"Let me think for a moment. In my experience..."</strong></li>
+        <li><strong>"From my perspective..."</strong></li>
+        <li><strong>"That reminds me of when..."</strong></li>
+      </ul>
+    </div>
+
+    <div class="phrases">
+      <h4>Structuring ideas</h4>
+      <ul>
+        <li><strong>"First of all... / To begin with..."</strong></li>
+        <li><strong>"On top of that... / In addition..."</strong></li>
+        <li><strong>"On the other hand... / However..."</strong></li>
+        <li><strong>"As a result... / This is why..."</strong></li>
+      </ul>
+    </div>
+
+    <div class="phrases">
+      <h4>Giving examples</h4>
+      <ul>
+        <li><strong>"For instance..."</strong> (more formal than "for example")</li>
+        <li><strong>"Take [X] for example..."</strong></li>
+        <li><strong>"A good illustration of this is..."</strong></li>
+      </ul>
+    </div>
+
+    <div class="phrases">
+      <h4>If you need time to think</h4>
+      <ul>
+        <li><strong>"That's a great question — let me think..."</strong></li>
+        <li><strong>"I haven't really considered that before, but..."</strong></li>
+        <li><strong>"It depends on the situation, but generally..."</strong></li>
+      </ul>
+    </div>
+  </div>
+
+  <!-- GRAMMAR QUICK REF -->
+  <div class="section">
+    <h2 class="section-title">✍️ Grammar: Common Traps</h2>
+
+    <div class="grammar-grid">
+      <div class="grammar-item">
+        <div class="label">Present Perfect vs Past Simple</div>
+        <div class="wrong">I lived in Lyon for 3 years (still there)</div>
+        <div class="right">I have lived in Lyon for 3 years ✓</div>
+      </div>
+
+      <div class="grammar-item">
+        <div class="label">Past Perfect</div>
+        <div class="wrong">When I arrived, she already left</div>
+        <div class="right">When I arrived, she had already left ✓</div>
+      </div>
+
+      <div class="grammar-item">
+        <div class="label">Conditional 2 vs 3</div>
+        <div class="wrong">If I would have known, I would tell you</div>
+        <div class="right">If I had known, I would have told you ✓</div>
+      </div>
+
+      <div class="grammar-item">
+        <div class="label">Prepositions</div>
+        <div class="wrong">She's good IN math / married WITH him</div>
+        <div class="right">She's good AT math / married TO him ✓</div>
+      </div>
+
+      <div class="grammar-item">
+        <div class="label">Phrasal verbs</div>
+        <div class="wrong">Look the word / Give the homework</div>
+        <div class="right">Look UP the word / Hand IN the homework ✓</div>
+      </div>
+
+      <div class="grammar-item">
+        <div class="label">False friends (FR → EN)</div>
+        <div class="wrong">Actually = actuellement / Library = librairie</div>
+        <div class="right">Actually = "in fact" / Currently = actuellement ✓</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- STRATEGY -->
+  <div class="section">
+    <h2 class="section-title">🎯 Strategy</h2>
+
+    <div class="strategy">
+      <div class="strategy-card" data-icon="⚡">
+        <h4>Don't overthink</h4>
+        <p>With IELTS 7.5 you know more than you need. Trust your instinct — first answer is usually right. Second-guessing wastes time.</p>
+      </div>
+
+      <div class="strategy-card" data-icon="🎧">
+        <h4>Audio setup matters</h4>
+        <p>Use good earphones (wired preferred — no Bluetooth lag). Test volume BEFORE launching. Quiet room, door closed, phone on silent.</p>
+      </div>
+
+      <div class="strategy-card" data-icon="🎙️">
+        <h4>Speaking: go first take</h4>
+        <p>You can re-record once, but most first attempts are fine. Only re-record if you really stumbled. Your natural voice scores better than a nervous "perfect" take.</p>
+      </div>
+
+      <div class="strategy-card" data-icon="📸">
+        <h4>Camera security</h4>
+        <p>Random photos are taken during the test. Stay in frame, face fully visible, good lighting. Don't look away too long or the app may flag you.</p>
+      </div>
+
+      <div class="strategy-card" data-icon="⏰">
+        <h4>Don't pause, don't exit</h4>
+        <p>If you close the app, your test can be cancelled. Go to the bathroom BEFORE. Glass of water nearby. Complete in one sitting.</p>
+      </div>
+
+      <div class="strategy-card" data-icon="🗣️">
+        <h4>Speak at normal pace</h4>
+        <p>AI + humans score you. Speak as you would with a friend — clear, natural, not too fast. Your accent is fine. Be understandable, not accent-free.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- SETUP -->
+  <div class="section">
+    <h2 class="section-title">📋 Before You Start</h2>
+    <div class="checklist">
+      <div class="checklist-item"><span class="box">☐</span> Download EnglishScore app (App Store / Google Play)</div>
+      <div class="checklist-item"><span class="box">☐</span> Create account with EDHEC invitation link from the email</div>
+      <div class="checklist-item"><span class="box">☐</span> Phone fully charged (or plugged in)</div>
+      <div class="checklist-item"><span class="box">☐</span> Wired earphones connected and tested</div>
+      <div class="checklist-item"><span class="box">☐</span> Stable WiFi (not public / hotel WiFi — use home network)</div>
+      <div class="checklist-item"><span class="box">☐</span> Quiet room, door closed, phone on silent</div>
+      <div class="checklist-item"><span class="box">☐</span> Camera + microphone permissions granted</div>
+      <div class="checklist-item"><span class="box">☐</span> Good lighting on your face (facing a window or lamp)</div>
+      <div class="checklist-item"><span class="box">☐</span> Glass of water nearby</div>
+      <div class="checklist-item"><span class="box">☐</span> Bathroom BEFORE starting (no pauses allowed)</div>
+      <div class="checklist-item"><span class="box">☐</span> Take a deep breath and relax — you know this</div>
+    </div>
+  </div>
+
+  <!-- PROFILE STRENGTHS -->
+  <div class="section">
+    <h2 class="section-title">💪 Your Edge</h2>
+    <div class="checklist" style="background: var(--sage-soft); border-color: #c8d8cb;">
+      <div class="checklist-item"><span class="box" style="color: var(--sage);">✓</span> <strong>IELTS 7.5</strong> — You scored B2/C1 already. EnglishScore caps at C1 = your ceiling anyway.</div>
+      <div class="checklist-item"><span class="box" style="color: var(--sage);">✓</span> <strong>English-medium education</strong> — Louis Massignon Abu Dhabi, Australia background — authentic fluency, no accent issues.</div>
+      <div class="checklist-item"><span class="box" style="color: var(--sage);">✓</span> <strong>International profile</strong> — You can draw on real stories (Gabon, Australia, UAE, France) for Part 3 Answer Questions.</div>
+      <div class="checklist-item"><span class="box" style="color: var(--sage);">✓</span> <strong>Event management experience</strong> — 15,000 AED fundraiser, Marine nationale internship = concrete teamwork examples ready.</div>
+    </div>
+  </div>
+
+  <!-- CONTEXT -->
+  <div class="section">
+    <h2 class="section-title">📌 Context</h2>
+    <p style="font-size: 0.88rem; color: #555;">EDHEC uses EnglishScore instead of TOEFL/IELTS for the BBA admission test because it's mobile, fast, and cheaper. Results go directly to EDHEC within 24h. There's no official passing score — EDHEC evaluates holistically, but scoring <strong>B2 or higher</strong> (EnglishScore 400+) is expected for international BBA admission.</p>
+  </div>
+
+</div>
+
+<footer>
+  Preparation guide for Paola MAIRE · EDHEC International BBA admission · April 2026<br>
+  Sources: British Council EnglishScore official guides, englishscore.com
+</footer>
+
+</body>
+</html>
