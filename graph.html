@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paola — Fit vs Chances de succes</title>
+<style>
+:root { --navy: #1a2e5a; --accent: #e8a838; --bg: #f5f7fb; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: #2c3e50; }
+.container { max-width: 1000px; margin: 0 auto; padding: 20px; }
+h1 { color: var(--navy); font-size: 1.4rem; margin-bottom: 4px; }
+.subtitle { color: #7f8c8d; font-size: 0.85rem; margin-bottom: 16px; }
+.back { display: inline-block; margin-bottom: 12px; color: #1565c0; text-decoration: none; font-size: 0.9rem; }
+.legend { display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 16px; font-size: 0.82rem; align-items: center; }
+.legend-item { display: flex; align-items: center; gap: 6px; }
+.legend-dot { width: 14px; height: 14px; border-radius: 50%; }
+.chart-wrap { background: #fff; border-radius: 14px; padding: 20px; box-shadow: 0 4px 20px rgba(0,0,0,0.08); border: 1px solid #e0e4ec; position: relative; }
+canvas { display: block; width: 100% !important; }
+.tooltip { position: absolute; background: rgba(26,46,90,0.95); color: #fff; padding: 10px 14px; border-radius: 8px; font-size: 0.82rem; pointer-events: none; opacity: 0; transition: opacity 0.15s; max-width: 260px; line-height: 1.5; z-index: 10; }
+.quadrant-label { position: absolute; font-size: 0.72rem; color: rgba(0,0,0,0.15); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; pointer-events: none; }
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="bilan.html" class="back">&larr; Retour au bilan</a>
+<h1>Fit Paola vs Chances de succes</h1>
+<p class="subtitle">Chaque bulle = une ecole. Taille = frais annuels. Position = adequation profil (Y) vs probabilite d'admission (X).</p>
+
+<div class="legend">
+  <div class="legend-item"><div class="legend-dot" style="background:#27ae60;"></div> Admise</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#2980b9;"></div> Oral a venir</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#f39c12;"></div> Attente resultats</div>
+  <div class="legend-item"><div class="legend-dot" style="background:#e74c3c;"></div> Non admissible</div>
+  <div class="legend-item" style="margin-left:auto;font-size:0.75rem;color:#7f8c8d;">Taille bulle = frais/an</div>
+</div>
+
+<div class="chart-wrap">
+  <canvas id="chart" height="500"></canvas>
+  <div class="tooltip" id="tooltip"></div>
+</div>
+
+</div>
+
+<script>
+const schools = [
+  // Admise
+  { name: 'HEC Montreal', fit: 78, proba: 100, fees: 8000, status: 'admise', program: 'BAA', lieu: 'Montreal', detail: 'Triple accreditee, top francophone Ameriques' },
+  { name: 'Concordia JMSB', fit: 58, proba: 100, fees: 9000, status: 'admise', program: 'BCom', lieu: 'Montreal', detail: 'Backup solide, AACSB' },
+  // Oral a venir
+  { name: 'EDHEC', fit: 92, proba: 75, fees: 14500, status: 'oral', program: 'International BBA', lieu: 'Nice/Lille', detail: '#1 BBA France, #14 FT, Triple accreditee' },
+  { name: 'Hotelschool TH', fit: 91, proba: 70, fees: 9500, status: 'oral', program: 'BA Hotel Mgmt', lieu: 'La Haye/Amsterdam', detail: '#7 monde hotellerie QS, Skotel unique' },
+  { name: 'emlyon', fit: 88, proba: 70, fees: 14000, status: 'oral', program: 'Global BBA', lieu: 'Lyon/Paris', detail: '#2 BBA France, #12 FT, Triple accreditee' },
+  { name: 'SKEMA', fit: 87, proba: 75, fees: 13000, status: 'oral', program: 'Global BBA', lieu: 'Sophia-Antipolis', detail: 'Luxury & Fashion Management, 7 campus monde' },
+  { name: 'IESEG', fit: 82, proba: 70, fees: 11500, status: 'oral', program: 'PGE Bac+5', lieu: 'Lille/Paris', detail: '#1 PGE post-bac, #33 FT, Triple accreditee' },
+  { name: 'ESSCA', fit: 72, proba: 75, fees: 10500, status: 'oral', program: 'PGE Bac+5', lieu: 'Angers/Paris', detail: '#2 PGE post-bac, Triple accreditee' },
+  { name: 'NEOMA', fit: 71, proba: 75, fees: 12000, status: 'oral', program: 'Global BBA/CESEM', lieu: 'Reims/Paris', detail: 'CESEM Double Degree, Triple accreditee' },
+  { name: 'GEM', fit: 70, proba: 70, fees: 12500, status: 'oral', program: 'International BBA', lieu: 'Grenoble/Paris', detail: 'Geopolitics lab, #20 FT' },
+  { name: 'KEDGE', fit: 68, proba: 75, fees: 11500, status: 'oral', program: 'EBP+IBBA', lieu: 'Bordeaux/Marseille', detail: 'Double admissibilite, Triple accreditee' },
+  { name: 'EM Normandie', fit: 66, proba: 70, fees: 11000, status: 'oral', program: 'PGE Bac+5', lieu: 'Paris/Dubai', detail: 'Campus Dubai, AACSB EQUIS' },
+  { name: 'ESDES', fit: 62, proba: 80, fees: 9000, status: 'oral', program: 'PGE Bac+5', lieu: 'Lyon', detail: 'Humanites & Creativite, AACSB EFMD' },
+  // Attente resultats
+  { name: 'Inst. Lyfe', fit: 90, proba: 80, fees: 11000, status: 'attente', program: 'Bachelor Hospitality', lieu: 'Lyon (Ecully)', detail: 'Ex-Paul Bocuse, #1 hotellerie France' },
+  { name: 'Dauphine-PSL', fit: 72, proba: 25, fees: 3700, status: 'attente', program: 'Licence', lieu: 'Paris/Madrid/Londres', detail: 'PSL #24 monde, tres selectif' },
+  { name: 'Excelia', fit: 64, proba: 60, fees: 7000, status: 'attente', program: 'PGE+Bachelor', lieu: 'La Rochelle/Paris', detail: 'ADN tourisme/evenementiel' },
+  { name: 'ISG Paris', fit: 48, proba: 55, fees: 8000, status: 'attente', program: 'PGE Bac+5', lieu: 'Paris 16e', detail: 'AACSB, section internationale' },
+  { name: 'Lyon 3', fit: 38, proba: 95, fees: 700, status: 'attente', program: 'Licence Gestion', lieu: 'Lyon', detail: 'Filet garanti >80%' },
+  { name: 'EGC Lille', fit: 25, proba: 95, fees: 3000, status: 'attente', program: 'Bachelor Commerce', lieu: 'Lille', detail: 'Filet regional CCI' },
+  // Non admissible
+  { name: 'ESSEC', fit: 85, proba: 0, fees: 17400, status: 'refusee', program: 'Global BBA', lieu: 'Cergy/Singapour', detail: 'Non admissible' },
+  { name: 'ESCP', fit: 80, proba: 0, fees: 13000, status: 'refusee', program: 'BSc Management', lieu: 'Paris/Londres', detail: 'Non admissible' },
+  { name: 'RSM Rotterdam', fit: 75, proba: 0, fees: 12500, status: 'refusee', program: 'BSc IBA', lieu: 'Rotterdam', detail: 'Rang 2229' },
+];
+
+const colors = { admise: '#27ae60', oral: '#2980b9', attente: '#f39c12', refusee: '#e74c3c' };
+const colorsBg = { admise: 'rgba(39,174,96,0.25)', oral: 'rgba(41,128,185,0.25)', attente: 'rgba(243,156,18,0.2)', refusee: 'rgba(231,76,60,0.15)' };
+
+const canvas = document.getElementById('chart');
+const ctx = canvas.getContext('2d');
+const tooltip = document.getElementById('tooltip');
+
+const PAD = { top: 40, right: 40, bottom: 50, left: 55 };
+let W, H, plotW, plotH;
+let dpr = window.devicePixelRatio || 1;
+
+function resize() {
+  const rect = canvas.parentElement.getBoundingClientRect();
+  W = rect.width - 40;
+  H = 500;
+  canvas.width = W * dpr;
+  canvas.height = H * dpr;
+  canvas.style.width = W + 'px';
+  canvas.style.height = H + 'px';
+  ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
+  plotW = W - PAD.left - PAD.right;
+  plotH = H - PAD.top - PAD.bottom;
+}
+
+function x(proba) { return PAD.left + (proba / 100) * plotW; }
+function y(fit) { return PAD.top + ((100 - fit) / 100) * plotH; }
+function radius(fees) { return Math.max(8, Math.min(28, Math.sqrt(fees / 200))); }
+
+function draw() {
+  resize();
+  ctx.clearRect(0, 0, W, H);
+
+  // Quadrant backgrounds
+  const midX = x(50), midY = y(50);
+  // Top-right: sweet spot
+  ctx.fillStyle = 'rgba(39,174,96,0.04)';
+  ctx.fillRect(midX, PAD.top, W - PAD.right - midX, midY - PAD.top);
+  // Top-left: high fit, low chance
+  ctx.fillStyle = 'rgba(231,76,60,0.03)';
+  ctx.fillRect(PAD.left, PAD.top, midX - PAD.left, midY - PAD.top);
+  // Bottom-right: high chance, low fit
+  ctx.fillStyle = 'rgba(243,156,18,0.03)';
+  ctx.fillRect(midX, midY, W - PAD.right - midX, H - PAD.bottom - midY);
+
+  // Grid lines
+  ctx.strokeStyle = '#e8ecf1';
+  ctx.lineWidth = 1;
+  for (let i = 0; i <= 100; i += 25) {
+    ctx.beginPath(); ctx.moveTo(x(i), PAD.top); ctx.lineTo(x(i), H - PAD.bottom); ctx.stroke();
+    ctx.beginPath(); ctx.moveTo(PAD.left, y(i)); ctx.lineTo(W - PAD.right, y(i)); ctx.stroke();
+  }
+
+  // 50% lines (thicker)
+  ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+  ctx.lineWidth = 2;
+  ctx.setLineDash([6, 4]);
+  ctx.beginPath(); ctx.moveTo(midX, PAD.top); ctx.lineTo(midX, H - PAD.bottom); ctx.stroke();
+  ctx.beginPath(); ctx.moveTo(PAD.left, midY); ctx.lineTo(W - PAD.right, midY); ctx.stroke();
+  ctx.setLineDash([]);
+
+  // Axis labels
+  ctx.fillStyle = '#7f8c8d';
+  ctx.font = '11px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  for (let i = 0; i <= 100; i += 25) {
+    ctx.fillText(i + '%', x(i), H - PAD.bottom + 18);
+    ctx.textAlign = 'right';
+    ctx.fillText(i, PAD.left - 8, y(i) + 4);
+    ctx.textAlign = 'center';
+  }
+
+  // Axis titles
+  ctx.fillStyle = '#1a2e5a';
+  ctx.font = 'bold 12px Segoe UI, system-ui, sans-serif';
+  ctx.fillText('Chances de succes (%)', PAD.left + plotW / 2, H - 5);
+  ctx.save();
+  ctx.translate(14, PAD.top + plotH / 2);
+  ctx.rotate(-Math.PI / 2);
+  ctx.fillText('Fit Paola (adequation profil)', 0, 0);
+  ctx.restore();
+
+  // Quadrant labels
+  ctx.fillStyle = 'rgba(0,0,0,0.07)';
+  ctx.font = 'bold 11px Segoe UI, system-ui, sans-serif';
+  ctx.textAlign = 'center';
+  ctx.fillText('IDEAL', x(75), y(85));
+  ctx.fillText('AMBITIEUX', x(25), y(85));
+  ctx.fillText('FILET SUR', x(80), y(30));
+
+  // Draw bubbles (refusees first, then others on top)
+  const order = ['refusee', 'attente', 'oral', 'admise'];
+  for (const status of order) {
+    schools.filter(s => s.status === status).forEach(s => {
+      const cx = x(s.proba);
+      const cy = y(s.fit);
+      const r = radius(s.fees);
+
+      // Glow
+      const grad = ctx.createRadialGradient(cx, cy, 0, cx, cy, r * 1.8);
+      grad.addColorStop(0, colorsBg[s.status]);
+      grad.addColorStop(1, 'rgba(255,255,255,0)');
+      ctx.fillStyle = grad;
+      ctx.beginPath(); ctx.arc(cx, cy, r * 1.8, 0, Math.PI * 2); ctx.fill();
+
+      // Bubble
+      ctx.beginPath();
+      ctx.arc(cx, cy, r, 0, Math.PI * 2);
+      ctx.fillStyle = colorsBg[s.status].replace('0.25', '0.6').replace('0.2', '0.6').replace('0.15', '0.5');
+      ctx.fill();
+      ctx.strokeStyle = colors[s.status];
+      ctx.lineWidth = 2.5;
+      ctx.stroke();
+
+      // Label
+      ctx.fillStyle = '#2c3e50';
+      ctx.font = r > 14 ? 'bold 10px Segoe UI' : 'bold 9px Segoe UI';
+      ctx.textAlign = 'center';
+      const label = s.name.length > 12 ? s.name.substring(0, 11) + '.' : s.name;
+      ctx.fillText(label, cx, cy + r + 13);
+    });
+  }
+}
+
+// Tooltip
+canvas.addEventListener('mousemove', (e) => {
+  const rect = canvas.getBoundingClientRect();
+  const mx = e.clientX - rect.left;
+  const my = e.clientY - rect.top;
+  let found = null;
+  for (const s of schools) {
+    const cx = x(s.proba), cy = y(s.fit), r = radius(s.fees);
+    if (Math.hypot(mx - cx, my - cy) < r + 4) { found = s; break; }
+  }
+  if (found) {
+    const statusLabels = { admise: 'ADMISE', oral: 'Oral a venir', attente: 'Attente resultats', refusee: 'Non admissible' };
+    tooltip.innerHTML = `<strong>${found.name}</strong><br>${found.program} — ${found.lieu}<br>Fit: <strong>${found.fit}/100</strong> | Proba: <strong>${found.proba}%</strong><br>Frais: ${found.fees.toLocaleString()} EUR/an<br><em>${found.detail}</em><br><span style="color:${colors[found.status]}">${statusLabels[found.status]}</span>`;
+    tooltip.style.opacity = 1;
+    let tx = e.clientX - rect.left + 16;
+    let ty = e.clientY - rect.top - 20;
+    if (tx + 260 > W) tx = tx - 280;
+    if (ty < 10) ty = 10;
+    tooltip.style.left = tx + 'px';
+    tooltip.style.top = ty + 'px';
+    canvas.style.cursor = 'pointer';
+  } else {
+    tooltip.style.opacity = 0;
+    canvas.style.cursor = 'default';
+  }
+});
+canvas.addEventListener('mouseleave', () => { tooltip.style.opacity = 0; });
+
+// Fix the CSS variable reference in JS
+function varFn(name, fallback) { return fallback; }
+
+draw();
+window.addEventListener('resize', draw);
+</script>
+</body>
+</html>
