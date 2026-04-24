@@ -249,40 +249,81 @@ function draw() {
     });
   }
 
-  // Draw labels with collision avoidance (separate pass)
+  // Draw labels with leader lines and collision avoidance
   const labels = [];
   for (const st of drawOrder) {
     schools.filter(s => s.status === st && isVisible(s)).forEach(s => {
       const cx = xPos(s.proba), cy = yPos(s.fit), r = rad(s.fees);
       const shortName = s.name.replace('Hotelschool TH', 'HTH').replace('Inst. Lyfe', 'Lyfe').replace('EM Normandie', 'EM Norm.').replace('Dauphine-PSL', 'Dauphine').replace('RSM Rotterdam', 'RSM').replace('Concordia JMSB', 'Concordia').replace('HEC Montreal', 'HEC Mtl').replace('EGC Lille', 'EGC').replace('ISG Paris', 'ISG');
-      labels.push({ name: shortName, x: cx, y: cy + r + 13, r, color: colors[s.status] });
+      labels.push({ name: shortName, bx: cx, by: cy, lx: cx, ly: cy + r + 16, r, color: colors[s.status] });
     });
   }
 
-  // Resolve overlaps: shift labels that collide
-  for (let i = 0; i < labels.length; i++) {
-    for (let j = i + 1; j < labels.length; j++) {
-      const a = labels[i], b = labels[j];
-      const dx = Math.abs(a.x - b.x), dy = Math.abs(a.y - b.y);
-      if (dx < 55 && dy < 12) {
-        // Shift the lower-priority one
-        if (a.y < b.y) { b.y += 13; } else { a.y += 13; }
+  // Multiple passes to resolve overlaps
+  const LH = 14, LW = 58;
+  for (let pass = 0; pass < 12; pass++) {
+    for (let i = 0; i < labels.length; i++) {
+      for (let j = i + 1; j < labels.length; j++) {
+        const a = labels[i], b = labels[j];
+        const dx = Math.abs(a.lx - b.lx), dy = Math.abs(a.ly - b.ly);
+        if (dx < LW && dy < LH) {
+          const push = (LH - dy) / 2 + 1;
+          if (a.ly < b.ly) { a.ly -= push; b.ly += push; }
+          else { b.ly -= push; a.ly += push; }
+        }
       }
     }
   }
 
-  // Render labels with leader lines if shifted far
+  // Also try shifting horizontally if still overlapping
+  for (let i = 0; i < labels.length; i++) {
+    for (let j = i + 1; j < labels.length; j++) {
+      const a = labels[i], b = labels[j];
+      if (Math.abs(a.lx - b.lx) < LW && Math.abs(a.ly - b.ly) < LH) {
+        // Shift one to the side
+        if (a.bx < b.bx) { a.lx -= 30; b.lx += 30; }
+        else { b.lx -= 30; a.lx += 30; }
+      }
+    }
+  }
+
+  // Render leader lines + labels
   labels.forEach(l => {
-    const origY = l.y;
-    ctx.fillStyle = '#1a2e5a';
+    const dist = Math.hypot(l.lx - l.bx, l.ly - l.by);
+    // Leader line from bubble edge to label
+    if (dist > l.r + 4) {
+      const angle = Math.atan2(l.ly - l.by, l.lx - l.bx);
+      const startX = l.bx + Math.cos(angle) * (l.r + 2);
+      const startY = l.by + Math.sin(angle) * (l.r + 2);
+      ctx.beginPath();
+      ctx.moveTo(startX, startY);
+      ctx.lineTo(l.lx, l.ly - 5);
+      ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+      ctx.lineWidth = 1;
+      ctx.stroke();
+      // Small dot at label end
+      ctx.beginPath();
+      ctx.arc(l.lx, l.ly - 5, 1.5, 0, Math.PI * 2);
+      ctx.fillStyle = 'rgba(0,0,0,0.25)';
+      ctx.fill();
+    }
+
+    // Label with background pill
     ctx.font = 'bold 10px Segoe UI, system-ui, sans-serif';
-    ctx.textAlign = 'center';
-    // Background for readability
     const tw = ctx.measureText(l.name).width;
-    ctx.fillStyle = 'rgba(255,255,255,0.85)';
-    ctx.fillRect(l.x - tw/2 - 2, l.y - 9, tw + 4, 12);
+    // Pill background
+    const px = l.lx - tw/2 - 5, py = l.ly - 10, pw = tw + 10, ph = 14;
+    ctx.fillStyle = 'rgba(255,255,255,0.92)';
+    ctx.beginPath();
+    ctx.roundRect(px, py, pw, ph, 4);
+    ctx.fill();
+    ctx.strokeStyle = l.color;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+    // Text
     ctx.fillStyle = '#1a2e5a';
-    ctx.fillText(l.name, l.x, l.y);
+    ctx.textAlign = 'center';
+    ctx.fillText(l.name, l.lx, l.ly + 1);
   });
 
   // Connection line for selected
