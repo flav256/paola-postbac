@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paola — Bilan Candidatures & Strategie de choix</title>
+<style>
+:root { --navy: #1a2e5a; --accent: #e8a838; --green: #27ae60; --red: #e74c3c; --orange: #f39c12; --teal: #16a085; --bg: #f5f7fb; --card: #fff; --text: #2c3e50; --muted: #7f8c8d; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 20px; }
+h1 { color: var(--navy); font-size: 1.6rem; margin-bottom: 8px; }
+h2 { color: var(--navy); font-size: 1.2rem; margin: 28px 0 12px; border-left: 4px solid var(--accent); padding-left: 12px; }
+h3 { color: var(--navy); font-size: 1rem; margin: 16px 0 8px; }
+.back { display: inline-block; margin-bottom: 12px; color: #1565c0; text-decoration: none; font-size: 0.9rem; }
+.subtitle { color: var(--muted); font-size: 0.92rem; margin-bottom: 20px; }
+.card { background: var(--card); border-radius: 12px; padding: 18px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); border: 1px solid #e0e4ec; margin-bottom: 16px; }
+
+/* STATUS BADGES */
+.st { display: inline-block; padding: 3px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: 700; }
+.st-admise { background: #27ae60; color: #fff; }
+.st-admissible { background: #b8f0cc; color: #0d4f26; }
+.st-attente { background: #fff3cd; color: #856404; }
+.st-refusee { background: #f8d7da; color: #721c24; }
+.st-oral { background: #e3f2fd; color: #0d47a1; }
+
+/* MAIN TABLE */
+.matrix { width: 100%; border-collapse: collapse; font-size: 0.82rem; margin: 12px 0; }
+.matrix th { background: var(--navy); color: #fff; padding: 8px 6px; text-align: left; font-size: 0.75rem; position: sticky; top: 0; }
+.matrix td { padding: 7px 6px; border-bottom: 1px solid #eee; vertical-align: top; }
+.matrix tr:hover { background: #f0f4ff; }
+.matrix tr.rejected { background: #fef0f0; opacity: 0.65; }
+.matrix tr.confirmed { background: #e8f5e9; }
+.matrix tr.admissible { background: #f0faf4; }
+.matrix .school-name { font-weight: 700; color: var(--navy); }
+.matrix .stars { color: var(--accent); font-size: 0.9rem; letter-spacing: -1px; }
+
+/* SCORE BAR */
+.score-bar { display: flex; align-items: center; gap: 6px; }
+.score-fill { height: 8px; border-radius: 4px; background: var(--teal); }
+.score-label { font-size: 0.72rem; color: var(--muted); min-width: 28px; }
+
+/* TIER CARDS */
+.tier { border-radius: 10px; padding: 14px; margin: 10px 0; }
+.tier-1 { background: linear-gradient(135deg, #d4edda, #c3e6cb); border-left: 5px solid #27ae60; }
+.tier-2 { background: linear-gradient(135deg, #e3f2fd, #bbdefb); border-left: 5px solid #1565c0; }
+.tier-3 { background: linear-gradient(135deg, #fff3cd, #ffeaa7); border-left: 5px solid #f39c12; }
+.tier-4 { background: linear-gradient(135deg, #f8f9fa, #e9ecef); border-left: 5px solid #6c757d; }
+
+/* RISK CHART */
+.risk-row { display: flex; align-items: center; gap: 10px; padding: 6px 0; border-bottom: 1px solid #eee; font-size: 0.85rem; }
+.risk-label { min-width: 180px; font-weight: 600; }
+.risk-bar-bg { flex: 1; height: 14px; background: #eee; border-radius: 7px; overflow: hidden; }
+.risk-bar { height: 100%; border-radius: 7px; }
+.risk-pct { min-width: 40px; text-align: right; font-weight: 600; font-size: 0.8rem; }
+
+/* KEY INSIGHT */
+.insight { background: linear-gradient(135deg, #fef9e7, #fdecd0); border-left: 4px solid var(--accent); padding: 14px 18px; border-radius: 8px; margin: 14px 0; }
+.danger { background: #fde8e8; border-left: 4px solid var(--red); padding: 14px 18px; border-radius: 8px; margin: 14px 0; }
+.success { background: #d4edda; border-left: 4px solid var(--green); padding: 14px 18px; border-radius: 8px; margin: 14px 0; }
+
+@media (max-width: 768px) { .matrix { font-size: 0.72rem; } .matrix th, .matrix td { padding: 5px 3px; } }
+@media print { .back { display: none; } body { font-size: 10pt; } .matrix { font-size: 8pt; } }
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="back">&larr; Retour page principale</a>
+<h1>Bilan Candidatures & Strategie de choix</h1>
+<p class="subtitle">Paola Maire — Mise a jour 24 avril 2026 — Toutes les candidatures, criteres de choix, et analyse risque/securite</p>
+
+<!-- ==================== DASHBOARD ==================== -->
+<h2>1. Tableau de bord — Statut de chaque candidature</h2>
+
+<div class="card" style="overflow-x: auto;">
+<table class="matrix">
+<thead>
+<tr>
+<th>Ecole</th>
+<th>Programme</th>
+<th>Voie</th>
+<th>Statut</th>
+<th>Prochaine etape</th>
+<th>Accred.</th>
+<th>Rang FR</th>
+<th>Score Paola</th>
+</tr>
+</thead>
+<tbody>
+<!-- CONFIRMED -->
+<tr class="confirmed">
+<td class="school-name">HEC Montreal</td>
+<td>BAA (annee prep)</td>
+<td>Hors-Parcoursup</td>
+<td><span class="st st-admise">ADMISE</span></td>
+<td>Logement + rentree 24 aout</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#1 francophone Canada</td>
+<td><div class="score-bar"><div class="score-fill" style="width:85%;background:#27ae60;"></div><span class="score-label">85</span></div></td>
+</tr>
+<tr class="confirmed">
+<td class="school-name">Concordia JMSB</td>
+<td>BCom</td>
+<td>Hors-Parcoursup</td>
+<td><span class="st st-admise">ADMISE</span></td>
+<td>Backup — orientation en cours</td>
+<td>AACSB</td>
+<td>Top 10 Canada</td>
+<td><div class="score-bar"><div class="score-fill" style="width:65%;background:#27ae60;"></div><span class="score-label">65</span></div></td>
+</tr>
+<!-- ADMISSIBLE — ORAL A VENIR -->
+<tr class="admissible">
+<td class="school-name">EDHEC</td>
+<td>International BBA (4 ans)</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 27/4</span></td>
+<td>Oral bilingue Zoom 14h</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#1 BBA post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:92%;background:#1565c0;"></div><span class="score-label">92</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">IESEG</td>
+<td>PGE Bac+5</td>
+<td>ACCES</td>
+<td><span class="st st-oral">ORAL 30/4</span></td>
+<td>Motivation 45min + anglais 20min</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#1 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:88%;background:#1565c0;"></div><span class="score-label">88</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">ESSCA</td>
+<td>PGE Bac+5</td>
+<td>ACCES</td>
+<td><span class="st st-oral">ORAL 30/4</span></td>
+<td>Individuel + collab + QCM + anglais</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#2 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:80%;background:#1565c0;"></div><span class="score-label">80</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">ESDES</td>
+<td>PGE Bac+5</td>
+<td>ACCES</td>
+<td><span class="st st-oral">ORAL 30/4</span></td>
+<td>Motivation 30min + anglais 15min</td>
+<td>AACSB EFMD</td>
+<td>~#8 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:72%;background:#1565c0;"></div><span class="score-label">72</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">emlyon</td>
+<td>Global BBA (4 ans)</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 2/5</span></td>
+<td>Epreuve signature + anglais</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#2 BBA post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:90%;background:#1565c0;"></div><span class="score-label">90</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">NEOMA</td>
+<td>Global BBA / CESEM</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 2/5</span></td>
+<td>Motivation 20min + anglais 15min</td>
+<td>AACSB EQUIS AMBA</td>
+<td>Top 5 BBA</td>
+<td><div class="score-bar"><div class="score-fill" style="width:78%;background:#1565c0;"></div><span class="score-label">78</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">GEM</td>
+<td>International BBA (4 ans)</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 4/5</span></td>
+<td>Motivation + anglais (textes prepares)</td>
+<td>AACSB EQUIS AMBA</td>
+<td>Top 5 BBA</td>
+<td><div class="score-bar"><div class="score-fill" style="width:76%;background:#1565c0;"></div><span class="score-label">76</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">KEDGE</td>
+<td>EBP + IBBA (4 ans)</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 7/5</span></td>
+<td>Motivation + anglais Teams</td>
+<td>AACSB EQUIS AMBA</td>
+<td>Top 7 BBA</td>
+<td><div class="score-bar"><div class="score-fill" style="width:74%;background:#1565c0;"></div><span class="score-label">74</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">SKEMA</td>
+<td>Global BBA (4 ans)</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 11/5</span></td>
+<td>Motivation + anglais image</td>
+<td>AACSB EQUIS AMBA</td>
+<td>Top 4 BBA</td>
+<td><div class="score-bar"><div class="score-fill" style="width:86%;background:#1565c0;"></div><span class="score-label">86</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">EM Normandie</td>
+<td>PGE Bac+5</td>
+<td>SESAME</td>
+<td><span class="st st-oral">ORAL 12/5</span></td>
+<td>Motivation FR (dossier)</td>
+<td>AACSB EQUIS</td>
+<td>Top 5 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:70%;background:#1565c0;"></div><span class="score-label">70</span></div></td>
+</tr>
+<tr class="admissible">
+<td class="school-name">Hotelschool TH</td>
+<td>BA Hotel Mgmt (4 ans)</td>
+<td>Hors-Parcoursup</td>
+<td><span class="st st-oral">SELECTION 18-22/5</span></td>
+<td>Essay + interview + tests</td>
+<td>Intl reconnu</td>
+<td>#7 monde hotellerie (QS)</td>
+<td><div class="score-bar"><div class="score-fill" style="width:88%;background:#1565c0;"></div><span class="score-label">88</span></div></td>
+</tr>
+<!-- ATTENTE -->
+<tr>
+<td class="school-name">Excelia</td>
+<td>PGE + Bachelor</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Oral passe</span></td>
+<td>Attente resultats Parcoursup</td>
+<td>AACSB EPAS</td>
+<td>#4 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:68%;background:#f39c12;"></div><span class="score-label">68</span></div></td>
+</tr>
+<tr>
+<td class="school-name">Inst. Lyfe</td>
+<td>Bachelor Hospitality (4 ans)</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Oral+ecrits passes</span></td>
+<td>Attente resultats (5 juin)</td>
+<td>Reconnu Etat</td>
+<td>#1 France hotellerie</td>
+<td><div class="score-bar"><div class="score-fill" style="width:90%;background:#f39c12;"></div><span class="score-label">90</span></div></td>
+</tr>
+<tr>
+<td class="school-name">ISG Paris</td>
+<td>PGE Bac+5</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Oral passe</span></td>
+<td>Attente resultats</td>
+<td>AACSB</td>
+<td>~#12 PGE post-bac</td>
+<td><div class="score-bar"><div class="score-fill" style="width:55%;background:#f39c12;"></div><span class="score-label">55</span></div></td>
+</tr>
+<tr>
+<td class="school-name">Dauphine-PSL</td>
+<td>Licence (3 campus)</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Attente</span></td>
+<td>Resultats 5 juin</td>
+<td>Universite publique</td>
+<td>Top 3 universite FR</td>
+<td><div class="score-bar"><div class="score-fill" style="width:82%;background:#f39c12;"></div><span class="score-label">82</span></div></td>
+</tr>
+<tr>
+<td class="school-name">Lyon 3 iaelyon</td>
+<td>Licence Gestion</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Filet >80%</span></td>
+<td>Resultats 5 juin</td>
+<td>AACSB (iaelyon)</td>
+<td>Filet garanti</td>
+<td><div class="score-bar"><div class="score-fill" style="width:45%;background:#f39c12;"></div><span class="score-label">45</span></div></td>
+</tr>
+<tr>
+<td class="school-name">EGC Lille</td>
+<td>Bachelor Commerce</td>
+<td>Parcoursup</td>
+<td><span class="st st-attente">Filet >80%</span></td>
+<td>Resultats 5 juin</td>
+<td>CCI</td>
+<td>Filet regional</td>
+<td><div class="score-bar"><div class="score-fill" style="width:30%;background:#f39c12;"></div><span class="score-label">30</span></div></td>
+</tr>
+<!-- REFUSEES -->
+<tr class="rejected">
+<td class="school-name">ESSEC Global BBA</td>
+<td>Global BBA</td>
+<td>SESAME</td>
+<td><span class="st st-refusee">Non admissible</span></td>
+<td>—</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#1 France</td>
+<td>—</td>
+</tr>
+<tr class="rejected">
+<td class="school-name">ESCP Bachelor</td>
+<td>BSc Management</td>
+<td>Parcoursup</td>
+<td><span class="st st-refusee">Non admissible</span></td>
+<td>—</td>
+<td>AACSB EQUIS AMBA</td>
+<td>#2 France</td>
+<td>—</td>
+</tr>
+<tr class="rejected">
+<td class="school-name">RSM Rotterdam</td>
+<td>BSc IBA</td>
+<td>Studielink</td>
+<td><span class="st st-refusee">Rang 2229</span></td>
+<td>—</td>
+<td>AACSB EQUIS</td>
+<td>#3 Europe IBA</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<p style="font-size:0.78rem;color:var(--muted);">Score Paola = adequation programme/profil, pondere par ranking, accreditations, international, hotellerie/luxe/events, et cout. Echelle 0-100.</p>
+
+<!-- ==================== COMPARAISON MULTI-CRITERES ==================== -->
+<h2>2. Comparaison multi-criteres — Top 8 options actives</h2>
+
+<div class="card" style="overflow-x: auto;">
+<table class="matrix">
+<thead>
+<tr>
+<th>Ecole</th>
+<th>Duree</th>
+<th>Frais/an</th>
+<th>Salaire sortie</th>
+<th>International</th>
+<th>Hotellerie/ Luxe</th>
+<th>Accreditations</th>
+<th>FT Ranking</th>
+</tr>
+</thead>
+<tbody>
+<tr class="confirmed"><td class="school-name">HEC Montreal</td><td>3+1 ans</td><td>~8 000 CAD</td><td>~50 000 CAD</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td><td>Triple</td><td>Top 50 monde</td></tr>
+<tr class="admissible"><td class="school-name">EDHEC BBA</td><td>4 ans</td><td>~14 500 EUR</td><td>~42 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td><td>Triple</td><td>#14 monde (MiM)</td></tr>
+<tr class="admissible"><td class="school-name">IESEG PGE</td><td>5 ans</td><td>~11 500 EUR</td><td>~42 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9734;&#9734;&#9734;</span></td><td>Triple</td><td>#33 monde (MiM)</td></tr>
+<tr class="admissible"><td class="school-name">emlyon BBA</td><td>4 ans</td><td>~14 000 EUR</td><td>~40 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td><td>Triple</td><td>#12 monde (MiM)</td></tr>
+<tr class="admissible"><td class="school-name">SKEMA BBA</td><td>4 ans</td><td>~13 000 EUR</td><td>~38 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></td><td>Triple</td><td>#18 monde (MiM)</td></tr>
+<tr class="admissible"><td class="school-name">Hotelschool TH</td><td>4 ans</td><td>~9 500 EUR</td><td>~38 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>QS #7 Hospitality</td><td>#7 monde (hospitality)</td></tr>
+<tr><td class="school-name">Inst. Lyfe</td><td>4 ans</td><td>~11 000 EUR</td><td>~32 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9734;&#9734;</span></td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span></td><td>Reconnu Etat</td><td>#1 France hotellerie</td></tr>
+<tr><td class="school-name">Dauphine-PSL</td><td>3 ans</td><td>~3 700 EUR</td><td>~38 000 EUR</td><td><span class="stars">&#9733;&#9733;&#9733;&#9733;&#9734;</span></td><td><span class="stars">&#9733;&#9734;&#9734;&#9734;&#9734;</span></td><td>Universite publique</td><td>Top 3 FR (PSL #24 monde)</td></tr>
+</tbody>
+</table>
+</div>
+
+<!-- ==================== TIERS ==================== -->
+<h2>3. Classement par tiers — Strategie de choix</h2>
+
+<div class="tier tier-1">
+<h3>TIER 1 — Premiers choix (prestige + adequation parfaite)</h3>
+<p><strong>EDHEC BBA</strong> | <strong>emlyon BBA</strong> | <strong>IESEG PGE</strong> | <strong>Hotelschool The Hague</strong></p>
+<p style="font-size:0.85rem;margin-top:6px;">Triple accredites, top rankings internationaux, ouverture luxe/international maximale. EDHEC et emlyon = meilleur salaire sortie BBA. IESEG = meilleur PGE post-bac (5 ans, Bac+5). Hotelschool = reference mondiale hotellerie, alignement parfait projet Paola.</p>
+</div>
+
+<div class="tier tier-2">
+<h3>TIER 2 — Excellentes options (fort potentiel)</h3>
+<p><strong>SKEMA BBA</strong> (Luxury & Fashion!) | <strong>Institut Lyfe</strong> (hotellerie pure) | <strong>Dauphine-PSL</strong> (prestige academique)</p>
+<p style="font-size:0.85rem;margin-top:6px;">SKEMA = seule ecole avec spe Luxury & Fashion Management integree + 7 campus monde. Lyfe = ex-Paul Bocuse, alignement parfait hotellerie. Dauphine = rapport qualite/prix imbattable, prestige PSL, mais pas oriente hotellerie.</p>
+</div>
+
+<div class="tier tier-3">
+<h3>TIER 3 — Bonnes options solides</h3>
+<p><strong>ESSCA PGE</strong> | <strong>NEOMA BBA</strong> | <strong>GEM BBA</strong> | <strong>KEDGE BBA</strong> | <strong>EM Normandie PGE</strong> | <strong>Excelia PGE</strong></p>
+<p style="font-size:0.85rem;margin-top:6px;">Toutes triple accreditees (sauf Excelia EPAS). Solides formations, bon reseau. NEOMA CESEM = double diplome international unique. EM Normandie = campus Dubai (lien avec Paola). ESSCA = entretien collaboratif original.</p>
+</div>
+
+<div class="tier tier-4">
+<h3>TIER 4 — Filets de securite</h3>
+<p><strong>HEC Montreal</strong> (CONFIRME) | <strong>Concordia</strong> (CONFIRME) | <strong>Lyon 3</strong> (>80%) | <strong>EGC Lille</strong> (>80%) | <strong>ISG Paris</strong></p>
+<p style="font-size:0.85rem;margin-top:6px;">HEC Montreal est un excellent filet — pas une ecole de secours. Concordia = backup. Lyon 3 et EGC = securite maximale si tout echoue (improbable).</p>
+</div>
+
+<!-- ==================== CHANCES ORAUX ==================== -->
+<h2>4. Estimation des chances aux oraux</h2>
+
+<div class="card">
+<p style="font-size:0.85rem;color:var(--muted);margin-bottom:12px;">Estimation basee sur : profil international exceptionnel de Paola (5 pays), IELTS 7.5, experience evenementielle concrete, motivation letter solide, et le fait qu'elle est deja admissible (= le plus dur est fait).</p>
+
+<div class="risk-row"><span class="risk-label">EDHEC (27 avril)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:75%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">75%</span></div>
+
+<div class="risk-row"><span class="risk-label">IESEG (30 avril)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:70%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">70%</span></div>
+
+<div class="risk-row"><span class="risk-label">ESSCA (30 avril)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:65%;background:linear-gradient(90deg,#f39c12,#e67e22);"></div></div><span class="risk-pct" style="color:#f39c12;">65%</span></div>
+
+<div class="risk-row"><span class="risk-label">ESDES (30 avril)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:80%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">80%</span></div>
+
+<div class="risk-row"><span class="risk-label">emlyon (2 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:70%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">70%</span></div>
+
+<div class="risk-row"><span class="risk-label">NEOMA (2 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:75%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">75%</span></div>
+
+<div class="risk-row"><span class="risk-label">GEM (4 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:70%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">70%</span></div>
+
+<div class="risk-row"><span class="risk-label">KEDGE (7 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:75%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">75%</span></div>
+
+<div class="risk-row"><span class="risk-label">SKEMA (11 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:75%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">75%</span></div>
+
+<div class="risk-row"><span class="risk-label">EM Normandie (12 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:70%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">70%</span></div>
+
+<div class="risk-row"><span class="risk-label">Hotelschool TH (18-22 mai)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:70%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">70%</span></div>
+
+<div class="risk-row"><span class="risk-label">Institut Lyfe (attente resultats)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:80%;background:linear-gradient(90deg,#27ae60,#2ecc71);"></div></div><span class="risk-pct" style="color:#27ae60;">80%</span></div>
+
+<div class="risk-row"><span class="risk-label">Dauphine-PSL (attente)</span><div class="risk-bar-bg"><div class="risk-bar" style="width:25%;background:linear-gradient(90deg,#e74c3c,#f39c12);"></div></div><span class="risk-pct" style="color:#e74c3c;">25%</span></div>
+</div>
+
+<div class="insight">
+<strong>Analyse :</strong> Le profil de Paola est exceptionnellement fort pour les oraux : parcours 5 pays, IELTS 7.5 (C1), experience concrete d'evenementiel avec chiffres, stage Marine nationale. La probabilite d'obtenir <strong>au moins 3-4 admissions</strong> parmi les 11 oraux est tres elevee (>95%). Le vrai enjeu n'est pas "est-ce que j'aurai une place ?" mais "quelle ecole choisir ?".
+</div>
+
+<!-- ==================== SECURITE vs RISQUE ==================== -->
+<h2>5. Matrice securite vs ambition</h2>
+
+<div class="card">
+<table class="matrix">
+<thead>
+<tr><th></th><th style="text-align:center;">Securite MAX</th><th style="text-align:center;">Equilibre</th><th style="text-align:center;">Ambition MAX</th></tr>
+</thead>
+<tbody>
+<tr>
+<td style="font-weight:700;">Si Paola veut<br>l'hotellerie/luxe</td>
+<td>Institut Lyfe (forte proba)<br>+ HEC Montreal en backup</td>
+<td>Hotelschool The Hague<br>ou SKEMA (Luxury & Fashion)</td>
+<td>EDHEC BBA + spe luxe en M2<br>ou emlyon + passerelle hotellerie</td>
+</tr>
+<tr>
+<td style="font-weight:700;">Si Paola veut<br>le management intl</td>
+<td>HEC Montreal (ADMISE)<br>+ IESEG si admise</td>
+<td>EDHEC BBA ou emlyon BBA<br>ou IESEG PGE (Bac+5)</td>
+<td>Dauphine-PSL (tres selectif)<br>ou EDHEC + Master ESCP/HEC</td>
+</tr>
+<tr>
+<td style="font-weight:700;">Si Paola veut<br>garder les portes ouvertes</td>
+<td>IESEG PGE (5 ans, spe en M2)<br>ou ESSCA PGE</td>
+<td>EDHEC BBA (polyvalent top)<br>ou emlyon BBA</td>
+<td>EDHEC + MSc HEC Paris apres</td>
+</tr>
+</tbody>
+</table>
+</div>
+
+<!-- ==================== SCENARIO RECOMMANDE ==================== -->
+<h2>6. Scenario recommande</h2>
+
+<div class="success">
+<h3>Position actuelle : EXCELLENTE</h3>
+<ul style="margin-top:8px;">
+<li><strong>2 admissions confirmees</strong> (HEC Montreal + Concordia) = zero risque de se retrouver sans ecole</li>
+<li><strong>11 oraux a venir</strong> (27 avril - 22 mai) = tres forte probabilite d'obtenir 3-5 admissions supplementaires</li>
+<li><strong>Profil ideal pour les oraux</strong> : international, bilingue, experience concrete, motivation authentique</li>
+</ul>
+</div>
+
+<div class="card">
+<h3>Top 3 a viser en priorite</h3>
+<ol>
+<li><strong>EDHEC International BBA</strong> — Meilleur compromis prestige/international/polyvalence. Top ranking, triple accredite, Nice + possibilite Global Track. Salaire sortie ~42k EUR. Ouvre toutes les portes (luxe, conseil, finance, entrepreneuriat).</li>
+<li><strong>Hotelschool The Hague</strong> — Si le coeur de Paola est vraiment l'hotellerie. #7 monde, Skotel unique, reseau palaces mondial. Moins polyvalent mais reference absolue dans le secteur.</li>
+<li><strong>IESEG PGE</strong> — Meilleur PGE post-bac (#1), Bac+5 directement, triple accredite. Option la plus longue (5 ans) mais diplome Master = meilleur salaire long terme.</li>
+</ol>
+
+<h3>Scenario "coeur hotellerie"</h3>
+<p>1er choix : Hotelschool TH &rarr; 2e : Institut Lyfe &rarr; 3e : SKEMA (Luxury & Fashion) &rarr; Filet : HEC Montreal</p>
+
+<h3>Scenario "prestige + flexibilite"</h3>
+<p>1er choix : EDHEC BBA &rarr; 2e : emlyon BBA &rarr; 3e : IESEG PGE &rarr; Filet : HEC Montreal</p>
+
+<h3>Scenario "international maximum"</h3>
+<p>1er choix : HEC Montreal (deja admise !) &rarr; 2e : EDHEC Global Track &rarr; 3e : Hotelschool TH &rarr; 4e : NEOMA CESEM Double Degree</p>
+</div>
+
+<div class="danger">
+<strong>Rappel important :</strong> Toutes les admissions Parcoursup sont <strong>contingentes au Baccalaureat</strong>. HEC Montreal et Concordia sont confirmes independamment. En cas d'improbable echec au Bac, le Canada reste la solution.
+</div>
+
+<!-- ==================== CALENDRIER DECISION ==================== -->
+<h2>7. Calendrier de decision</h2>
+
+<div class="card">
+<table class="matrix">
+<thead><tr><th>Date</th><th>Evenement</th><th>Decision</th></tr></thead>
+<tbody>
+<tr><td>27 avril</td><td>Oral EDHEC</td><td>Donner le meilleur</td></tr>
+<tr><td>30 avril</td><td>3 oraux ACCES</td><td>Donner le meilleur</td></tr>
+<tr><td>2-12 mai</td><td>6 oraux SESAME</td><td>Donner le meilleur</td></tr>
+<tr><td>18-22 mai</td><td>Selection Day Hotelschool</td><td>Donner le meilleur</td></tr>
+<tr><td>23 mai</td><td>Resultats SESAME</td><td>Premiers choix a affiner</td></tr>
+<tr><td>2 juin</td><td>Resultats ACCES</td><td>Completer la vision</td></tr>
+<tr style="background:#e8f5e9;"><td><strong>5 juin</strong></td><td><strong>Phase 1 Parcoursup</strong></td><td><strong>DECISION FINALE — classer les voeux acceptes</strong></td></tr>
+<tr><td>Juin-Juillet</td><td>Listes d'attente</td><td>Attendre mouvements eventuels</td></tr>
+<tr><td>24 aout</td><td>Rentree HEC Montreal</td><td>Si choix Canada — depart Montreal</td></tr>
+<tr><td>Septembre</td><td>Rentree France/NL</td><td>Si choix Parcoursup ou Hotelschool</td></tr>
+</tbody>
+</table>
+</div>
+
+<div class="insight">
+<strong>Conclusion :</strong> Paola est dans une position remarquable. Avec 2 admissions confirmees et 11 oraux a venir, elle a le luxe de choisir plutot que d'esperer. La priorite maintenant est de <strong>preparer chaque oral avec soin</strong> (les fiches de preparation sont disponibles sur la page principale) et de <strong>donner le meilleur a chaque entretien</strong>. La decision finale se prendra debut juin, avec toutes les cartes en main.
+</div>
+
+<p style="text-align:center;margin-top:24px;font-size:0.8rem;color:var(--muted);">
+Sources : <a href="https://www.letudiant.fr/classements/classement-des-grandes-ecoles-de-commerce-post-bac.html">L'Etudiant 2026</a> |
+<a href="https://www.prepacampus.fr/blog/classement-ecoles-commerce-post-bac-2026">Prepa Campus 2026</a> |
+<a href="https://business-cool.com/decryptage/salaire/classement-salaires-sortie-ecoles-de-commerce/">Business Cool Salaires</a> |
+<a href="https://www.hotelschool.nl/blog/news/qs-ranking-by-subject-2025/">QS Hospitality 2025</a> |
+<a href="https://www.ieseg.fr/en/news/2025-2026-rankings/">IESEG Rankings</a> |
+<a href="https://www.hec.ca/en/about/rankings/rankings.html">HEC Montreal Rankings</a>
+</p>
+
+</div>
+</body>
+</html>
