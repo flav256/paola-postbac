@@ -88,21 +88,21 @@ canvas { display: block; }
 const schools = [
   { name: 'HEC Montreal', fit: 78, proba: 100, fees: 8000, status: 'admise', program: 'BAA (annee prep)', lieu: 'Montreal, Canada', detail: 'Triple accreditee, top francophone Ameriques', accred: 'AACSB EQUIS AMBA', rank: '#1 francophone Canada' },
   { name: 'Concordia JMSB', fit: 58, proba: 100, fees: 9000, status: 'admise', program: 'BCom', lieu: 'Montreal, Canada', detail: 'Backup solide Montreal', accred: 'AACSB', rank: 'Top 10 Canada' },
-  { name: 'EDHEC', fit: 92, proba: 75, fees: 14500, status: 'oral', program: 'International BBA (4 ans)', lieu: 'Nice / Lille', detail: '#1 BBA France, #14 FT, Triple accreditee', accred: 'AACSB EQUIS AMBA', rank: '#1 BBA / #14 FT' },
-  { name: 'Hotelschool TH', fit: 91, proba: 70, fees: 9500, status: 'oral', program: 'BA Hotel Mgmt (4 ans)', lieu: 'La Haye / Amsterdam', detail: '#7 monde hotellerie QS, Skotel unique', accred: 'QS #7 Hospitality', rank: '#7 monde hotellerie' },
-  { name: 'emlyon', fit: 88, proba: 70, fees: 14000, status: 'oral', program: 'Global BBA (4 ans)', lieu: 'Lyon / Paris', detail: '#2 BBA France, #12 FT, Triple accreditee', accred: 'AACSB EQUIS AMBA', rank: '#2 BBA / #12 FT' },
-  { name: 'SKEMA', fit: 87, proba: 75, fees: 13000, status: 'oral', program: 'Global BBA (4 ans)', lieu: 'Sophia-Antipolis / Lille', detail: 'Luxury & Fashion Management, 7 campus monde', accred: 'AACSB EQUIS AMBA', rank: 'Top 4 BBA / #18 FT' },
-  { name: 'IESEG', fit: 82, proba: 70, fees: 11500, status: 'oral', program: 'PGE Bac+5', lieu: 'Lille / Paris La Defense', detail: '#1 PGE post-bac, #33 FT, Triple accreditee', accred: 'AACSB EQUIS AMBA', rank: '#1 PGE / #33 FT' },
-  { name: 'ESSCA', fit: 72, proba: 75, fees: 10500, status: 'oral', program: 'PGE Bac+5', lieu: 'Angers / Paris / Budapest', detail: '#2 PGE post-bac, Triple accreditee', accred: 'AACSB EQUIS AMBA', rank: '#2 PGE post-bac' },
-  { name: 'NEOMA', fit: 71, proba: 75, fees: 12000, status: 'oral', program: 'Global BBA / CESEM', lieu: 'Reims / Paris / Rouen', detail: 'CESEM Double Degree, Triple accreditee', accred: 'AACSB EQUIS AMBA', rank: 'Top 5 BBA / #30 FT' },
-  { name: 'GEM', fit: 70, proba: 70, fees: 12500, status: 'oral', program: 'International BBA (4 ans)', lieu: 'Grenoble / Paris', detail: 'Geopolitics lab, innovation ecosystem', accred: 'AACSB EQUIS AMBA', rank: 'Top 5 BBA / #20 FT' },
-  { name: 'KEDGE', fit: 68, proba: 75, fees: 11500, status: 'oral', program: 'EBP + IBBA (4 ans)', lieu: 'Bordeaux / Marseille', detail: 'Double admissibilite EBP+IBBA', accred: 'AACSB EQUIS AMBA', rank: 'Top 7 BBA' },
-  { name: 'EM Normandie', fit: 66, proba: 70, fees: 11000, status: 'oral', program: 'PGE Bac+5', lieu: 'Caen / Paris / Dubai', detail: 'Campus Dubai, international fort', accred: 'AACSB EQUIS', rank: 'Top 5 PGE post-bac' },
-  { name: 'ESDES', fit: 62, proba: 80, fees: 9000, status: 'oral', program: 'PGE Bac+5', lieu: 'Lyon', detail: 'Humanites & Creativite, bon rapport qualite/prix', accred: 'AACSB EFMD', rank: '~#8 PGE post-bac' },
-  { name: 'Inst. Lyfe', fit: 90, proba: 80, fees: 11000, status: 'attente', program: 'Bachelor Hospitality (4 ans)', lieu: 'Ecully (Lyon)', detail: 'Ex-Paul Bocuse, #1 hotellerie France', accred: 'Reconnu Etat', rank: '#1 hotellerie France' },
-  { name: 'Dauphine-PSL', fit: 72, proba: 25, fees: 3700, status: 'attente', program: 'Licence Sciences des Org.', lieu: 'Paris / Madrid / Londres', detail: 'PSL #24 monde, tres selectif', accred: 'Universite publique', rank: 'Top 3 univ FR (PSL #24)' },
-  { name: 'Excelia', fit: 64, proba: 75, fees: 7000, status: 'attente', program: 'PGE + Bachelor', lieu: 'La Rochelle / Paris', detail: 'ADN tourisme/evenementiel, dossier retenu + oral passe', accred: 'AACSB EPAS', rank: '#4 PGE post-bac' },
-  { name: 'ISG Paris', fit: 48, proba: 70, fees: 8000, status: 'attente', program: 'PGE Bac+5', lieu: 'Paris 16e', detail: 'Oral passe, ecole accessible, section internationale', accred: 'AACSB', rank: '~#12 PGE post-bac' },
+  { name: 'EDHEC', fit: 92, proba: 65, fees: 14500, status: 'oral', program: 'International BBA (4 ans)', lieu: 'Nice / Lille', detail: 'Top BBA, tres selectif apres admissibilite', accred: 'AACSB EQUIS AMBA', rank: '#1 BBA / #14 FT' },
+  { name: 'Hotelschool TH', fit: 91, proba: 60, fees: 9500, status: 'oral', program: 'BA Hotel Mgmt (4 ans)', lieu: 'La Haye / Amsterdam', detail: 'Selection Day exigeant (essay+interview+tests)', accred: 'QS #7 Hospitality', rank: '#7 monde hotellerie' },
+  { name: 'emlyon', fit: 88, proba: 60, fees: 14000, status: 'oral', program: 'Global BBA (4 ans)', lieu: 'Lyon / Paris', detail: 'Epreuve signature unique, forte concurrence', accred: 'AACSB EQUIS AMBA', rank: '#2 BBA / #12 FT' },
+  { name: 'SKEMA', fit: 87, proba: 70, fees: 13000, status: 'oral', program: 'Global BBA (4 ans)', lieu: 'Sophia-Antipolis / Lille', detail: 'Luxury & Fashion = match parfait profil Paola', accred: 'AACSB EQUIS AMBA', rank: 'Top 4 BBA / #18 FT' },
+  { name: 'IESEG', fit: 82, proba: 60, fees: 11500, status: 'oral', program: 'PGE Bac+5', lieu: 'Lille / Paris La Defense', detail: '#1 PGE post-bac, format 45min exigeant', accred: 'AACSB EQUIS AMBA', rank: '#1 PGE / #33 FT' },
+  { name: 'ESSCA', fit: 72, proba: 65, fees: 10500, status: 'oral', program: 'PGE Bac+5', lieu: 'Angers / Paris / Budapest', detail: 'Entretien collaboratif a 8 = part d\'aleatoire', accred: 'AACSB EQUIS AMBA', rank: '#2 PGE post-bac' },
+  { name: 'NEOMA', fit: 71, proba: 75, fees: 12000, status: 'oral', program: 'Global BBA / CESEM', lieu: 'Reims / Paris / Rouen', detail: 'Moins selectif, profil intl de Paola = atout', accred: 'AACSB EQUIS AMBA', rank: 'Top 5 BBA / #30 FT' },
+  { name: 'GEM', fit: 70, proba: 65, fees: 12500, status: 'oral', program: 'International BBA (4 ans)', lieu: 'Grenoble / Paris', detail: 'Textes anglais a preparer = risque si mal prepares', accred: 'AACSB EQUIS AMBA', rank: 'Top 5 BBA / #20 FT' },
+  { name: 'KEDGE', fit: 68, proba: 75, fees: 11500, status: 'oral', program: 'EBP + IBBA (4 ans)', lieu: 'Bordeaux / Marseille', detail: 'Double admissibilite, format classique', accred: 'AACSB EQUIS AMBA', rank: 'Top 7 BBA' },
+  { name: 'EM Normandie', fit: 66, proba: 75, fees: 11000, status: 'oral', program: 'PGE Bac+5', lieu: 'Caen / Paris / Dubai', detail: 'PGE moins selectif, campus Dubai = connexion Paola', accred: 'AACSB EQUIS', rank: 'Top 5 PGE post-bac' },
+  { name: 'ESDES', fit: 62, proba: 80, fees: 9000, status: 'oral', program: 'PGE Bac+5', lieu: 'Lyon', detail: 'Moins selectif, themes donnes en avance', accred: 'AACSB EFMD', rank: '~#8 PGE post-bac' },
+  { name: 'Inst. Lyfe', fit: 90, proba: 85, fees: 11000, status: 'attente', program: 'Bachelor Hospitality (4 ans)', lieu: 'Ecully (Lyon)', detail: 'Taux >80%, oral+ecrits passes, profil parfait', accred: 'Reconnu Etat', rank: '#1 hotellerie France' },
+  { name: 'Dauphine-PSL', fit: 72, proba: 20, fees: 3700, status: 'attente', program: 'Licence Sciences des Org.', lieu: 'Paris / Madrid / Londres', detail: 'Tres selectif, dossier seul, pas d\'oral', accred: 'Universite publique', rank: 'Top 3 univ FR (PSL #24)' },
+  { name: 'Excelia', fit: 64, proba: 70, fees: 7000, status: 'attente', program: 'PGE + Bachelor', lieu: 'La Rochelle / Paris', detail: 'Dossier retenu + oral passe, mid-selectivite', accred: 'AACSB EPAS', rank: '#4 PGE post-bac' },
+  { name: 'ISG Paris', fit: 48, proba: 75, fees: 8000, status: 'attente', program: 'PGE Bac+5', lieu: 'Paris 16e', detail: 'Ecole accessible, oral passe', accred: 'AACSB', rank: '~#12 PGE post-bac' },
   { name: 'Lyon 3', fit: 38, proba: 95, fees: 700, status: 'attente', program: 'Licence Gestion', lieu: 'Lyon', detail: 'Filet garanti >80%', accred: 'AACSB (iaelyon)', rank: 'Filet garanti' },
   { name: 'EGC Lille', fit: 25, proba: 95, fees: 3000, status: 'attente', program: 'Bachelor Commerce', lieu: 'Lille', detail: 'Filet regional CCI', accred: 'CCI', rank: 'Filet regional' },
   { name: 'ESSEC', fit: 85, proba: 0, fees: 17400, status: 'refusee', program: 'Global BBA', lieu: 'Cergy / Singapour', detail: 'Non admissible', accred: 'AACSB EQUIS AMBA', rank: '#1 France' },
@@ -213,6 +213,8 @@ function draw() {
 
   // Draw bubbles
   const drawOrder = ['refusee', 'attente', 'oral', 'admise'];
+  const labelPositions = []; // collision avoidance
+
   for (const st of drawOrder) {
     schools.filter(s => s.status === st).forEach(s => {
       const vis = isVisible(s);
@@ -223,13 +225,8 @@ function draw() {
 
       ctx.globalAlpha = alpha;
 
-      // Shadow for selected
-      if (isSel) {
-        ctx.shadowColor = colors[s.status];
-        ctx.shadowBlur = 16;
-      }
+      if (isSel) { ctx.shadowColor = colors[s.status]; ctx.shadowBlur = 16; }
 
-      // Bubble fill
       ctx.beginPath();
       ctx.arc(cx, cy, isHov ? r + 3 : r, 0, Math.PI * 2);
       ctx.fillStyle = statusBg[s.status];
@@ -239,18 +236,11 @@ function draw() {
       ctx.stroke();
       ctx.shadowBlur = 0;
 
-      // Label inside bubble if big enough, else below
+      // Price inside bubble
       if (vis) {
-        ctx.fillStyle = '#1a2e5a';
-        const fontSize = r > 16 ? 10 : 9;
-        ctx.font = `bold ${fontSize}px Segoe UI, system-ui, sans-serif`;
-        ctx.textAlign = 'center';
-        const shortName = s.name.replace('Hotelschool TH', 'HTH').replace('Inst. Lyfe', 'Lyfe').replace('EM Normandie', 'EM Norm.').replace('Dauphine-PSL', 'Dauphine').replace('RSM Rotterdam', 'RSM').replace('Concordia JMSB', 'Concordia').replace('HEC Montreal', 'HEC Mtl').replace('EGC Lille', 'EGC');
-        // Name below bubble
-        ctx.fillText(shortName, cx, cy + r + 13);
-        // Price inside bubble
         ctx.fillStyle = '#555';
-        ctx.font = `${fontSize - 1}px Segoe UI, system-ui, sans-serif`;
+        ctx.font = '9px Segoe UI, system-ui, sans-serif';
+        ctx.textAlign = 'center';
         const feeLabel = s.fees >= 10000 ? (s.fees/1000).toFixed(1)+'k' : s.fees < 1000 ? s.fees+'' : (s.fees/1000).toFixed(0)+'k';
         ctx.fillText(feeLabel, cx, cy + 3);
       }
@@ -258,6 +248,42 @@ function draw() {
       ctx.globalAlpha = 1;
     });
   }
+
+  // Draw labels with collision avoidance (separate pass)
+  const labels = [];
+  for (const st of drawOrder) {
+    schools.filter(s => s.status === st && isVisible(s)).forEach(s => {
+      const cx = xPos(s.proba), cy = yPos(s.fit), r = rad(s.fees);
+      const shortName = s.name.replace('Hotelschool TH', 'HTH').replace('Inst. Lyfe', 'Lyfe').replace('EM Normandie', 'EM Norm.').replace('Dauphine-PSL', 'Dauphine').replace('RSM Rotterdam', 'RSM').replace('Concordia JMSB', 'Concordia').replace('HEC Montreal', 'HEC Mtl').replace('EGC Lille', 'EGC').replace('ISG Paris', 'ISG');
+      labels.push({ name: shortName, x: cx, y: cy + r + 13, r, color: colors[s.status] });
+    });
+  }
+
+  // Resolve overlaps: shift labels that collide
+  for (let i = 0; i < labels.length; i++) {
+    for (let j = i + 1; j < labels.length; j++) {
+      const a = labels[i], b = labels[j];
+      const dx = Math.abs(a.x - b.x), dy = Math.abs(a.y - b.y);
+      if (dx < 55 && dy < 12) {
+        // Shift the lower-priority one
+        if (a.y < b.y) { b.y += 13; } else { a.y += 13; }
+      }
+    }
+  }
+
+  // Render labels with leader lines if shifted far
+  labels.forEach(l => {
+    const origY = l.y;
+    ctx.fillStyle = '#1a2e5a';
+    ctx.font = 'bold 10px Segoe UI, system-ui, sans-serif';
+    ctx.textAlign = 'center';
+    // Background for readability
+    const tw = ctx.measureText(l.name).width;
+    ctx.fillStyle = 'rgba(255,255,255,0.85)';
+    ctx.fillRect(l.x - tw/2 - 2, l.y - 9, tw + 4, 12);
+    ctx.fillStyle = '#1a2e5a';
+    ctx.fillText(l.name, l.x, l.y);
+  });
 
   // Connection line for selected
   if (selectedSchool && isVisible(selectedSchool)) {
