@@ -49,7 +49,22 @@ canvas { display: block; }
 /* Hover tooltip (mini) */
 .mini-tip { position: absolute; background: rgba(26,46,90,0.92); color: #fff; padding: 6px 10px; border-radius: 6px; font-size: 0.78rem; pointer-events: none; opacity: 0; transition: opacity 0.12s; white-space: nowrap; z-index: 15; }
 
-@media (max-width: 600px) { .detail-card { width: 260px; padding: 14px; } }
+@media (max-width: 600px) {
+  .container { padding: 12px; }
+  h1 { font-size: 1.15rem; }
+  .subtitle { font-size: 0.75rem; margin-bottom: 10px; }
+  .legend { gap: 6px; font-size: 0.72rem; }
+  .legend-item { padding: 3px 7px; }
+  .legend-dot { width: 10px; height: 10px; }
+  .filters { gap: 5px; }
+  .filters button { padding: 4px 10px; font-size: 0.7rem; }
+  .chart-wrap { padding: 8px; border-radius: 10px; }
+  .detail-card { position: fixed; left: 8px !important; right: 8px !important; bottom: 8px !important; top: auto !important; width: auto !important; max-height: 50vh; overflow-y: auto; border-radius: 14px 14px 14px 14px; box-shadow: 0 -4px 30px rgba(0,0,0,0.25); }
+  .detail-card .dc-name { font-size: 0.95rem; }
+  .detail-card .dc-grid { font-size: 0.78rem; gap: 4px 8px; }
+  .detail-card .dc-close { font-size: 1.3rem; top: 10px; right: 14px; padding: 4px 8px; }
+  .mini-tip { display: none; }
+}
 </style>
 </head>
 <body>
@@ -125,13 +140,17 @@ const miniTip = document.getElementById('miniTip');
 const detailCard = document.getElementById('detailCard');
 const dcContent = document.getElementById('dcContent');
 
-const PAD = { top: 50, right: 50, bottom: 55, left: 60 };
+let isMobile = window.innerWidth < 600;
+let PAD = isMobile ? { top: 35, right: 20, bottom: 45, left: 40 } : { top: 50, right: 50, bottom: 55, left: 60 };
 let W, H, plotW, plotH, dpr = window.devicePixelRatio || 1;
 
 function resize() {
+  isMobile = window.innerWidth < 600;
+  PAD = isMobile ? { top: 35, right: 20, bottom: 45, left: 40 } : { top: 50, right: 50, bottom: 55, left: 60 };
   const rect = canvas.parentElement.getBoundingClientRect();
-  W = rect.width - 48;
-  H = Math.min(560, Math.max(420, W * 0.55));
+  const pad = isMobile ? 16 : 48;
+  W = rect.width - pad;
+  H = isMobile ? Math.max(320, W * 0.85) : Math.min(560, Math.max(420, W * 0.55));
   canvas.width = W * dpr;
   canvas.height = H * dpr;
   canvas.style.width = W + 'px';
@@ -142,8 +161,14 @@ function resize() {
 }
 
 function xPos(proba) { return PAD.left + (proba / 100) * plotW; }
-function yPos(fit) { return PAD.top + ((100 - fit) / 80) * plotH; } // Y axis 20-100
-function rad(fees) { return Math.max(10, Math.min(30, 6 + Math.sqrt(fees / 400) * 2.5)); }
+function yPos(fit) { return PAD.top + ((100 - fit) / 80) * plotH; }
+function rad(fees) {
+  const base = isMobile ? 4 : 6;
+  const scale = isMobile ? 1.8 : 2.5;
+  const min = isMobile ? 7 : 10;
+  const max = isMobile ? 20 : 30;
+  return Math.max(min, Math.min(max, base + Math.sqrt(fees / 400) * scale));
+}
 
 function isVisible(s) {
   if (!visibleStatus.has(s.status)) return false;
@@ -179,37 +204,39 @@ function draw() {
   }
 
   // Axis ticks
+  const tickFont = isMobile ? '8px' : '10px';
   ctx.fillStyle = '#999';
-  ctx.font = '10px Segoe UI, system-ui, sans-serif';
+  ctx.font = `${tickFont} Segoe UI, system-ui, sans-serif`;
   ctx.textAlign = 'center';
-  for (let i = 0; i <= 100; i += 25) {
-    ctx.fillText(i + '%', xPos(i), H - PAD.bottom + 16);
+  const xStep = isMobile ? 25 : 25;
+  for (let i = 0; i <= 100; i += xStep) {
+    ctx.fillText(i + '%', xPos(i), H - PAD.bottom + (isMobile ? 12 : 16));
   }
   ctx.textAlign = 'right';
   for (let i = 20; i <= 100; i += 20) {
-    ctx.fillText(i, PAD.left - 8, yPos(i) + 4);
+    ctx.fillText(i, PAD.left - (isMobile ? 4 : 8), yPos(i) + 4);
   }
 
   // Axis titles
   ctx.fillStyle = '#1a2e5a';
-  ctx.font = 'bold 12px Segoe UI, system-ui, sans-serif';
+  ctx.font = `bold ${isMobile ? '10px' : '12px'} Segoe UI, system-ui, sans-serif`;
   ctx.textAlign = 'center';
-  ctx.fillText('Chances de succes (%)', PAD.left + plotW / 2, H - 8);
+  ctx.fillText(isMobile ? 'Chances (%)' : 'Chances de succes (%)', PAD.left + plotW / 2, H - (isMobile ? 4 : 8));
   ctx.save();
-  ctx.translate(14, PAD.top + plotH / 2);
+  ctx.translate(isMobile ? 10 : 14, PAD.top + plotH / 2);
   ctx.rotate(-Math.PI / 2);
-  ctx.fillText('Fit Paola (adequation profil)', 0, 0);
+  ctx.fillText(isMobile ? 'Fit Paola' : 'Fit Paola (adequation profil)', 0, 0);
   ctx.restore();
 
   // Quadrant labels
-  ctx.font = 'bold 13px Segoe UI, system-ui, sans-serif';
+  ctx.font = `bold ${isMobile ? '10px' : '13px'} Segoe UI, system-ui, sans-serif`;
   ctx.textAlign = 'center';
   ctx.fillStyle = 'rgba(39,174,96,0.12)';
-  ctx.fillText('ZONE IDEALE', xPos(80), yPos(92));
+  ctx.fillText('IDEAL', xPos(80), yPos(92));
   ctx.fillStyle = 'rgba(231,76,60,0.08)';
   ctx.fillText('AMBITIEUX', xPos(15), yPos(92));
   ctx.fillStyle = 'rgba(243,156,18,0.1)';
-  ctx.fillText('FILET DE SECURITE', xPos(82), yPos(32));
+  ctx.fillText(isMobile ? 'FILET' : 'FILET DE SECURITE', xPos(82), yPos(32));
 
   // Draw bubbles
   const drawOrder = ['refusee', 'attente', 'oral', 'admise'];
@@ -260,7 +287,7 @@ function draw() {
   }
 
   // Multiple passes to resolve overlaps
-  const LH = 14, LW = 58;
+  const LH = isMobile ? 12 : 14, LW = isMobile ? 45 : 58;
   for (let pass = 0; pass < 12; pass++) {
     for (let i = 0; i < labels.length; i++) {
       for (let j = i + 1; j < labels.length; j++) {
@@ -309,10 +336,11 @@ function draw() {
     }
 
     // Label with background pill
-    ctx.font = 'bold 10px Segoe UI, system-ui, sans-serif';
+    const labelFontSize = isMobile ? 8 : 10;
+    ctx.font = `bold ${labelFontSize}px Segoe UI, system-ui, sans-serif`;
     const tw = ctx.measureText(l.name).width;
-    // Pill background
-    const px = l.lx - tw/2 - 5, py = l.ly - 10, pw = tw + 10, ph = 14;
+    const ph = isMobile ? 12 : 14;
+    const px = l.lx - tw/2 - 4, py = l.ly - ph + 2, pw = tw + 8;
     ctx.fillStyle = 'rgba(255,255,255,0.92)';
     ctx.beginPath();
     ctx.roundRect(px, py, pw, ph, 4);
@@ -349,7 +377,8 @@ function findAt(mx, my) {
     const group = schools.filter(s => s.status === st && isVisible(s));
     for (const s of group) {
       const cx = xPos(s.proba), cy = yPos(s.fit), r = rad(s.fees);
-      if (Math.hypot(mx - cx, my - cy) < r + 5) return s;
+      const hitPad = isMobile ? 12 : 5;
+      if (Math.hypot(mx - cx, my - cy) < r + hitPad) return s;
     }
   }
   return null;
@@ -393,6 +422,22 @@ canvas.addEventListener('click', (e) => {
   draw();
 });
 
+// Touch events for mobile
+canvas.addEventListener('touchstart', (e) => {
+  e.preventDefault();
+  const touch = e.touches[0];
+  const rect = canvas.getBoundingClientRect();
+  const mx = touch.clientX - rect.left, my = touch.clientY - rect.top;
+  const s = findAt(mx, my);
+  if (s) {
+    selectedSchool = s;
+    showDetail(s, mx, my);
+  } else {
+    closeDetail();
+  }
+  draw();
+}, { passive: false });
+
 function showDetail(s, mx, my) {
   const feeStr = s.fees.toLocaleString('fr-FR');
   dcContent.innerHTML = `
@@ -417,14 +462,19 @@ function showDetail(s, mx, my) {
     <div class="dc-detail">${s.detail}</div>
   `;
   detailCard.classList.add('visible');
-  // Position card
-  let left = mx + 20;
-  let top = my - 40;
-  if (left + 310 > W) left = mx - 320;
-  if (top < 10) top = 10;
-  if (top + 280 > H) top = H - 280;
-  detailCard.style.left = left + 'px';
-  detailCard.style.top = top + 'px';
+  if (isMobile) {
+    // Fixed bottom sheet on mobile (CSS handles positioning)
+    detailCard.style.left = '';
+    detailCard.style.top = '';
+  } else {
+    let left = mx + 20;
+    let top = my - 40;
+    if (left + 310 > W) left = mx - 320;
+    if (top < 10) top = 10;
+    if (top + 280 > H) top = H - 280;
+    detailCard.style.left = left + 'px';
+    detailCard.style.top = top + 'px';
+  }
 }
 
 function closeDetail() {
