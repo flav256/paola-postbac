@@ -70,8 +70,8 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);l
 .strengths{background:var(--grn-s);border:1px solid #c5d8cb;border-radius:10px;padding:.8rem .9rem;margin:.6rem 0}
 .strengths .cl-item .box{color:var(--grn)}
 /* Sub-tabs within Oral section */
-.subtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.8rem 0}
-.subtab{padding:.4rem .8rem;border-radius:20px;font-size:.72rem;font-weight:600;cursor:pointer;border:1px solid var(--bdr);background:#fff;transition:all .2s}
+.subtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.8rem 0;position:sticky;top:42px;z-index:50;background:var(--paper);padding:.5rem 0;border-bottom:1px solid var(--bdr)}
+.subtab{padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--bdr);background:#fff;transition:all .2s}
 .subtab.active{background:var(--nvy);color:#fff;border-color:var(--nvy)}
 .subpanel{display:none}.subpanel.active{display:block;animation:fadeIn .25s}
 footer{text-align:center;padding:1.5rem;font-size:.68rem;color:#999;margin-top:1rem}
@@ -610,6 +610,8 @@ document.querySelectorAll('.subpanel').forEach(p=>p.classList.remove('active'));
 document.querySelectorAll('.subtab').forEach(b=>b.classList.remove('active'));
 document.getElementById('sub-'+id).classList.add('active');
 event.currentTarget.classList.add('active');
+const subtabs=document.querySelector('.subtabs');
+if(subtabs){subtabs.scrollIntoView({behavior:'smooth',block:'start'});}
 }
 </script>
 </body>
