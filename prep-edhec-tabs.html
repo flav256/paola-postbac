@@ -8,6 +8,7 @@
 <style>
 :root{--ink:#0f1b2d;--paper:#f9f8f5;--red:#c0392b;--red-s:#fbe9e7;--nvy:#1a3a5c;--nvy-s:#e3eaf1;--gld:#c19a3e;--gld-s:#f9f0d9;--tl:#1a7a6d;--tl-s:#e0f2ee;--grn:#2d7d46;--grn-s:#e6f4ea;--bdr:#e0dbd2;--prp:#6c3483;--prp-s:#f0e6f6}
 *{margin:0;padding:0;box-sizing:border-box}
+html,body{height:auto;overflow-x:hidden;overflow-y:auto;-webkit-overflow-scrolling:touch}
 body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);line-height:1.6;-webkit-font-smoothing:antialiased}
 .hdr{background:linear-gradient(135deg,#0f1b2d,#1e3a5f);color:#fff;padding:1.8rem 1.5rem 1rem;text-align:center}
 .hdr h1{font-family:'DM Serif Display',serif;font-size:1.6rem}
@@ -23,18 +24,18 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);l
 .tab-btn.active{color:#fff;background:rgba(255,255,255,.08)}
 .tab-btn.active::after{content:'';position:absolute;bottom:-3px;left:10%;right:10%;height:3px;background:var(--gld);border-radius:2px 2px 0 0}
 .tab-btn .emoji{display:block;font-size:1.2rem;margin-bottom:.15rem}
-.tab-panel{display:none;animation:fadeIn .3s}
-.tab-panel.active{display:block}
+.tab-panel{display:none;animation:fadeIn .3s;overflow:visible}
+.tab-panel.active{display:block;overflow:visible}
 @keyframes fadeIn{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
 
-.c{max-width:740px;margin:0 auto;padding:1.2rem}
+.c{max-width:740px;margin:0 auto;padding:1.2rem;overflow:visible;min-height:auto}
 .alert{border-left:4px solid var(--red);background:var(--red-s);border-radius:0 8px 8px 0;padding:.8rem 1rem;margin:.8rem 0;font-size:.82rem}
 .alert strong{color:var(--red)}
 .alert-gld{border-left-color:var(--gld);background:var(--gld-s)}
 .alert-gld strong{color:var(--gld)}
 .s{margin:1.5rem 0}
 .st{font-family:'DM Serif Display',serif;font-size:1.15rem;padding-bottom:.4rem;border-bottom:2px solid var(--gld);margin-bottom:.8rem}
-.card{background:#fff;border:1px solid var(--bdr);border-radius:10px;margin:.7rem 0;overflow:hidden}
+.card{background:#fff;border:1px solid var(--bdr);border-radius:10px;margin:.7rem 0;overflow:visible}
 .card-h{display:flex;align-items:center;gap:.6rem;padding:.7rem .9rem;border-bottom:1px solid var(--bdr);cursor:pointer}
 .card-num{width:26px;height:26px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:'DM Serif Display',serif;font-weight:700;font-size:.8rem;color:#fff;flex-shrink:0}
 .card-title{font-weight:700;font-size:.88rem;flex:1}
@@ -73,7 +74,7 @@ body{font-family:'DM Sans',sans-serif;background:var(--paper);color:var(--ink);l
 .subtabs{display:flex;gap:.4rem;flex-wrap:wrap;margin:.8rem 0;position:sticky;top:42px;z-index:50;background:var(--paper);padding:.5rem 0;border-bottom:1px solid var(--bdr)}
 .subtab{padding:.5rem 1rem;border-radius:20px;font-size:.78rem;font-weight:600;cursor:pointer;border:1px solid var(--bdr);background:#fff;transition:all .2s}
 .subtab.active{background:var(--nvy);color:#fff;border-color:var(--nvy)}
-.subpanel{display:none}.subpanel.active{display:block;animation:fadeIn .25s}
+.subpanel{display:none;overflow:visible}.subpanel.active{display:block;overflow:visible;animation:fadeIn .25s}
 footer{text-align:center;padding:1.5rem;font-size:.68rem;color:#999;margin-top:1rem}
 </style>
 </head>
