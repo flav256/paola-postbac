@@ -77,56 +77,61 @@ h3 { color: var(--navy); font-size: 1rem; margin: 16px 0 8px; }
 </div>
 
 <h2>0. Matrice de decision — quelle ecole garder ?</h2>
-<p style="margin-bottom:10px;font-size:0.9rem;">Seules les ecoles <strong>reellement obtenues</strong> figurent ici (admises Parcoursup + Canada). Score = <strong>Fit Paola</strong> pondere : hotellerie/luxe/events 30%, international 25%, ranking/accreditations 20%, salaire-ROI 15%, cadre de vie/flexibilite 10%.</p>
+<p style="margin-bottom:6px;font-size:0.9rem;">Seules les ecoles <strong>reellement obtenues</strong> figurent ici (admises Parcoursup + Canada). Score = <strong>Fit Paola</strong> pondere selon ses priorites : <strong>international 35%</strong>, hotellerie/luxe/events 15%, ranking 15%, salaire-ROI 15%, <strong>cadre de vie/flexibilite 15%</strong>, accreditations &amp; double diplome 5%.</p>
+<p style="margin-bottom:10px;font-size:0.82rem;color:var(--muted);">Ponderations revues : international &uarr;, luxe/hotellerie &darr;, cadre &uarr;. IESEG penalisee (PGE Bac+5 non souhaite). emlyon : luxe reevalue (majeure <a href="emlyon-bba.html" style="color:#1565c0;">Luxury Marketing &amp; Management</a> en 4e annee). HEC Montreal : cadre reevalue.</p>
 
 <div class="card" style="overflow-x:auto;">
 <table class="matrix">
 <thead>
-<tr><th>Ecole</th><th>Voie</th><th>Diplome</th><th>Hotellerie/Luxe<br>(30%)</th><th>Intl<br>(25%)</th><th>Ranking<br>(20%)</th><th>ROI<br>(15%)</th><th>Cadre<br>(10%)</th><th>Score</th></tr>
+<tr><th>Ecole</th><th>Voie</th><th>Diplome</th><th>Frais/an</th><th>Intl<br>(35%)</th><th>Hot./Luxe<br>(15%)</th><th>Ranking<br>(15%)</th><th>ROI<br>(15%)</th><th>Cadre<br>(15%)</th><th>Accred. &amp;<br>2x diplome (5%)</th><th>Score</th></tr>
 </thead>
 <tbody>
 <tr class="admissible">
-  <td class="school-name">SKEMA Global BBA</td><td>Parcoursup (admise)</td><td>Bac+4</td>
-  <td>85</td><td>92</td><td>88</td><td>80</td><td>88</td>
-  <td style="font-weight:800;color:#27ae60;">87</td>
+  <td class="school-name">emlyon Global BBA</td><td>Parcoursup (admise)</td><td>Bac+4</td><td>15 100 &euro;</td>
+  <td>90</td><td>85</td><td>92</td><td>90</td><td>82</td><td>92</td>
+  <td style="font-weight:800;color:#27ae60;">88</td>
 </tr>
 <tr class="admissible">
-  <td class="school-name">EDHEC International BBA</td><td>Parcoursup (admise — Lille ; Nice en attente)</td><td>Bac+4</td>
-  <td>70</td><td>95</td><td>95</td><td>88</td><td>70</td>
-  <td style="font-weight:800;color:#27ae60;">84</td>
+  <td class="school-name">SKEMA Global BBA</td><td>Parcoursup (admise)</td><td>Bac+4</td><td>~13 000 &euro;</td>
+  <td>92</td><td>85</td><td>88</td><td>80</td><td>88</td><td>90</td>
+  <td style="font-weight:800;color:#27ae60;">88</td>
 </tr>
 <tr class="admissible">
-  <td class="school-name">emlyon Global BBA</td><td>Parcoursup (admise)</td><td>Bac+4</td>
-  <td>72</td><td>90</td><td>92</td><td>85</td><td>82</td>
-  <td style="font-weight:800;color:#27ae60;">83</td>
-</tr>
-<tr class="admissible">
-  <td class="school-name">Institut Lyfe</td><td>Parcoursup (admise)</td><td>Bac+4</td>
-  <td>98</td><td>70</td><td>80</td><td>70</td><td>85</td>
-  <td style="font-weight:800;color:#27ae60;">82</td>
-</tr>
-<tr class="admissible">
-  <td class="school-name">IESEG PGE</td><td>Parcoursup (admise)</td><td>Bac+5</td>
-  <td>60</td><td>90</td><td>90</td><td>88</td><td>78</td>
-  <td style="font-weight:800;color:#27ae60;">80</td>
+  <td class="school-name">EDHEC International BBA</td><td>Parcoursup (Lille ; Nice en attente)</td><td>Bac+4</td><td>~14 500 &euro;</td>
+  <td>95</td><td>70</td><td>95</td><td>88</td><td>70</td><td>88</td>
+  <td style="font-weight:800;color:#27ae60;">86</td>
 </tr>
 <tr class="confirmed">
-  <td class="school-name">HEC Montreal BAA</td><td>Hors Parcoursup (admise)</td><td>Bac+3 (+prepa)</td>
-  <td>40</td><td>95</td><td>78</td><td>70</td><td>80</td>
-  <td style="font-weight:800;color:#2980b9;">70</td>
+  <td class="school-name">HEC Montreal BAA</td><td>Hors Parcoursup (admise)</td><td>Bac+3 (+prepa)</td><td>~8 000 CAD (~5 400 &euro;)</td>
+  <td>95</td><td>40</td><td>78</td><td>70</td><td>95</td><td>85</td>
+  <td style="font-weight:800;color:#2980b9;">80</td>
+</tr>
+<tr class="admissible">
+  <td class="school-name">IESEG PGE</td><td>Parcoursup (admise)</td><td>Bac+5 PGE</td><td>~11 500 &euro;</td>
+  <td>88</td><td>50</td><td>88</td><td>85</td><td>45</td><td>90</td>
+  <td style="font-weight:800;color:var(--muted);">76</td>
+</tr>
+<tr class="admissible">
+  <td class="school-name">Institut Lyfe</td><td>Parcoursup (admise)</td><td>Bac+4</td><td>~11 000 &euro;</td>
+  <td>60</td><td>98</td><td>80</td><td>70</td><td>85</td><td>60</td>
+  <td style="font-weight:800;color:var(--muted);">74</td>
 </tr>
 </tbody>
 </table>
 </div>
+<p style="font-size:0.78rem;color:var(--muted);">Cadre/flexibilite : note la qualite de vie + la souplesse du parcours. IESEG penalisee car PGE Bac+5 (engagement long) non souhaite par Paola. Accred. &amp; double diplome : triple accreditation + opportunites de double diplome a l'international.</p>
 
 <div class="tier tier-1">
-<h3>Lecture de la matrice — 3 profils de decision</h3>
-<p style="font-size:0.9rem;margin-top:6px;">Hotelschool etant refusee, le projet « hotellerie » se reporte sur Lyfe / SKEMA. Trois recommandations selon ce que veut vraiment Paola :</p>
+<h3>Lecture de la matrice — ce que disent les nouvelles ponderations</h3>
+<p style="font-size:0.9rem;margin-top:6px;">Avec l'<strong>international a 35%</strong> et le PGE ecarte, le classement change :</p>
 <ul style="margin:8px 0 0 18px;font-size:0.9rem;">
-  <li><strong>Cœur hotellerie / luxe &rarr; Institut Lyfe</strong> (hotellerie pure, ex-Bocuse, #1 France) ou <strong>SKEMA</strong> (specialisation Luxury &amp; Fashion + diplome plus polyvalent).</li>
-  <li><strong>Meilleur compromis luxe + prestige + international &rarr; SKEMA Global BBA</strong> (score le plus eleve : seule a combiner spe luxe, triple accreditation et 7 campus monde).</li>
-  <li><strong>Prestige generaliste + portes ouvertes &rarr; EDHEC</strong> (#1 BBA France, #14 FT) ou <strong>emlyon</strong> ; <strong>IESEG</strong> si le Bac+5 (Master direct) est prioritaire.</li>
+  <li><strong>emlyon &amp; SKEMA en tete (88, ex-aequo).</strong> emlyon repasse devant grace a la majeure <a href="emlyon-bba.html" style="color:#1565c0;font-weight:700;">Luxury Marketing &amp; Management</a> (4e annee), au meilleur salaire de sortie (50 890 &euro;, 100% d'emploi a 6 mois) et a son large choix de <strong>doubles diplomes</strong> (Aston, FGV, Tongji, Sherbrooke...). SKEMA reste imbattable sur l'international pur (7 campus, 5 continents) + spe Luxury &amp; Fashion.</li>
+  <li><strong>EDHEC juste derriere (86)</strong> — #1 BBA France, meilleur ranking, mais cadre Lille moins seduisant (Nice en attente remonterait la note).</li>
+  <li><strong>HEC Montreal remonte (80)</strong> grace au cadre (95), a l'international (95) et au cout tres bas — mais pas de specialisation hotellerie/luxe.</li>
+  <li><strong>Institut Lyfe recule (74)</strong> : imbattable en hotellerie mais dimension internationale plus limitee (60), ce qui pese desormais lourd.</li>
+  <li><strong>IESEG penalisee (76)</strong> : excellent dossier mais c'est un <strong>PGE Bac+5</strong>, format non souhaite par Paola.</li>
 </ul>
+<p style="font-size:0.9rem;margin-top:8px;"><strong>Profils de decision :</strong> compromis international + luxe + prestige &rarr; <strong>emlyon</strong> (majeure Luxe + doubles diplomes) ou <strong>SKEMA</strong> ; cœur hotellerie pure &rarr; <strong>Institut Lyfe</strong> ; experience internationale + budget &rarr; <strong>HEC Montreal</strong>.</p>
 </div>
 
 <div class="insight">
