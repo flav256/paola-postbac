@@ -364,7 +364,7 @@ section[id] { scroll-margin-top: 60px; }
 <main>
 <div class="hero">
   <h1>Orientation Post-Bac 2026</h1>
-  <p><strong>Resultats Parcoursup tombes (2 juin)</strong> : 14 admissions &#10003; + 2 au Canada &#10003; &mdash; Hotelschool refusee</p>
+  <p><strong>Resultats Parcoursup (2 juin)</strong> : 15 admissions &#10003; + 2 au Canada &#10003; &mdash; Hotelschool refusee (Excelia : revision &rarr; OUI)</p>
   <p style="margin-top:8px;font-size:1rem;color:#ffd166;font-weight:700;">&#9888; DEADLINE mercredi 4 juin 23h59 — garder 1 SEULE acceptation Parcoursup</p>
   <p style="margin-top:6px;font-size:0.88rem;"><a href="resultats.html" style="color:#fff;text-decoration:underline;">Voir les resultats</a> &nbsp;&middot;&nbsp; <a href="bilan.html" style="color:#fff;text-decoration:underline;">Matrice de decision</a></p>
   <div class="countdown" id="countdown"></div>
@@ -606,10 +606,10 @@ section[id] { scroll-margin-top: 60px; }
 const SCHOOLS = [
   {
     key: 'decision', name: '🎯 DECISION Parcoursup — repondre avant le 4 juin 23h59', type: 'parcoursup',
-    diploma: 'Garder 1 SEULE acceptation', campus: '14 propositions recues — en accepter une, renoncer aux autres',
+    diploma: 'Garder 1 SEULE acceptation', campus: '15 propositions recues — en accepter une, renoncer aux autres',
     stars: 0, fees: '—', tags: [],
-    status: 'ACTION REQUISE avant le 4 juin 23h59', statusBadge: 'badge-red', statusText: 'DEADLINE 4 juin',
-    atout: 'Position exceptionnelle : 14 admissions Parcoursup + 2 au Canada. Le sujet n\'est plus "aurai-je une place" mais "laquelle garder". Candidates : SKEMA (luxe), EDHEC (prestige), Institut Lyfe (hotellerie). Voir la matrice de decision.',
+    status: 'ACTION REQUISE (4 juin 23h59 ; Excelia : 5 juin)', statusBadge: 'badge-red', statusText: 'DEADLINE 4-5 juin',
+    atout: 'Position exceptionnelle : 15 admissions Parcoursup (Excelia ajoutee par revision) + 2 au Canada. Le sujet n\'est plus "aurai-je une place" mais "laquelle garder". Co-candidates n°1 : emlyon & SKEMA ; puis EDHEC ; Institut Lyfe si cœur hotellerie. Voir la matrice de decision.',
     accreditations: '—',
     highlight: true,
     nextSteps: [
@@ -630,14 +630,17 @@ const SCHOOLS = [
     key: 'excelia', name: 'Excelia Business School', voeu: 1, type: 'parcoursup',
     diploma: 'PGE Bac+5', campus: 'Paris-Cachan / La Rochelle / Tours (3 campus)',
     stars: 3, fees: '~7 000 EUR', tags: ['tourisme', 'evenementiel'],
-    status: 'EN ATTENTE #4 — admission quasi-certaine (rang 329 < 404 appele 2025)', statusBadge: 'badge-orange', statusText: 'En attente #4',
-    atout: 'Seul PGE avec ADN tourisme/evenementiel integre. Mais en-dessous des meilleures options deja acceptees.',
+    status: 'ADMISE (revision du #4) — repondre avant le 5 juin 23h59', statusBadge: 'badge-green', statusText: 'ADMISE &#10003;',
+    atout: 'Seul PGE avec ADN tourisme/evenementiel integre. Mais PGE Bac+5 (format non souhaite par Paola) et en-dessous des meilleures options.',
     accreditations: 'AACSB, EPAS',
     nextSteps: [
-      'PGE : EN ATTENTE, position #4 (rang 329 < dernier appele 2025 = 404) &rarr; quasi-certaine',
-      'Recommandation : renoncer sauf interet specifique (sous le tier des admissions acquises)'
+      '<strong style="color:#27ae60;">ADMISE &#10003;</strong> (la liste d\'attente #4 est passee en OUI le 4 juin)',
+      '<strong style="color:#c0392b;">Repondre avant le 5 juin 23h59</strong>',
+      'Recommandation : <strong>renoncer</strong> (PGE Bac+5 non souhaite, sous le tier des top choix)'
     ],
-    actions: []
+    actions: [
+      { id: 'excelia-repondre', text: 'Repondre a la proposition Excelia PGE (recommandation : renoncer)', deadline: '5 juin 23h59' }
+    ]
   },
   {
 // === SESAME — ECOLES INDIVIDUELLES ===
