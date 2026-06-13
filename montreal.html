@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paola — Checklist Déménagement Montréal (HEC)</title>
+<style>
+:root { --navy: #1a2e5a; --accent: #e8a838; --green: #27ae60; --red: #e74c3c; --orange: #f39c12; --teal: #16a085; --bg: #f5f7fb; --card: #fff; --text: #2c3e50; --muted: #7f8c8d; --border:#e0e4ec; }
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Segoe UI', system-ui, sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+.container { max-width: 980px; margin: 0 auto; padding: 20px; }
+.back { display: inline-block; margin-bottom: 12px; color: #1565c0; text-decoration: none; font-size: 0.9rem; }
+h1 { color: var(--navy); font-size: 1.6rem; margin-bottom: 6px; }
+.subtitle { color: var(--muted); font-size: 0.92rem; margin-bottom: 16px; }
+
+/* HERO DATES */
+.dates { display:grid; grid-template-columns: repeat(auto-fit,minmax(200px,1fr)); gap:12px; margin-bottom:18px; }
+.datecard { border-radius:12px; padding:14px 18px; color:#fff; }
+.d-move { background: linear-gradient(135deg,#e67e22,#d35400); }
+.d-school { background: linear-gradient(135deg,#1a2e5a,#2a4a8a); }
+.datecard .big { font-size:1.5rem; font-weight:800; }
+.datecard .lbl { font-size:0.82rem; opacity:.95; }
+
+/* PROGRESS */
+.progress-wrap { background:var(--card); border:1px solid var(--border); border-radius:12px; padding:14px 18px; margin-bottom:18px; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.progress-bar { height:14px; background:#eef1f7; border-radius:8px; overflow:hidden; margin-top:8px; }
+.progress-fill { height:100%; background:linear-gradient(90deg,var(--teal),var(--green)); width:0%; transition:width .3s; }
+.progress-label { font-size:0.9rem; font-weight:600; color:var(--navy); }
+.reset-btn { float:right; font-size:0.75rem; background:none; border:1px solid var(--border); border-radius:14px; padding:3px 12px; cursor:pointer; color:var(--muted); }
+.reset-btn:hover { background:#fdecea; color:var(--red); border-color:#f5c6cb; }
+
+/* SECTION */
+.sec { background:var(--card); border:1px solid var(--border); border-radius:12px; margin-bottom:16px; overflow:hidden; box-shadow:0 2px 8px rgba(0,0,0,.05); }
+.sec-head { padding:14px 18px; font-size:1.05rem; font-weight:700; color:#fff; display:flex; align-items:center; gap:10px; }
+.sec-logement .sec-head { background:#6c5ce7; }
+.sec-admin .sec-head { background:#0984e3; }
+.sec-services .sec-head { background:#00b894; }
+.sec-assur .sec-head { background:#e17055; }
+.sec-meubles .sec-head { background:#fab1a0; color:#6b2b16; }
+.sec-arrivee .sec-head { background:#2d3436; }
+.sec-hec .sec-head { background:#1a2e5a; }
+.sec-body { padding:6px 18px 14px; }
+
+/* ITEM */
+.item { display:flex; align-items:flex-start; gap:12px; padding:11px 0; border-bottom:1px solid #f0f0f0; }
+.item:last-child { border-bottom:none; }
+.item input[type=checkbox]{ width:20px; height:20px; margin-top:2px; accent-color:var(--green); cursor:pointer; flex-shrink:0; }
+.item .body { flex:1; }
+.item .title { font-weight:600; font-size:0.95rem; cursor:pointer; }
+.item .note { font-size:0.83rem; color:var(--muted); margin-top:3px; }
+.item.done .title { text-decoration:line-through; color:var(--muted); }
+.item.done .body { opacity:.7; }
+.tag { font-size:0.68rem; font-weight:700; padding:2px 9px; border-radius:11px; white-space:nowrap; margin-left:6px; }
+.tag-now { background:#fdecea; color:#c0392b; }
+.tag-early { background:#fff3cd; color:#7a5600; }
+.tag-move { background:#ffe0cc; color:#a04000; }
+.tag-arr { background:#d6eaf8; color:#1b4f72; }
+.tag-ok { background:#d4edda; color:#155724; }
+.blocker { font-size:0.72rem; font-weight:700; color:#c0392b; }
+.callout { background:#fff8e6; border-left:4px solid var(--accent); padding:10px 14px; border-radius:0 8px 8px 0; font-size:0.85rem; margin:10px 0; }
+.docs { background:#eef6ff; border:1px dashed #7fb3e8; border-radius:10px; padding:12px 16px; font-size:0.86rem; }
+.docs strong{ color:var(--navy); }
+footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0; }
+@media(max-width:600px){ .item input[type=checkbox]{width:22px;height:22px;} }
+</style>
+</head>
+<body>
+<div class="container">
+
+<a href="index.html" class="back">&larr; Retour page principale</a>
+<h1>🍁 Checklist déménagement — Montréal (HEC Montréal)</h1>
+<p class="subtitle">Préparation de l'installation de Paola · Appartement <strong>C0903 — Rockhill (Minto)</strong> · Coche au fur et à mesure (sauvegarde automatique dans ce navigateur).</p>
+
+<div class="callout" style="background:#eafaf1;border-left-color:var(--green);">
+<strong>Statut des choix :</strong> emlyon Global BBA (Parcoursup) = <strong>accepté, en réserve</strong>. Option <strong>HEC Montréal</strong> (BAA) en préparation active — cette checklist couvre l'installation à Montréal.
+</div>
+
+<div class="dates">
+  <div class="datecard d-move"><div class="big">6 août 2026</div><div class="lbl">Emménagement — remise des clés C0903 + livraison meubles</div></div>
+  <div class="datecard d-school"><div class="big">24 août 2026</div><div class="lbl">Rentrée HEC Montréal — BAA (année préparatoire)</div></div>
+</div>
+
+<div class="progress-wrap">
+  <button class="reset-btn" onclick="resetAll()">Réinitialiser</button>
+  <span class="progress-label" id="progLabel">0 / 0 fait</span>
+  <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
+</div>
+
+<!-- ============ LOGEMENT ============ -->
+<div class="sec sec-logement">
+  <div class="sec-head">🏠 Logement — Bail Rockhill (Minto)</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="bail-signe"><input type="checkbox"><div class="body"><div class="title">Bail signé & unité confirmée — C0903 <span class="tag tag-now">À faire</span></div><div class="note">Rockhill Apartments (Minto). Emménagement effectif le 6 août 2026.</div></div></div>
+    <div class="item" data-id="bail-assur-preuve"><input type="checkbox"><div class="body"><div class="title">Transmettre la preuve d'assurance habitation à Minto <span class="tag tag-now">Bloquant</span></div><div class="note"><span class="blocker">⚠ Minto ne remet PAS les clés sans preuve d'assurance.</span> Voir section Assurances.</div></div></div>
+    <div class="item" data-id="bail-loyer1"><input type="checkbox"><div class="body"><div class="title">Régler le 1er mois de loyer (+ dépôt éventuel)</div><div class="note">Vérifier le mode de paiement accepté par Minto (chèque, virement, prélèvement).</div></div></div>
+    <div class="item" data-id="bail-cles"><input type="checkbox"><div class="body"><div class="title">Récupérer les clés <span class="tag tag-move">6 août</span></div><div class="note">Prendre RDV avec Minto pour la remise des clés / état des lieux.</div></div></div>
+  </div>
+</div>
+
+<!-- ============ ADMIN ============ -->
+<div class="sec sec-admin">
+  <div class="sec-head">📑 Démarches administratives (à faire tôt)</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="sin"><input type="checkbox"><div class="body"><div class="title">Demander le NAS / SIN (Numéro d'assurance sociale) <span class="tag tag-early">Tôt</span></div><div class="note">Requis pour le formulaire Hydro-Québec et le compte d'électricité (et pour tout emploi/stage). Service Canada — possible à l'arrivée à l'aéroport ou en ligne.</div></div></div>
+    <div class="item" data-id="permis-doc"><input type="checkbox"><div class="body"><div class="title">Vérifier lettre d'introduction (permis d'études) + CAQ <span class="tag tag-ok">CAQ ✓</span></div><div class="note">CAQ déjà accepté. La lettre d'introduction est à présenter au point d'entrée canadien.</div></div></div>
+    <div class="item" data-id="permis-arrivee"><input type="checkbox"><div class="body"><div class="title">Récupérer le permis d'études à l'arrivée (point d'entrée) <span class="tag tag-arr">À l'arrivée</span></div><div class="note">Le permis d'études physique est délivré par l'agent à l'aéroport / frontière, sur présentation de la lettre d'introduction + CAQ + passeport.</div></div></div>
+    <div class="item" data-id="permis-hec"><input type="checkbox"><div class="body"><div class="title">Téléverser le permis d'études dans le portail HEC Montréal en ligne <span class="tag tag-arr">Après arrivée</span></div><div class="note">Étape obligatoire HEC une fois le permis obtenu à l'arrivée.</div></div></div>
+  </div>
+</div>
+
+<!-- ============ SERVICES ============ -->
+<div class="sec sec-services">
+  <div class="sec-head">🔌 Services (élec, internet, mobile, banque)</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="hydro"><input type="checkbox"><div class="body"><div class="title">Ouvrir le compte Hydro-Québec (électricité) — appartement C0903, effectif 06/08/2026 <span class="tag tag-early">Tôt</span></div><div class="note">Prévoir <strong>frais admin 25 $ + taxes</strong>. Paola paie l'électricité (usage <strong>hors chauffage</strong>) ; <strong>Minto couvre le chauffage + l'eau chaude</strong>. Le formulaire exige le <strong>NAS</strong>.</div></div></div>
+    <div class="item" data-id="internet"><input type="checkbox"><div class="body"><div class="title">Souscrire Internet (Vidéotron / Bell…)</div><div class="note">Vérifier la disponibilité à l'adresse C0903 et planifier l'activation autour du 6 août.</div></div></div>
+    <div class="item" data-id="mobile"><input type="checkbox"><div class="body"><div class="title">Forfait mobile canadien (Fido / Koodo / Vidéotron…)</div><div class="note">Souvent activé à l'arrivée. Penser à garder le numéro français en eSIM si besoin.</div></div></div>
+    <div class="item" data-id="banque"><input type="checkbox"><div class="body"><div class="title">Ouvrir un compte bancaire canadien <span class="tag tag-early">Tôt</span></div><div class="note">Offres « étudiants internationaux » (RBC, Desjardins, BMO, Scotiabank…). Certaines banques permettent d'ouvrir le compte <strong>avant l'arrivée</strong>. Utile pour payer loyer / Hydro.</div></div></div>
+  </div>
+</div>
+
+<!-- ============ ASSURANCES ============ -->
+<div class="sec sec-assur">
+  <div class="sec-head">🛡️ Assurances (habitation + santé)</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="assur-hab"><input type="checkbox"><div class="body"><div class="title">Assurance habitation locataire — <strong>min. 1 000 000 $ de responsabilité civile</strong> <span class="tag tag-now">Bloquant</span></div><div class="note"><span class="blocker">⚠ À faire tôt — certaines compagnies prennent du temps.</span> Demander un <strong>certificat nommant l'adresse de l'unité (C0903)</strong> et le transmettre à Minto pour obtenir les clés.</div></div></div>
+    <div class="item" data-id="assur-bluecross"><input type="checkbox"><div class="body"><div class="title">Assurance santé — Blue Cross <span class="tag tag-early">Tôt</span></div><div class="note">Souvent souscrite via HEC pour les étudiants internationaux. Vérifier les dates de couverture (dès l'arrivée).</div></div></div>
+    <div class="item" data-id="assur-ramq"><input type="checkbox"><div class="body"><div class="title">Vérifier l'éligibilité RAMQ (accord France-Québec)</div><div class="note">En tant que ressortissante française, Paola peut être éligible à la <strong>RAMQ</strong> via l'entente France-Québec → possibilité d'<strong>exemption</strong> de l'assurance Blue Cross (formulaire SE-401-Q-106 à demander en France avant le départ). À confirmer avec HEC.</div></div></div>
+  </div>
+</div>
+
+<!-- ============ MEUBLES ============ -->
+<div class="sec sec-meubles">
+  <div class="sec-head">🛋️ Meubles & emménagement (IKEA)</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="ikea-liste"><input type="checkbox"><div class="body"><div class="title">Établir la liste IKEA <span class="tag tag-early">Tôt</span></div><div class="note">Essentiels : lit + matelas + sommier, couette/oreillers/linge, bureau + chaise, lampe, rangement/commode, ustensiles cuisine + vaisselle, rideaux, poubelle, etc.</div></div></div>
+    <div class="item" data-id="ikea-commande"><input type="checkbox"><div class="body"><div class="title">Commander IKEA avec livraison planifiée pour le 6 août <span class="tag tag-move">6 août</span></div><div class="note">Caler la livraison le jour de la remise des clés (ou juste après). Vérifier le créneau et l'accès immeuble (ascenseur/monte-charge Minto).</div></div></div>
+    <div class="item" data-id="essentiels-jour1"><input type="checkbox"><div class="body"><div class="title">Kit « première nuit »</div><div class="note">De quoi dormir/manger le 1er soir si la livraison tarde (gonflable, drap, nécessaire de toilette, snacks).</div></div></div>
+  </div>
+</div>
+
+<!-- ============ ARRIVEE ============ -->
+<div class="sec sec-arrivee">
+  <div class="sec-head">✈️ À l'arrivée au Canada</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="arr-vol"><input type="checkbox"><div class="body"><div class="title">Vol réservé (arrivée avant le 6 août)</div><div class="note">Prévoir une marge avant l'emménagement et la rentrée du 24 août.</div></div></div>
+    <div class="item" data-id="arr-permis"><input type="checkbox"><div class="body"><div class="title">Permis d'études délivré au point d'entrée <span class="tag tag-arr">À l'arrivée</span></div><div class="note">Vérifier que le permis est correct (dates, établissement HEC) avant de quitter le poste frontière.</div></div></div>
+    <div class="item" data-id="arr-services"><input type="checkbox"><div class="body"><div class="title">Activer banque / mobile / internet sur place</div></div></div>
+    <div class="item" data-id="arr-hec-upload"><input type="checkbox"><div class="body"><div class="title">Téléverser le permis d'études sur HEC en ligne <span class="tag tag-arr">Après arrivée</span></div></div></div>
+  </div>
+</div>
+
+<!-- ============ HEC ============ -->
+<div class="sec sec-hec">
+  <div class="sec-head">🎓 HEC Montréal</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="hec-inscription"><input type="checkbox"><div class="body"><div class="title">Finaliser l'inscription + paiement des droits</div><div class="note">Vérifier l'échéancier des frais de scolarité (programme BAA, année préparatoire).</div></div></div>
+    <div class="item" data-id="hec-cours"><input type="checkbox"><div class="body"><div class="title">Choix de cours / horaire</div></div></div>
+    <div class="item" data-id="hec-rentree"><input type="checkbox"><div class="body"><div class="title">Rentrée <span class="tag tag-move">24 août</span></div><div class="note">Journée d'accueil / orientation des nouveaux étudiants.</div></div></div>
+  </div>
+</div>
+
+<div class="docs">
+<strong>📄 Documents à garder sur soi (à l'arrivée) :</strong> passeport valide · lettre d'introduction (permis d'études) · CAQ · lettre d'admission HEC Montréal · preuve de fonds · preuve d'assurance santé · bail Minto + preuve d'assurance habitation · adresse C0903.
+</div>
+
+<footer>
+Checklist personnelle — cochée localement dans ton navigateur (non synchronisée). Vérifie toujours les exigences officielles (Minto, Hydro-Québec, IRCC, HEC Montréal).
+</footer>
+
+</div>
+
+<script>
+const KEY = 'paola-montreal-checklist';
+function load(){ try{ return JSON.parse(localStorage.getItem(KEY))||{}; }catch{ return {}; } }
+function save(s){ localStorage.setItem(KEY, JSON.stringify(s)); }
+let state = load();
+
+const items = Array.from(document.querySelectorAll('.item'));
+function render(){
+  let done = 0;
+  items.forEach(it => {
+    const id = it.dataset.id;
+    const cb = it.querySelector('input');
+    const checked = !!state[id];
+    cb.checked = checked;
+    it.classList.toggle('done', checked);
+    if(checked) done++;
+  });
+  const total = items.length;
+  const pct = total ? Math.round(done/total*100) : 0;
+  document.getElementById('progFill').style.width = pct + '%';
+  document.getElementById('progLabel').textContent = `${done} / ${total} fait (${pct}%)`;
+}
+items.forEach(it => {
+  const cb = it.querySelector('input');
+  const id = it.dataset.id;
+  const toggle = () => { state[id] = cb.checked; save(state); render(); };
+  cb.addEventListener('change', toggle);
+  it.querySelector('.title').addEventListener('click', () => { cb.checked = !cb.checked; toggle(); });
+});
+function resetAll(){ if(confirm('Tout décocher ?')){ state = {}; save(state); render(); } }
+render();
+</script>
+</body>
+</html>
