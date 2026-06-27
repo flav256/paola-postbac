@@ -77,6 +77,7 @@ footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0
 
 <div class="dates">
   <div class="datecard d-move"><div class="big">6 août 2026</div><div class="lbl">Emménagement — remise des clés C0903 + livraison meubles</div></div>
+  <div class="datecard" style="background:linear-gradient(135deg,#00b894,#0984e3);"><div class="big">17 août 2026</div><div class="lbl">Journée découverte parents-étudiants — campus HEC</div></div>
   <div class="datecard d-school"><div class="big">24 août 2026</div><div class="lbl">Rentrée HEC Montréal — BAA (année préparatoire)</div></div>
 </div>
 
@@ -86,12 +87,22 @@ footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0
   <div class="progress-bar"><div class="progress-fill" id="progFill"></div></div>
 </div>
 
+<!-- ============ PRIORITE IMMEDIATE ============ -->
+<div class="sec" style="border:2px solid var(--accent);">
+  <div class="sec-head" style="background:linear-gradient(135deg,#e8a838,#d4901f);color:#3a2a00;">⭐ Priorité immédiate — Résultats du bac</div>
+  <div class="sec-body" data-list>
+    <div class="item" data-id="bac-hec"><input type="checkbox"><div class="body"><div class="title">Charger les résultats du bac sur HEC Montréal en ligne <span class="tag tag-now">PRIORITÉ</span></div><div class="note">Admission conditionnée à l'obtention du bac. Dès réception des résultats (4 juillet), téléverser le relevé de notes officiel sur le portail HEC Montréal.</div></div></div>
+    <div class="item" data-id="bac-concordia"><input type="checkbox"><div class="body"><div class="title">Charger les résultats du bac sur Concordia <span class="tag tag-early">Back-up</span></div><div class="note">Garder l'admission Concordia active comme filet à Montréal.</div></div></div>
+    <div class="item" data-id="bac-emlyon"><input type="checkbox"><div class="body"><div class="title">Transmettre les résultats du bac à emlyon (Makersboard) <span class="tag tag-early">Back-up ultime</span></div><div class="note">emlyon (Parcoursup, accepté) = sécurité finale. Fournir le relevé de notes officiel via Makersboard.</div></div></div>
+  </div>
+</div>
+
 <!-- ============ LOGEMENT ============ -->
 <div class="sec sec-logement">
   <div class="sec-head">🏠 Logement — Bail Rockhill (Minto)</div>
   <div class="sec-body" data-list>
-    <div class="item" data-id="bail-signe"><input type="checkbox"><div class="body"><div class="title">Bail signé & unité confirmée — C0903 <span class="tag tag-now">À faire</span></div><div class="note">Rockhill Apartments (Minto). Emménagement effectif le 6 août 2026.</div></div></div>
-    <div class="item" data-id="bail-assur-preuve"><input type="checkbox"><div class="body"><div class="title">Transmettre la preuve d'assurance habitation à Minto <span class="tag tag-now">Bloquant</span></div><div class="note"><span class="blocker">⚠ Minto ne remet PAS les clés sans preuve d'assurance.</span> Voir section Assurances.</div></div></div>
+    <div class="item" data-id="bail-signe" data-default="1"><input type="checkbox"><div class="body"><div class="title">Bail signé & validé — C0903 <span class="tag tag-ok">✓ Fait</span></div><div class="note">Rockhill Apartments (Minto). Emménagement effectif le 6 août 2026.</div></div></div>
+    <div class="item" data-id="bail-assur-preuve"><input type="checkbox"><div class="body"><div class="title">Transmettre la preuve d'assurance habitation à Minto <span class="tag tag-arr">À l'arrivée (6 août)</span></div><div class="note"><span class="blocker">⚠ Minto ne remet PAS les clés sans preuve d'assurance.</span> Assurance prévue à l'arrivée → la souscrire dès le 6 août puis transmettre le certificat avant la remise des clés. Voir section Assurances.</div></div></div>
     <div class="item" data-id="bail-loyer1"><input type="checkbox"><div class="body"><div class="title">Régler le 1er mois de loyer (+ dépôt éventuel)</div><div class="note">Vérifier le mode de paiement accepté par Minto (chèque, virement, prélèvement).</div></div></div>
     <div class="item" data-id="bail-cles"><input type="checkbox"><div class="body"><div class="title">Récupérer les clés <span class="tag tag-move">6 août</span></div><div class="note">Prendre RDV avec Minto pour la remise des clés / état des lieux.</div></div></div>
   </div>
@@ -103,6 +114,7 @@ footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0
   <div class="sec-body" data-list>
     <div class="item" data-id="sin"><input type="checkbox"><div class="body"><div class="title">Demander le NAS / SIN (Numéro d'assurance sociale) <span class="tag tag-early">Tôt</span></div><div class="note">Requis pour le formulaire Hydro-Québec et le compte d'électricité (et pour tout emploi/stage). Service Canada — possible à l'arrivée à l'aéroport ou en ligne.</div></div></div>
     <div class="item" data-id="permis-doc"><input type="checkbox"><div class="body"><div class="title">Vérifier lettre d'introduction (permis d'études) + CAQ <span class="tag tag-ok">CAQ ✓</span></div><div class="note">CAQ déjà accepté. La lettre d'introduction est à présenter au point d'entrée canadien.</div></div></div>
+    <div class="item" data-id="permis-dossier"><input type="checkbox"><div class="body"><div class="title">Emporter le DOSSIER COMPLET (papier) avec elle pour l'arrivée du 6 août — study permit on arrival <span class="tag tag-now">Voyage</span></div><div class="note">Tout en cabine pour la délivrance du permis au point d'entrée : <strong>passeport, lettre d'introduction, CAQ, lettre d'admission HEC, preuve de fonds, preuve de logement (bail C0903), assurance</strong>. Prévoir des copies.</div></div></div>
     <div class="item" data-id="permis-arrivee"><input type="checkbox"><div class="body"><div class="title">Récupérer le permis d'études à l'arrivée (point d'entrée) <span class="tag tag-arr">À l'arrivée</span></div><div class="note">Le permis d'études physique est délivré par l'agent à l'aéroport / frontière, sur présentation de la lettre d'introduction + CAQ + passeport.</div></div></div>
     <div class="item" data-id="permis-hec"><input type="checkbox"><div class="body"><div class="title">Téléverser le permis d'études dans le portail HEC Montréal en ligne <span class="tag tag-arr">Après arrivée</span></div><div class="note">Étape obligatoire HEC une fois le permis obtenu à l'arrivée.</div></div></div>
   </div>
@@ -123,8 +135,8 @@ footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0
 <div class="sec sec-assur">
   <div class="sec-head">🛡️ Assurances (habitation + santé)</div>
   <div class="sec-body" data-list>
-    <div class="item" data-id="assur-hab"><input type="checkbox"><div class="body"><div class="title">Assurance habitation locataire — <strong>min. 1 000 000 $ de responsabilité civile</strong> <span class="tag tag-now">Bloquant</span></div><div class="note"><span class="blocker">⚠ À faire tôt — certaines compagnies prennent du temps.</span> Demander un <strong>certificat nommant l'adresse de l'unité (C0903)</strong> et le transmettre à Minto pour obtenir les clés.</div></div></div>
-    <div class="item" data-id="assur-bluecross"><input type="checkbox"><div class="body"><div class="title">Assurance santé — Blue Cross <span class="tag tag-early">Tôt</span></div><div class="note">Souvent souscrite via HEC pour les étudiants internationaux. Vérifier les dates de couverture (dès l'arrivée).</div></div></div>
+    <div class="item" data-id="assur-hab"><input type="checkbox"><div class="body"><div class="title">Assurance habitation locataire — <strong>min. 1 000 000 $ de responsabilité civile</strong> <span class="tag tag-arr">À l'arrivée (6 août)</span></div><div class="note">Prévu à l'arrivée : souscrire <strong>dès le 6 août</strong> (souscription en ligne rapide possible), demander un <strong>certificat nommant l'unité C0903</strong> et le transmettre à Minto. <span class="blocker">⚠ La preuve est requise pour la remise des clés → à faire en priorité le jour même.</span></div></div></div>
+    <div class="item" data-id="assur-bluecross"><input type="checkbox"><div class="body"><div class="title">Assurance maladie (Blue Cross) <span class="tag tag-arr">À l'arrivée</span></div><div class="note">Prévu à l'arrivée. Souvent souscrite via HEC pour les étudiants internationaux. Vérifier que la couverture débute dès le jour d'arrivée.</div></div></div>
     <div class="item" data-id="assur-ramq"><input type="checkbox"><div class="body"><div class="title">Vérifier l'éligibilité RAMQ (accord France-Québec)</div><div class="note">En tant que ressortissante française, Paola peut être éligible à la <strong>RAMQ</strong> via l'entente France-Québec → possibilité d'<strong>exemption</strong> de l'assurance Blue Cross (formulaire SE-401-Q-106 à demander en France avant le départ). À confirmer avec HEC.</div></div></div>
   </div>
 </div>
@@ -156,6 +168,7 @@ footer { text-align:center; font-size:0.78rem; color:var(--muted); margin:24px 0
   <div class="sec-body" data-list>
     <div class="item" data-id="hec-inscription"><input type="checkbox"><div class="body"><div class="title">Finaliser l'inscription + paiement des droits</div><div class="note">Vérifier l'échéancier des frais de scolarité (programme BAA, année préparatoire).</div></div></div>
     <div class="item" data-id="hec-cours"><input type="checkbox"><div class="body"><div class="title">Choix de cours / horaire</div></div></div>
+    <div class="item" data-id="hec-decouverte"><input type="checkbox"><div class="body"><div class="title">Journée découverte parents-étudiants sur le campus <span class="tag tag-move">17 août</span></div><div class="note">Visite du campus HEC avec les parents. Confirmer la présence si une inscription est requise.</div></div></div>
     <div class="item" data-id="hec-rentree"><input type="checkbox"><div class="body"><div class="title">Rentrée <span class="tag tag-move">24 août</span></div><div class="note">Journée d'accueil / orientation des nouveaux étudiants.</div></div></div>
   </div>
 </div>
@@ -182,7 +195,7 @@ function render(){
   items.forEach(it => {
     const id = it.dataset.id;
     const cb = it.querySelector('input');
-    const checked = !!state[id];
+    const checked = (id in state) ? !!state[id] : (it.dataset.default === '1');
     cb.checked = checked;
     it.classList.toggle('done', checked);
     if(checked) done++;
